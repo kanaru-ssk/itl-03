@@ -24,8 +24,8 @@ jobs:
       - name: Install Node
         uses: actions/setup-node@v1
         with:
-          node-version: 14.16.1
-          
+          node-version: 16.6.0
+
       - run: yarn install && yarn build
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
