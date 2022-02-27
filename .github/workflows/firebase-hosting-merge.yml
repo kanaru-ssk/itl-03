@@ -10,6 +10,17 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Create dot env file
+      - shell: bash
+      - run: |
+            touch .env
+            echo "REACT_APP_FB_API_KEY=${{ secrets.REACT_APP_FB_API_KEY }}" >> .env
+            echo "REACT_APP_FB_DOMAIN=${{ secrets.REACT_APP_FB_DOMAIN }}" >> .env
+            echo "REACT_APP_FB_PROJECT_ID=${{ secrets.REACT_APP_FB_PROJECT_ID }}" >> .env
+            echo "REACT_APP_FB_STORAGE=${{ secrets.REACT_APP_FB_STORAGE }}" >> .env
+            echo "REACT_APP_FB_MESSAGING_ID=${{ secrets.REACT_APP_FB_MESSAGING_ID }}" >> .env
+            echo "REACT_APP_FB_APP_ID=${{ secrets.REACT_APP_FB_APP_ID }}" >> .env
+            echo "REACT_APP_FB_API_KEY=${{ secrets.REACT_APP_FB_MEASUREMENT_ID }}" >> .env
       - uses: actions/checkout@v2
       - run: yarn install && yarn build
       - uses: FirebaseExtended/action-hosting-deploy@v0
