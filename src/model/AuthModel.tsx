@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }: Props) => {
         return () => {
             unsubscribed();
         };
-    }, []);
+    }, [onAuthStateChanged]);
 
     return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
 };
