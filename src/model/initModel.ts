@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
+import Auth, { getAuth, onAuthStateChanged, signInAnonymously } from 'firebase/auth';
 
 // firebase設定
 const config = {
@@ -12,8 +13,26 @@ const config = {
     measurementId: process.env.REACT_APP_FB_MEASUREMENT_ID
 };
 
+
+
 // firebase初期化
-export const initFirebase = async () => {
-    const app = initializeApp(config);
-    getAnalytics(app);
+export const initFirebase = (): void => {
+    // const app = initializeApp(config);
+    // getAnalytics(app);
+
+    // const auth = getAuth();
+    // console.log(auth);
+
+    // ログイン状態の確認
+    // onAuthStateChanged(auth, (user) => {
+    //     if (user) {
+    //         console.log(auth.currentUser);
+    //     } else {
+    //         signInAnonymously(auth);
+    //     }
+    // });
 }
+
+const app = initializeApp(config);
+getAnalytics(app);
+export const auth = getAuth();
