@@ -1,32 +1,23 @@
 // React系取得
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 // コンポーネント取得
 import App from './App';
-import UserPage from './User';
 
 // firebase系取得
-import { initFirebase } from './model/initModel';
-
+import { initFirebase } from './model/InitModel';
+import { AuthProvider } from './model/AuthModel';
 
 // firebase初期化
 initFirebase();
 
-
-
-
-
-// ルーティング
+// authをcontextで全体に共有
 ReactDOM.render(
 	<React.StrictMode>
-		<BrowserRouter>
-			<Routes>
-				<Route path='/' element={<App />} />
-				<Route path='/:uid' element={<UserPage  />} />
-			</Routes>
-		</BrowserRouter>
+		<AuthProvider>
+			<App />
+		</AuthProvider>
 	</React.StrictMode>,
 	document.getElementById('root')
 );

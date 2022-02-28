@@ -1,10 +1,19 @@
+// React Router取得
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-const App: React.VFC = () => {
+// コンポーネント取得
+import Home from './view/Home';
+import User from './view/User';
+
+// ルーティング
+const App = () => {
 	return (
-		<div>
-			Hello World <br />
-			hostingリセット
-		</div>
+		<BrowserRouter>
+			<Routes>
+				<Route path='/' element={<Home />} />
+				<Route path='/:uid' element={<User  />} />
+			</Routes>
+		</BrowserRouter>
 	);
 }
 
