@@ -4,13 +4,13 @@ import { AuthContext } from "../model/AuthModel";
 
 const User = () => {
     const { uid } = useParams();
-    const auth = useContext(AuthContext);
+    const user = useContext(AuthContext);
 
     return (
         <div>
             <h1>User</h1>
             <div>パラメーターuid : {uid}</div>
-            <div>ログインuid : {auth ? auth?.currentUser?.uid : "false"}</div>
+            <div>ログインuid : {user ? user?.uid : "false"}</div>
         </div>
     );
 };
