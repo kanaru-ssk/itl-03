@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import { Auth, getAuth, onAuthStateChanged } from "firebase/auth";
 
 type AuthContextProps = Auth | null;
@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }: Props) => {
     const auth = getAuth();
 
     useEffect(() => {
-        const unsubscribed = onAuthStateChanged(auth, (user) => {
+        const unsubscribed = onAuthStateChanged(auth, () => {
             setUser(auth);
         });
         return () => {
