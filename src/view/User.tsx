@@ -5,7 +5,6 @@ import { AuthContext } from "../model/AuthModel";
 const User = () => {
     const { uid } = useParams();
     const auth = useContext(AuthContext);
-    console.log(auth?.currentUser?.uid);
 
     return (
         <div>
