@@ -1,13 +1,13 @@
 {
-  "short_name": "行きたいとこリスト",
-  "name": "行きたいとこリスト",
-  "icons": {
-    "500": "icon.svg",
-    "48": "icon.svg",
-    "96": "icon.svg"
-  },
-  "start_url": "https://go-list.net",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+    "short_name": "行きたいとこリスト",
+    "name": "行きたいとこリスト",
+    "icons": {
+        "500": "icon.svg",
+        "48": "icon.svg",
+        "96": "icon.svg"
+    },
+    "start_url": "https://go-list.net",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#ffffff"
 }

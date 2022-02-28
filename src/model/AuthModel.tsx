@@ -1,5 +1,5 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
-import { Auth, getAuth, onAuthStateChanged } from 'firebase/auth';
+import React, { createContext, useState, useContext, useEffect } from "react";
+import { Auth, getAuth, onAuthStateChanged } from "firebase/auth";
 
 type AuthContextProps = Auth | null;
 
@@ -22,5 +22,6 @@ export const AuthProvider = ({ children }: Props) => {
             unsubscribed();
         };
     }, []);
+
     return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
-}
+};
