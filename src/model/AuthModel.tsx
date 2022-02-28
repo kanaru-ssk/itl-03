@@ -1,5 +1,10 @@
 import React, { createContext, useState, useEffect } from "react";
-import { User, getAuth, onAuthStateChanged } from "firebase/auth";
+import {
+    User,
+    getAuth,
+    onAuthStateChanged,
+    signInAnonymously,
+} from "firebase/auth";
 
 type AuthContextProps = User | null;
 
@@ -16,7 +21,11 @@ export const AuthProvider = ({ children }: Props) => {
 
     useEffect(() => {
         const unsubscribed = onAuthStateChanged(auth, (user) => {
-            setUser(user);
+            if (user) {
+                setUser(user);
+            } else {
+                signInAnonymously(auth);
+            }
         });
         return () => {
             unsubscribed();
