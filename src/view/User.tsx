@@ -11,6 +11,10 @@ const User = () => {
             <h1>User</h1>
             <div>パラメーターuid : {paramsUid}</div>
             <div>ログインuid : {user ? user?.uid : "false"}</div>
+            <div>
+                表示 :
+                {user?.uid == paramsUid ? " マイページ" : " ユーザーページ"}
+            </div>
         </div>
     );
 };
