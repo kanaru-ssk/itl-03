@@ -11,7 +11,7 @@ const App = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/:uid" element={<User />} />
+                <Route path="/:paramsUid" element={<User />} />
             </Routes>
         </BrowserRouter>
     );
