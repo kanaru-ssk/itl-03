@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 // コンポーネント取得
 import Home from "./view/Home";
 import User from "./view/User";
+import Explore from "./view/Explore";
 
 // ルーティング
 const App = () => {
@@ -11,6 +12,7 @@ const App = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/explore" element={<Explore />} />
                 <Route path="/:paramsUid" element={<User />} />
             </Routes>
         </BrowserRouter>
