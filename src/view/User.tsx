@@ -12,14 +12,15 @@ import { AuthContext } from "../model/AuthModel";
 const User = () => {
     const { paramsUid } = useParams();
     const user = useContext(AuthContext);
+    const authUser = user.authUser;
 
-    if (user?.uid === paramsUid) {
+    if (authUser?.uid === paramsUid) {
         return (
             <div>
                 <h1>User</h1>
                 <h2>マイページ</h2>
                 <div>パラメーターuid : {paramsUid}</div>
-                <div>ログインuid : {user?.uid}</div>
+                <div>ログインuid : {authUser?.uid}</div>
             </div>
         );
     } else {
@@ -28,10 +29,11 @@ const User = () => {
                 <h1>User</h1>
                 <h2>ユーザーページ</h2>
                 <div>パラメーターuid : {paramsUid}</div>
-                <div>ログインuid : {user?.uid}</div>
-                <div>認証状態 : {user ? "認証済み" : "未認証"}</div>
+                <div>ログインuid : {authUser?.uid}</div>
+                <div>認証状態 : {authUser ? "認証済み" : "未認証"}</div>
                 <div>
-                    認証種別 : {user?.isAnonymous ? "匿名" : "twitterログイン"}
+                    認証種別 :{" "}
+                    {authUser?.isAnonymous ? "匿名" : "twitterログイン"}
                 </div>
             </div>
         );

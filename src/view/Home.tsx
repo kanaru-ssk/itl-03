@@ -5,14 +5,15 @@ import { AuthContext, loginWithTwitter, logout } from "../model/AuthModel";
 
 const Home = () => {
     const user = useContext(AuthContext);
+    const authUser = user.authUser;
 
-    if (user) {
-        if (user?.isAnonymous) {
+    if (authUser) {
+        if (authUser?.isAnonymous) {
             return (
                 <div>
                     <h1>Login</h1>
                     <div>匿名認証なのでログイン画面を表示</div>
-                    <div>ログインuid : {user?.uid}</div>
+                    <div>ログインuid : {authUser?.uid}</div>
                     <button onClick={loginWithTwitter}>ログイン</button>
                 </div>
             );
@@ -21,7 +22,7 @@ const Home = () => {
                 <div>
                     <h1>Home</h1>
                     <div>tiwtter認証済みなのでホームを表示</div>
-                    <div>ログインuid : {user?.uid}</div>
+                    <div>ログインuid : {authUser?.uid}</div>
                     <button onClick={logout}>ログアウト</button>
                 </div>
             );
