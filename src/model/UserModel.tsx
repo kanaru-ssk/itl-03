@@ -1,5 +1,23 @@
 // ユーザーデータ関係の処理
 
+import { FieldValue } from 'firebase/firestore';
+
+type dbUser = {
+	user_id: string;
+	user_name: string;
+	user_icon: string;
+	user_bio: string;
+	user_twitter_disp_id: string;
+	user_twitter_sys_id: Date | FieldValue;
+	user_regist_date: Date | FieldValue;
+	user_update_date: Date | FieldValue;
+};
+
+type userId = {
+	uid: string;
+	publishedAt: FieldValue;
+};
+
 // ユーザーデータ取得
 export const getUserData = async (uid: string) => {
 	const { getFirestore, getDoc, doc } = await import('firebase/firestore');
@@ -24,20 +42,13 @@ export const getUserData = async (uid: string) => {
 };
 
 // ユーザーデータ作成
-export const createUserData = async (user: any) => {
+export const createUserData = async (uid: string, newUserData: dbUser) => {
 	const { getFirestore, setDoc, doc, serverTimestamp } = await import('firebase/firestore');
 
 	const db = getFirestore();
-	const providerData = user.reloadUserInfo.providerUserInfo[0];
 
-	setDoc(doc(db, 'users', user.uid), {
-		user_id: providerData.screenName,
-		user_name: providerData.displayName,
-		user_icon: providerData.photoUrl,
-		user_bio: '',
-		user_twitter_disp_id: providerData.screenName,
-		user_twitter_sys_id: providerData.rawId,
-		user_regist_date: serverTimestamp(),
-		user_update_date: serverTimestamp()
-	});
+	newUserData.user_regist_date = serverTimestamp();
+	newUserData.user_update_date = serverTimestamp();
+
+	setDoc(doc(db, 'users', uid), newUserData);
 };

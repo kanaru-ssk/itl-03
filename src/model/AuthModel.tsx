@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }: Props) => {
 	const auth = getAuth();
 
 	useEffect(() => {
-		const unsubscribed = onAuthStateChanged(auth, async (user) => {
+		const unsubscribed = onAuthStateChanged(auth, async (user: any) => {
 			if (user) {
 				setUser({ authUser: user, dbUser: undefined });
 
@@ -54,7 +54,21 @@ export const AuthProvider = ({ children }: Props) => {
 				if (userData) {
 					setUser({ authUser: user, dbUser: userData });
 				} else {
-					createUserData(user);
+					// 新規ユーザーデータ作成
+					const providerData = user.reloadUserInfo.providerUserInfo[0];
+					const newUserData = {
+						user_id: providerData.screenName,
+						user_name: providerData.displayName,
+						user_icon: providerData.photoUrl,
+						user_bio: '',
+						user_twitter_disp_id: providerData.screenName,
+						user_twitter_sys_id: providerData.rawId,
+						user_regist_date: new Date(),
+						user_update_date: new Date()
+					};
+
+					setUser({ authUser: user, dbUser: newUserData });
+					createUserData(user.uid, newUserData);
 				}
 			} else {
 				signInAnonymously(auth);
