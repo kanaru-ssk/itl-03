@@ -33,7 +33,7 @@ const User = () => {
 		getUserDataByUserId(paramsUid).then((result) => {
 			setParamsUser(result);
 		});
-	}, []);
+	}, [paramsUid]);
 
 	if (dbUser?.user_id === paramsUid) {
 		return (
