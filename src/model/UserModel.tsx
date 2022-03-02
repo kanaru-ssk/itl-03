@@ -36,15 +36,14 @@ export const getUserDataByUid = async (uid: string) => {
 	}
 };
 
-export const getUserDataByUserId = async (user_id: string | undefined): Promise<dbUser | false> => {
+export const getUserDataByUserId = async (user_id: string | undefined): Promise<dbUser | undefined> => {
 	const { getFirestore, collection, query, where, getDocs } = await import('firebase/firestore');
 	const db = getFirestore();
 	const q = query(collection(db, 'users'), where('user_id', '==', user_id));
 
 	const querySnapshot = await getDocs(q);
-
-	if (querySnapshot.size == 0) {
-		return false;
+	if (querySnapshot.size === 0) {
+		return undefined;
 	} else {
 		const result = {
 			user_id: querySnapshot.docs[0].data().user_id,
