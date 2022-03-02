@@ -49,8 +49,8 @@ export const AuthProvider = ({ children }: Props) => {
 			if (user) {
 				setUser({ authUser: user, dbUser: undefined });
 
-				const { getUserData, createUserData } = await import('./UserModel');
-				const userData = await getUserData(user.uid);
+				const { getUserDataByUid, createUserData } = await import('./UserModel');
+				const userData = await getUserDataByUid(user.uid);
 				if (userData) {
 					setUser({ authUser: user, dbUser: userData });
 				} else {

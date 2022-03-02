@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../model/AuthModel';
 
+import { getUserDataByUserId } from '../model/UserModel';
+
 // 認証されていない => ユーザーページ
 // 認証済み + 匿名認証 => ユーザーページ
 // 認証済み + 表示userとログインuserが異なる => ユーザーページ
@@ -14,6 +16,11 @@ const User = () => {
 	const user = useContext(AuthContext);
 	const authUser = user.authUser;
 	const dbUser = user.dbUser;
+
+	const paramsUser = getUserDataByUserId(paramsUid);
+	paramsUser.then((result) => {
+		console.log(result);
+	});
 
 	if (dbUser?.user_id === paramsUid) {
 		return (
@@ -30,7 +37,7 @@ const User = () => {
 				<h1>User</h1>
 				<h2>ユーザーページ</h2>
 				<div>パラメーターuid : {paramsUid}</div>
-				<div>ログインuid : {authUser?.uid}</div>
+				<div>ログインuid : {dbUser?.user_id}</div>
 				<div>認証状態 : {authUser ? '認証済み' : '未認証'}</div>
 				<div>認証種別 : {authUser?.isAnonymous ? '匿名' : 'twitterログイン'}</div>
 			</div>
