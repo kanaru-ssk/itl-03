@@ -13,14 +13,15 @@ const User = () => {
 	const { paramsUid } = useParams();
 	const user = useContext(AuthContext);
 	const authUser = user.authUser;
+	const dbUser = user.dbUser;
 
-	if (authUser?.uid === paramsUid) {
+	if (dbUser?.user_id === paramsUid) {
 		return (
 			<div>
 				<h1>User</h1>
 				<h2>マイページ</h2>
 				<div>パラメーターuid : {paramsUid}</div>
-				<div>ログインuid : {authUser?.uid}</div>
+				<div>ログインuid : {dbUser?.user_id}</div>
 			</div>
 		);
 	} else {

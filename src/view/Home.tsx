@@ -8,8 +8,6 @@ const Home = () => {
 	const authUser = user.authUser;
 	const dbUser = user.dbUser;
 
-	console.log(user);
-
 	if (authUser) {
 		if (authUser?.isAnonymous) {
 			return (
