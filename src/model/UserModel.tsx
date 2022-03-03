@@ -1,19 +1,6 @@
 // ユーザーデータ関係の処理
 
-import { FieldValue } from 'firebase/firestore';
-
-type dbUser = {
-	user_id: string;
-	user_name: string;
-	user_icon: string;
-	user_bio: string;
-	user_twitter_disp_id: string;
-	user_twitter_sys_id: Date | FieldValue;
-	user_regist_date: Date | FieldValue;
-	user_update_date: Date | FieldValue;
-};
-
-// ユーザーデータ取得
+// ドキュメントidからユーザーデータ取得
 export const getUserDataByUid = async (uid: string) => {
 	const { getFirestore, getDoc, doc } = await import('firebase/firestore');
 	const db = getFirestore();
@@ -36,6 +23,7 @@ export const getUserDataByUid = async (uid: string) => {
 	}
 };
 
+// ユーザーidからユーザーデータ取得
 export const getUserDataByUserId = async (user_id: string | undefined): Promise<dbUser | undefined> => {
 	const { getFirestore, collection, query, where, getDocs } = await import('firebase/firestore');
 	const db = getFirestore();
