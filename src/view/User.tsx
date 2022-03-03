@@ -5,7 +5,6 @@ import { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../model/AuthModel';
 
 import { getUserDataByUserId } from '../model/UserModel';
-import { FieldValue } from 'firebase/firestore';
 
 // 認証されていない => ユーザーページ
 // 認証済み + 匿名認証 => ユーザーページ
