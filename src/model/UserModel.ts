@@ -7,7 +7,7 @@ export const getUserDataByUid = async (uid: string) => {
 	const docRef = doc(db, 'users', uid);
 	const docSnap = await getDoc(docRef);
 	if (docSnap.exists()) {
-		const result = {
+		const result: dbUser = {
 			user_id: docSnap.data().user_id,
 			user_name: docSnap.data().user_name,
 			user_icon: docSnap.data().user_icon,
@@ -33,7 +33,7 @@ export const getUserDataByUserId = async (user_id: string | undefined): Promise<
 	if (querySnapshot.size === 0) {
 		return undefined;
 	} else {
-		const result = {
+		const result: dbUser = {
 			user_id: querySnapshot.docs[0].data().user_id,
 			user_name: querySnapshot.docs[0].data().user_name,
 			user_icon: querySnapshot.docs[0].data().user_icon,
