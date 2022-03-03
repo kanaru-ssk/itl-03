@@ -3,6 +3,8 @@
 import { useContext } from 'react';
 import { AuthContext, loginWithTwitter, logout } from '../model/AuthModel';
 
+import Loading from './Loading';
+
 const Home = () => {
 	const user = useContext(AuthContext);
 	const authUser = user.authUser;
@@ -35,12 +37,7 @@ const Home = () => {
 			);
 		}
 	} else {
-		return (
-			<div>
-				<h1>Loading ...</h1>
-				<div>認証状態を確認中</div>
-			</div>
-		);
+		return <Loading />;
 	}
 };
 
