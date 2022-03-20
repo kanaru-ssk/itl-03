@@ -40,16 +40,14 @@ function createMarker(place: google.maps.places.PlaceResult) {
 
 	const marker = new google.maps.Marker({
 		map,
-		position: place.geometry.location
+		position: place.geometry.location,
+		title: place.name
 	});
 
 	infowindow = new google.maps.InfoWindow();
 
-	google.maps.event.addListener(marker, 'click', () => {
+	marker.addListener('click', () => {
 		infowindow.setContent(place.name || '');
-		// infowindow.setContent('test window');
-		infowindow.open(map);
-
-		console.log('open info');
+		infowindow.open(map, marker);
 	});
 }
