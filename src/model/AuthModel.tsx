@@ -10,14 +10,14 @@ import {
 	signOut
 } from 'firebase/auth';
 
-export const AuthContext = createContext<AuthContextProps>({
+export const AuthContext = createContext<authContextProps>({
 	authUser: undefined,
 	dbUser: undefined
 });
 
 // ログイン認証
 export const AuthProvider = ({ children }: node) => {
-	const [user, setUser] = useState<AuthContextProps>({
+	const [user, setUser] = useState<authContextProps>({
 		authUser: undefined,
 		dbUser: undefined
 	});

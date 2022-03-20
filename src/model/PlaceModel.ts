@@ -4,7 +4,7 @@ let map: google.maps.Map;
 let service: google.maps.places.PlacesService;
 let infowindow: google.maps.InfoWindow;
 
-export const initMap = () => {
+export const initMap = (queryText: string, placeType: placeType) => {
 	const sendai = new google.maps.LatLng(38.26039273442388, 140.88246968423428);
 
 	map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
@@ -12,9 +12,13 @@ export const initMap = () => {
 		zoom: 16
 	});
 
+	if (queryText === '' && placeType === '') return;
+
+	infowindow = new google.maps.InfoWindow();
+
 	const request: google.maps.places.TextSearchRequest = {
-		query: '',
-		type: 'cafe',
+		query: queryText,
+		type: placeType,
 		location: sendai
 	};
 
@@ -24,11 +28,9 @@ export const initMap = () => {
 		request,
 		(results: google.maps.places.PlaceResult[] | null, status: google.maps.places.PlacesServiceStatus): void => {
 			if (status === google.maps.places.PlacesServiceStatus.OK && results) {
-				console.log(results);
 				const len = results.length;
 				for (let i: number = 0; i < len; i++) {
 					createMarker(results[i]);
-					console.log(results[i].name);
 				}
 			}
 		}
@@ -43,8 +45,6 @@ function createMarker(place: google.maps.places.PlaceResult) {
 		position: place.geometry.location,
 		title: place.name
 	});
-
-	infowindow = new google.maps.InfoWindow();
 
 	marker.addListener('click', () => {
 		infowindow.setContent(place.name || '');

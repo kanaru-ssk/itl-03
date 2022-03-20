@@ -15,7 +15,9 @@ type dbUser = {
 	user_update_date: Date | FieldValue;
 };
 
-type AuthContextProps = {
+type authContextProps = {
 	authUser: User | undefined;
 	dbUser: dbUser | undefined;
 };
+
+type placeType = '' | 'cafe' | 'restaurant' | 'bar' | 'library' | 'art_gallery' | 'aquarium' | 'park';
