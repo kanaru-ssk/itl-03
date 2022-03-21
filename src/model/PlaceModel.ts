@@ -3,26 +3,39 @@
 let map: google.maps.Map;
 let service: google.maps.places.PlacesService;
 let infowindow: google.maps.InfoWindow;
+let markers: Array<google.maps.Marker> = [];
 
-export const initMap = (queryText: string, placeType: placeType) => {
+// map初期化
+export const initMap = () => {
 	const sendai = new google.maps.LatLng(38.26039273442388, 140.88246968423428);
+
+	const zoom: number = 15;
 
 	map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
 		center: sendai,
-		zoom: 16
+		zoom: zoom
 	});
 
-	if (queryText === '' && placeType === '') return;
+	service = new google.maps.places.PlacesService(map);
 
 	infowindow = new google.maps.InfoWindow();
+};
+
+// 場所を検索
+export const searchMap = (queryText: string, placeType: placeType) => {
+	// マーカーを削除
+	deleteMarker();
+
+	// 検索文字列、タイプがない場合return
+	if (queryText === '' && placeType === '') return;
+
+	const rect = map.getBounds();
 
 	const request: google.maps.places.TextSearchRequest = {
 		query: queryText,
 		type: placeType,
-		location: sendai
+		bounds: rect ? rect : undefined
 	};
-
-	service = new google.maps.places.PlacesService(map);
 
 	service.textSearch(
 		request,
@@ -37,7 +50,8 @@ export const initMap = (queryText: string, placeType: placeType) => {
 	);
 };
 
-function createMarker(place: google.maps.places.PlaceResult) {
+// 検索結果からピンを作成
+const createMarker = (place: google.maps.places.PlaceResult) => {
 	if (!place.geometry || !place.geometry.location) return;
 
 	const marker = new google.maps.Marker({
@@ -50,4 +64,14 @@ function createMarker(place: google.maps.places.PlaceResult) {
 		infowindow.setContent(place.name || '');
 		infowindow.open(map, marker);
 	});
-}
+
+	markers.push(marker);
+};
+
+const deleteMarker = () => {
+	const len = markers.length;
+	for (let i: number = 0; i < len; i++) {
+		markers[i].setMap(null);
+	}
+	markers = [];
+};

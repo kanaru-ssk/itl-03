@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-import { initMap } from '../model/PlaceModel';
+import { initMap, searchMap } from '../model/PlaceModel';
 
 const Explore = () => {
 	const [inputText, setInputText] = useState<string>('');
@@ -10,7 +10,11 @@ const Explore = () => {
 	const [placeType, setPlaceType] = useState<placeType>('');
 
 	useEffect(() => {
-		initMap(queryText, placeType);
+		initMap();
+	}, []);
+
+	useEffect(() => {
+		searchMap(queryText, placeType);
 	}, [placeType, queryText]);
 
 	return (
@@ -26,6 +30,7 @@ const Explore = () => {
 			<button onClick={() => setPlaceType('art_gallery')}>美術館</button>
 			<button onClick={() => setPlaceType('aquarium')}>水族館</button>
 			<button onClick={() => setPlaceType('park')}>公園</button>
+			<button onClick={() => setPlaceType('movie_theater')}>映画館</button>
 			<div id="map" style={{ height: '500px' }}></div>
 		</div>
 	);

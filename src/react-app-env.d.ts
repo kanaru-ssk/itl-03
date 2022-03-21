@@ -20,4 +20,4 @@ type authContextProps = {
 	dbUser: dbUser | undefined;
 };
 
-type placeType = '' | 'cafe' | 'restaurant' | 'bar' | 'library' | 'art_gallery' | 'aquarium' | 'park';
+type placeType = '' | 'cafe' | 'restaurant' | 'bar' | 'library' | 'art_gallery' | 'aquarium' | 'park' | 'movie_theater';
