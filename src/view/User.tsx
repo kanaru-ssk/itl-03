@@ -5,6 +5,7 @@ import { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../model/AuthModel';
 
 import { getUserDataByUserId } from '../model/UserModel';
+import { getItems } from '../model/itemModel';
 import Loading from './Loading';
 
 // 認証されていない => ロード画面
@@ -19,9 +20,12 @@ const User = () => {
 	const dbUser = user.dbUser;
 
 	const [paramsUser, setParamsUser] = useState<dbUser | undefined>(undefined);
+	const [items, setItems] = useState<item[]>([]);
+
 	useEffect(() => {
-		getUserDataByUserId(paramsUid).then((result) => {
-			setParamsUser(result);
+		getUserDataByUserId(paramsUid).then((user) => {
+			setParamsUser(user);
+			getItems(user?.uid).then((result) => setItems(result));
 		});
 	}, [paramsUid]);
 
@@ -32,6 +36,7 @@ const User = () => {
 					<h1>User</h1>
 					<h2>マイページ</h2>
 					<div>パラメーターuid : {paramsUid}</div>
+
 					<h3>ログイン情報</h3>
 					<div>
 						<img src={dbUser?.user_icon} alt="" />
@@ -39,6 +44,13 @@ const User = () => {
 						<div>{dbUser?.user_bio}</div>
 						<div>{dbUser?.user_twitter_disp_id}</div>
 					</div>
+
+					<h3>items</h3>
+					<ul>
+						{items.map((item, key) => {
+							return <li key={key}>{item.item_name}</li>;
+						})}
+					</ul>
 				</div>
 			);
 		} else {
@@ -47,10 +59,18 @@ const User = () => {
 					<h1>User</h1>
 					<h2>ユーザーページ</h2>
 					<div>パラメーターuid : {paramsUid}</div>
+
 					<h3>ログイン情報</h3>
 					<div>認証状態 : {authUser ? '認証済み' : '未認証'}</div>
 					<div>認証種別 : {authUser?.isAnonymous ? '匿名' : 'twitterログイン'}</div>
 					<div>ログインuid : {authUser?.uid}</div>
+					<div>
+						<img src={dbUser?.user_icon} alt="" />
+						<div>{dbUser?.user_name}</div>
+						<div>{dbUser?.user_bio}</div>
+						<div>{dbUser?.user_twitter_disp_id}</div>
+					</div>
+
 					<h3>ユーザー情報</h3>
 					<div>
 						<img src={paramsUser?.user_icon} alt="" />
@@ -58,6 +78,13 @@ const User = () => {
 						<div>{paramsUser?.user_bio}</div>
 						<div>{paramsUser?.user_twitter_disp_id}</div>
 					</div>
+
+					<h3>items</h3>
+					<ul>
+						{items.map((item) => {
+							return <li>{item.item_name}</li>;
+						})}
+					</ul>
 				</div>
 			);
 		}

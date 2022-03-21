@@ -1,20 +1,24 @@
 // 検索ページ
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
+import { AuthContext } from '../model/AuthModel';
 import { initMap, searchMap } from '../model/PlaceModel';
+import { createItem } from '../model/itemModel';
 
 const Explore = () => {
+	const user = useContext(AuthContext);
 	const [inputText, setInputText] = useState<string>('');
 	const [queryText, setQueryText] = useState<string>('');
 	const [placeType, setPlaceType] = useState<placeType>('');
+	const [places, setPlaces] = useState<google.maps.places.PlaceResult[]>([]);
 
 	useEffect(() => {
 		initMap();
 	}, []);
 
 	useEffect(() => {
-		searchMap(queryText, placeType);
+		searchMap(queryText, placeType).then((result) => setPlaces(result));
 	}, [placeType, queryText]);
 
 	return (
@@ -31,7 +35,21 @@ const Explore = () => {
 			<button onClick={() => setPlaceType('aquarium')}>水族館</button>
 			<button onClick={() => setPlaceType('park')}>公園</button>
 			<button onClick={() => setPlaceType('movie_theater')}>映画館</button>
+			<button onClick={() => setPlaceType('lodging')}>宿泊</button>
 			<div id="map" style={{ height: '500px' }}></div>
+
+			<ul>
+				{places.map((place, key) => {
+					return (
+						<li key={key}>
+							{place.name}{' '}
+							<button key={key} onClick={() => createItem(user.authUser?.uid, place)}>
+								追加
+							</button>
+						</li>
+					);
+				})}
+			</ul>
 		</div>
 	);
 };

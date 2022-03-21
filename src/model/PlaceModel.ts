@@ -3,7 +3,7 @@
 let map: google.maps.Map;
 let service: google.maps.places.PlacesService;
 let infowindow: google.maps.InfoWindow;
-let markers: Array<google.maps.Marker> = [];
+let markers: google.maps.Marker[] = [];
 
 // map初期化
 export const initMap = () => {
@@ -22,32 +22,41 @@ export const initMap = () => {
 };
 
 // 場所を検索
-export const searchMap = (queryText: string, placeType: placeType) => {
+export const searchMap = async (queryText: string, placeType: placeType) => {
 	// マーカーを削除
 	deleteMarker();
 
-	// 検索文字列、タイプがない場合return
-	if (queryText === '' && placeType === '') return;
+	let places: google.maps.places.PlaceResult[] = [];
 
-	const rect = map.getBounds();
+	return new Promise<google.maps.places.PlaceResult[]>((resolve) => {
+		// 検索文字列、タイプがない場合return
+		if (queryText === '' && placeType === '') return;
 
-	const request: google.maps.places.TextSearchRequest = {
-		query: queryText,
-		type: placeType,
-		bounds: rect ? rect : undefined
-	};
+		const rect = map.getBounds();
 
-	service.textSearch(
-		request,
-		(results: google.maps.places.PlaceResult[] | null, status: google.maps.places.PlacesServiceStatus): void => {
-			if (status === google.maps.places.PlacesServiceStatus.OK && results) {
-				const len = results.length;
-				for (let i: number = 0; i < len; i++) {
-					createMarker(results[i]);
+		const request: google.maps.places.TextSearchRequest = {
+			query: queryText,
+			type: placeType,
+			bounds: rect ? rect : undefined
+		};
+
+		service.textSearch(
+			request,
+			(
+				results: google.maps.places.PlaceResult[] | null,
+				status: google.maps.places.PlacesServiceStatus
+			): void => {
+				if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+					const len = results.length;
+					for (let i: number = 0; i < len; i++) {
+						createMarker(results[i]);
+					}
+					places = results;
+					resolve(places);
 				}
 			}
-		}
-	);
+		);
+	});
 };
 
 // 検索結果からピンを作成

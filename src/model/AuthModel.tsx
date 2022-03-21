@@ -2,6 +2,7 @@
 
 import { createContext, useState, useEffect } from 'react';
 import {
+	User,
 	getAuth,
 	onAuthStateChanged,
 	signInAnonymously,
@@ -30,6 +31,7 @@ export const AuthProvider = ({ children }: node) => {
 				setUser({ authUser: user, dbUser: undefined });
 
 				if (!user.isAnonymous) {
+					const { Timestamp } = await import('firebase/firestore');
 					const { getUserDataByUid, createUserData } = await import('./UserModel');
 					const userData = await getUserDataByUid(user.uid);
 					if (userData) {
@@ -38,18 +40,19 @@ export const AuthProvider = ({ children }: node) => {
 						// 新規ユーザーデータ作成
 						const providerData = user.reloadUserInfo.providerUserInfo[0];
 						const newUserData: dbUser = {
+							uid: user.uid,
 							user_id: providerData.screenName,
 							user_name: providerData.displayName,
 							user_icon: providerData.photoUrl,
 							user_bio: '',
 							user_twitter_disp_id: providerData.screenName,
 							user_twitter_sys_id: providerData.rawId,
-							user_regist_date: new Date(),
-							user_update_date: new Date()
+							create_at: Timestamp.now(),
+							update_at: Timestamp.now()
 						};
 
 						setUser({ authUser: user, dbUser: newUserData });
-						createUserData(user.uid, newUserData);
+						createUserData(newUserData);
 					}
 				}
 			} else {
