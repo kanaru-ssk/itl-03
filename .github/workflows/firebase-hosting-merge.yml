@@ -17,6 +17,7 @@ jobs:
             REACT_APP_FB_MESSAGING_ID: ${{ secrets.REACT_APP_FB_MESSAGING_ID }}
             REACT_APP_FB_APP_ID: ${{ secrets.REACT_APP_FB_APP_ID }}
             REACT_APP_FB_MEASUREMENT_ID: ${{ secrets.REACT_APP_FB_MEASUREMENT_ID }}
+            REACT_APP_GOOGLE_MAPS_API_KEY: ${{ secrets.REACT_APP_GOOGLE_MAPS_API_KEY }}
         steps:
             - uses: actions/checkout@v2
 
