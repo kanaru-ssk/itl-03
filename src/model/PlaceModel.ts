@@ -109,6 +109,7 @@ export const getPlaceDetails = (placeId: string) => {
 			request,
 			(result: google.maps.places.PlaceResult, status: google.maps.places.PlacesServiceStatus): void => {
 				if (status === google.maps.places.PlacesServiceStatus.OK) {
+					map.setCenter(result.geometry!.location!);
 					createMarker(result);
 					resolve(result);
 				}
