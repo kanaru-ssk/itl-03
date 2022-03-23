@@ -1,7 +1,7 @@
 // google place apiへのリクエスト
 
 let map: google.maps.Map;
-let service: google.maps.places.PlacesService;
+export let service: google.maps.places.PlacesService;
 let infowindow: google.maps.InfoWindow;
 let markers: google.maps.Marker[] = [];
 
@@ -26,12 +26,7 @@ export const searchMap = async (queryText: string, placeType: placeType) => {
 	// マーカーを削除
 	deleteMarker();
 
-	let places: google.maps.places.PlaceResult[] = [];
-
 	return new Promise<google.maps.places.PlaceResult[]>((resolve) => {
-		// 検索文字列、タイプがない場合return
-		if (queryText === '' && placeType === '') return;
-
 		const rect = map.getBounds();
 
 		const request: google.maps.places.TextSearchRequest = {
@@ -51,8 +46,7 @@ export const searchMap = async (queryText: string, placeType: placeType) => {
 					for (let i: number = 0; i < len; i++) {
 						createMarker(results[i]);
 					}
-					places = results;
-					resolve(places);
+					resolve(results);
 				}
 			}
 		);
@@ -83,4 +77,42 @@ const deleteMarker = () => {
 		markers[i].setMap(null);
 	}
 	markers = [];
+};
+
+export const getPlaceDetails = (placeId: string) => {
+	// マーカーを削除
+	deleteMarker();
+
+	return new Promise<google.maps.places.PlaceResult>((resolve) => {
+		const request: google.maps.places.PlaceDetailsRequest = {
+			placeId: placeId,
+			fields: [
+				'place_id',
+				'name',
+				'type',
+				'formatted_address',
+				'geometry',
+				'photos',
+
+				'formatted_phone_number',
+				'opening_hours',
+				'website',
+
+				'rating',
+				'user_ratings_total',
+				'review',
+				'price_level'
+			]
+		};
+
+		service.getDetails(
+			request,
+			(result: google.maps.places.PlaceResult, status: google.maps.places.PlacesServiceStatus): void => {
+				if (status === google.maps.places.PlacesServiceStatus.OK) {
+					createMarker(result);
+					resolve(result);
+				}
+			}
+		);
+	});
 };
