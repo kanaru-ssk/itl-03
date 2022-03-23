@@ -83,7 +83,7 @@ export const getPlaceDetails = (placeId: string) => {
 	// マーカーを削除
 	deleteMarker();
 
-	return new Promise<google.maps.places.PlaceResult>((resolve) => {
+	return new Promise<place>((resolve) => {
 		const request: google.maps.places.PlaceDetailsRequest = {
 			placeId: placeId,
 			fields: [
@@ -111,9 +111,55 @@ export const getPlaceDetails = (placeId: string) => {
 				if (status === google.maps.places.PlacesServiceStatus.OK) {
 					map.setCenter(result.geometry!.location!);
 					createMarker(result);
-					resolve(result);
+					const place = convertPlace(result);
+					resolve(place);
 				}
 			}
 		);
 	});
+};
+
+const convertPlace = (placeResult: google.maps.places.PlaceResult): place => {
+	const geometry: geometry = {
+		lat: placeResult.geometry?.location.lat(),
+		lng: placeResult.geometry?.location.lng()
+	};
+
+	const photos: string[] | undefined = placeResult.photos?.map((value) => {
+		return value.getUrl({ maxWidth: 400 });
+	});
+
+	const periods: google.maps.places.OpeningPeriod[] | undefined = placeResult.opening_hours?.periods;
+	const weekday_text: string[] | undefined = placeResult.opening_hours?.weekday_text;
+	const opening_hours: opening_hours = {
+		periods: periods,
+		weekday_text: weekday_text
+	};
+
+	const reviews: review[] | undefined = placeResult.reviews?.map((value) => {
+		return {
+			author_name: value.author_name,
+			rating: value.rating,
+			text: value.text,
+			time: value.time
+		};
+	});
+
+	const place: place = {
+		place_id: placeResult.place_id,
+		place_name: placeResult.name,
+		place_types: placeResult.types,
+		place_rating: placeResult.rating,
+		place_user_ratings_total: placeResult.user_ratings_total,
+		place_formatted_address: placeResult.formatted_address,
+		place_formatted_phone_number: placeResult.formatted_phone_number,
+		place_geometry: geometry,
+		place_photos: photos,
+		place_website: placeResult.website,
+		place_opening_hours: opening_hours,
+		place_price_level: placeResult.price_level,
+		place_reviews: reviews
+	};
+
+	return place;
 };

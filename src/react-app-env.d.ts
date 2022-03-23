@@ -33,6 +33,39 @@ type placeType =
 	| 'movie_theater'
 	| 'lodging';
 
+type geometry = {
+	lat: number | undefined;
+	lng: number | undefined;
+};
+
+type opening_hours = {
+	periods: google.maps.places.OpeningPeriod[] | undefined;
+	weekday_text: string[] | undefined;
+};
+
+type review = {
+	author_name: string;
+	rating: number;
+	text: string;
+	time: number;
+};
+
+type place = {
+	place_id: string | undefined;
+	place_name: string;
+	place_types: string[] | undefined;
+	place_rating: number | undefined;
+	place_user_ratings_total: number | undefined;
+	place_formatted_address: string | undefined;
+	place_formatted_phone_number: string | undefined;
+	place_geometry: geometry | undefined;
+	place_photos: string[] | undefined;
+	place_website: string | undefined;
+	place_opening_hours: opening_hours | undefined;
+	place_price_level: number | undefined;
+	place_reviews: review[] | undefined;
+};
+
 type item = {
 	iid: string;
 	item_name: string;
@@ -42,4 +75,4 @@ type item = {
 	checked_at: Date | import('firebase/firestore').FieldValue;
 	create_at: Date | import('firebase/firestore').FieldValue;
 	update_at: Date | import('firebase/firestore').FieldValue;
-};
+} & place;

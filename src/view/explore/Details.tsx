@@ -12,7 +12,7 @@ type Props = {
 
 const Details = ({ placeId }: Props) => {
 	const user = useContext(AuthContext);
-	const [place, setPlace] = useState<google.maps.places.PlaceResult>();
+	const [place, setPlace] = useState<place>();
 
 	useEffect(() => {
 		if (placeId && service) {
@@ -31,37 +31,51 @@ const Details = ({ placeId }: Props) => {
 
 				<button onClick={() => createItem(user.authUser?.uid, place)}>リストに追加</button>
 
-				<div>名前 : {place?.name}</div>
-				{place?.photos?.map((value, key) => {
-					return <img key={key} src={value.getUrl({ maxWidth: 160 })} width="160px" height="90px" alt="" />;
+				<div>名前 : {place?.place_name}</div>
+				{place?.place_photos?.map((value, key) => {
+					return <img key={key} src={value} width="160px" height="90px" alt="" />;
 				})}
 
 				<div>
 					タイプ :
 					<ul>
-						{place?.types?.map((value, key) => {
+						{place.place_types?.map((value, key) => {
 							return <li key={key}>{value}</li>;
 						})}
 					</ul>
 				</div>
 
-				<div>住所 : {place?.formatted_address}</div>
+				<div>住所 : {place?.place_formatted_address}</div>
 
 				<div>
 					営業時間 :
 					<ul>
-						{place?.opening_hours?.weekday_text.map((value, key) => {
+						{place?.place_opening_hours?.weekday_text?.map((value, key) => {
 							return <li key={key}>{value}</li>;
 						})}
 					</ul>
 				</div>
 
-				<div>評価 : {place?.rating}</div>
+				<div>
+					<a href={place?.place_website}>webサイト</a>
+				</div>
 
-				<div>評価数 : {place?.user_ratings_total}</div>
+				<div>評価 : {place?.place_rating}</div>
+
+				<div>評価数 : {place?.place_user_ratings_total}</div>
 
 				<div>
-					<a href={place?.website}>webサイト</a>
+					レビュー :
+					<ul>
+						{place?.place_reviews?.map((value, key) => {
+							return (
+								<li key={key}>
+									星{value.rating}&nbsp;&nbsp;{value.author_name}&nbsp;&nbsp;{value.text}&nbsp;&nbsp;
+									{value.time}
+								</li>
+							);
+						})}
+					</ul>
 				</div>
 			</div>
 		);

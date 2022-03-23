@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
+import { initializeFirestore } from 'firebase/firestore';
 
 // firebase設定
 const config = {
@@ -16,4 +17,5 @@ const config = {
 export const initFirebase = (): void => {
 	const app = initializeApp(config);
 	getAnalytics(app);
+	initializeFirestore(app, { ignoreUndefinedProperties: true });
 };

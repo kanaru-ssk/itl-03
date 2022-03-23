@@ -18,7 +18,21 @@ export const getItems = async (uid: string | undefined) => {
 			item_removed: doc.data().item_removed,
 			create_at: doc.data().create_at,
 			update_at: doc.data().update_at,
-			checked_at: doc.data().checked_at
+			checked_at: doc.data().checked_at,
+
+			place_id: doc.data().place_id,
+			place_name: doc.data().place_name,
+			place_types: doc.data().place_types,
+			place_rating: doc.data().place_rating,
+			place_user_ratings_total: doc.data().place_user_rating_total,
+			place_formatted_address: doc.data().place_formatted_address,
+			place_formatted_phone_number: doc.data().place_formatted_phone_number,
+			place_geometry: doc.data().place_geometry,
+			place_photos: doc.data().place_photos,
+			place_website: doc.data().place_website,
+			place_opening_hours: doc.data().place_opening_hours,
+			place_price_level: doc.data().place_price_level,
+			place_reviews: doc.data().place_reviews
 		};
 	});
 
@@ -26,19 +40,33 @@ export const getItems = async (uid: string | undefined) => {
 };
 
 // アイテムデータ作成
-export const createItem = async (uid: string | undefined, place: google.maps.places.PlaceResult) => {
+export const createItem = async (uid: string | undefined, place: place) => {
 	if (uid === undefined) return;
 	const { getFirestore, addDoc, collection, serverTimestamp } = await import('firebase/firestore');
 
 	const db = getFirestore();
 
 	addDoc(collection(db, 'users', uid, 'items'), {
-		item_name: place.name,
+		item_name: place.place_name,
 		item_caption: 'キャプション',
 		item_checked: false,
 		item_removed: false,
 		create_at: serverTimestamp(),
 		update_at: serverTimestamp(),
-		checked_at: null
+		checked_at: null,
+
+		place_id: place.place_id,
+		place_name: place.place_name,
+		place_types: place.place_types,
+		place_rating: place.place_rating,
+		place_user_ratings_total: place.place_user_ratings_total,
+		place_formatted_address: place.place_formatted_address,
+		place_formatted_phone_number: place.place_formatted_phone_number,
+		place_geometry: place.place_geometry,
+		place_photos: place.place_photos,
+		place_website: place.place_website,
+		place_opening_hours: place.place_opening_hours,
+		place_price_level: place.place_price_level,
+		place_reviews: place.place_reviews
 	});
 };
