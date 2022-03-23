@@ -13,6 +13,7 @@ export const getItems = async (uid: string | undefined) => {
 		return {
 			iid: doc.id,
 			item_name: doc.data().item_name,
+			item_caption: doc.data().item_caption,
 			item_checked: doc.data().item_checked,
 			item_removed: doc.data().item_removed,
 			create_at: doc.data().create_at,
@@ -33,6 +34,7 @@ export const createItem = async (uid: string | undefined, place: google.maps.pla
 
 	addDoc(collection(db, 'users', uid, 'items'), {
 		item_name: place.name,
+		item_caption: 'キャプション',
 		item_checked: false,
 		item_removed: false,
 		create_at: serverTimestamp(),

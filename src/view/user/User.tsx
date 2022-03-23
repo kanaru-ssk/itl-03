@@ -44,8 +44,13 @@ const User = () => {
 
 				<h3>items</h3>
 				<ul>
-					{items.map((item, key) => {
-						return <li key={key}>{item.item_name}</li>;
+					{items.map((value, key) => {
+						return (
+							<li key={key}>
+								{value.item_name}&nbsp;
+								{value.item_caption}
+							</li>
+						);
 					})}
 				</ul>
 			</div>
@@ -78,8 +83,13 @@ const User = () => {
 
 				<h3>items</h3>
 				<ul>
-					{items.map((item) => {
-						return <li>{item.item_name}</li>;
+					{items.map((value, key) => {
+						return (
+							<li key={key}>
+								{value.item_name}&nbsp;
+								{value.item_caption}
+							</li>
+						);
 					})}
 				</ul>
 			</div>

@@ -36,6 +36,7 @@ type placeType =
 type item = {
 	iid: string;
 	item_name: string;
+	item_caption: string;
 	item_checked: boolean;
 	item_removed: boolean;
 	checked_at: Date | import('firebase/firestore').FieldValue;
