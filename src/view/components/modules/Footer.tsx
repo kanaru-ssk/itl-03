@@ -1,6 +1,6 @@
 // ロード画面
 
-import './Footer.scss';
+import style from './Footer.module.scss';
 
 // 画像取得
 import homeImg from 'img/home.svg';
@@ -13,27 +13,27 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
 	return (
 		<footer>
-			<ul id="menu">
+			<ul className={style.menu}>
 				<li>
-					<Link to="/" className="menu-a">
+					<Link to="/" className={style.a}>
 						<img src={homeImg} alt="" />
 					</Link>
 				</li>
 
 				<li>
-					<Link to="/explore" className="menu-a">
+					<Link to="/explore" className={style.a}>
 						<img src={exploreImg} alt="" />
 					</Link>
 				</li>
 
 				<li>
-					<Link to="/notice" className="menu-a">
+					<Link to="/notice" className={style.a}>
 						<img src={noticeImg} alt="" />
 					</Link>
 				</li>
 
 				<li>
-					<Link to="/message" className="menu-a">
+					<Link to="/message" className={style.a}>
 						<img src={messageImg} alt="" />
 					</Link>
 				</li>

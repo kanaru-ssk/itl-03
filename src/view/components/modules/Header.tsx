@@ -1,6 +1,6 @@
 // ロード画面
 
-import './Header.scss';
+import style from './Header.module.scss';
 
 import logoImg from 'img/logo.svg';
 import userImg from 'img/user.svg';
@@ -16,11 +16,11 @@ const Header = () => {
 	return (
 		<header>
 			<Link to={'/'}>
-				<img className="header__item" src={logoImg} alt="logo" />
+				<img className={style.item} src={logoImg} alt="logo" />
 			</Link>
 			<Link to={'/' + user.dbUser?.user_id}>
 				<img
-					className="header__item header__user-icon"
+					className={`${style.item} ${style.icon}`}
 					src={user.dbUser ? user.dbUser.user_icon : userImg}
 					alt="user-icon"
 				/>

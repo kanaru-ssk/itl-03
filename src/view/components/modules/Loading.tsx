@@ -1,6 +1,8 @@
 // ロード画面
 
-import './Loading.scss';
+import style from './Loading.module.scss';
+
+import logoImg from 'img/logo.svg';
 
 import { useContext, useEffect, useRef } from 'react';
 
@@ -18,8 +20,9 @@ const Loading = () => {
 	}, [authUser]);
 
 	return (
-		<div ref={loadingRef} className="Loading">
+		<div ref={loadingRef} className={style.loading}>
 			Loading ...
+			<img src={logoImg} className="" alt="" />
 		</div>
 	);
 };
