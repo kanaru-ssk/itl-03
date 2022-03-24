@@ -28,7 +28,7 @@ const User = () => {
 	}, [paramsUid]);
 
 	return (
-		<div>
+		<main>
 			<h1>User</h1>
 			<div>パラメーターuid : {paramsUid}</div>
 			{user.dbUser?.user_id === paramsUid ? <h2>マイページ</h2> : <h2>ユーザーページ</h2>}
@@ -42,7 +42,7 @@ const User = () => {
 			</div>
 
 			<Items items={items} />
-		</div>
+		</main>
 	);
 };
 

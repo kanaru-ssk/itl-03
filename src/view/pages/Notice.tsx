@@ -2,9 +2,9 @@
 
 const Notice = () => {
 	return (
-		<div>
+		<main>
 			<h1>Notice</h1>
-		</div>
+		</main>
 	);
 };
 

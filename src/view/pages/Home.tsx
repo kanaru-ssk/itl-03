@@ -11,16 +11,16 @@ const Home = () => {
 
 	if (authUser?.isAnonymous) {
 		return (
-			<div>
+			<main>
 				<h1>Login</h1>
 				<div>匿名認証なのでログイン画面を表示</div>
 				<div>ログインuid : {authUser?.uid}</div>
 				<button onClick={loginWithTwitter}>ログイン</button>
-			</div>
+			</main>
 		);
 	} else {
 		return (
-			<div>
+			<main>
 				<h1>Home</h1>
 				<div>tiwtter認証済みなのでホームを表示</div>
 				<div>ログインuid : {authUser?.uid}</div>
@@ -31,7 +31,7 @@ const Home = () => {
 					<div>{dbUser?.user_twitter_disp_id}</div>
 				</div>
 				<button onClick={logout}>ログアウト</button>
-			</div>
+			</main>
 		);
 	}
 };
