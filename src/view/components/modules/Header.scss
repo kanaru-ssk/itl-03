@@ -1,0 +1,18 @@
+@import 'variables';
+
+header {
+	z-index: $headerIndex;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: $headerHeight;
+	border-bottom: 1px solid $borderColor;
+	background-color: $baseColor;
+
+	display: flex;
+	justify-content: space-between;
+}
+
+.header__item {
+	padding: 8px $sideMargin;
+}
