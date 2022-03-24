@@ -3,10 +3,10 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { initMap } from '../../model/PlaceModel';
+import { initMap } from 'model/PlaceModel';
 
-import Search from './Search';
-import Details from './Details';
+import Search from 'view/explore/Search';
+import Details from 'view/explore/Details';
 
 const Explore = () => {
 	const { placeId } = useParams();

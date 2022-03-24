@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { searchMap } from '../../model/PlaceModel';
+import { searchMap } from 'model/PlaceModel';
 
 const Search = () => {
 	const [inputText, setInputText] = useState<string>('');

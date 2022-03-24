@@ -2,7 +2,7 @@
 
 import { useContext } from 'react';
 
-import { AuthContext, loginWithTwitter, logout } from '../../model/AuthModel';
+import { AuthContext, loginWithTwitter, logout } from 'model/AuthModel';
 
 const Home = () => {
 	const user = useContext(AuthContext);

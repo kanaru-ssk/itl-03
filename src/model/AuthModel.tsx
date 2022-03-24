@@ -2,7 +2,6 @@
 
 import { createContext, useState, useEffect } from 'react';
 import {
-	User,
 	getAuth,
 	onAuthStateChanged,
 	signInAnonymously,

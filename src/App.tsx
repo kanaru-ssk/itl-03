@@ -1,28 +1,28 @@
 // ルーティング
 
 // css取得
-import './App.scss';
+import 'App.scss';
 
 // 画像取得
-import logoImg from './img/logo.svg';
-import userImg from './img/user.svg';
-import homeImg from './img/home.svg';
-import exploreImg from './img/explore.svg';
-import noticeImg from './img/notice.svg';
-import messageImg from './img/message.svg';
+import logoImg from 'img/logo.svg';
+import userImg from 'img/user.svg';
+import homeImg from 'img/home.svg';
+import exploreImg from 'img/explore.svg';
+import noticeImg from 'img/notice.svg';
+import messageImg from 'img/message.svg';
 
 // React取得
 import { useContext } from 'react';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 
 // モデル取得
-import { AuthContext } from './model/AuthModel';
+import { AuthContext } from 'model/AuthModel';
 
 // コンポーネント取得
-import Home from './view/home/Home';
-import User from './view/user/User';
-import Explore from './view/explore/Explore';
-import Loading from './view/common/Loading';
+import Home from 'view/home/Home';
+import User from 'view/user/User';
+import Explore from 'view/explore/Explore';
+import Loading from 'view/common/Loading';
 
 // ルーティング
 const App = () => {

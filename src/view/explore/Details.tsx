@@ -2,9 +2,9 @@
 
 import { useContext, useEffect, useState } from 'react';
 
-import { AuthContext, loginWithTwitter } from '../../model/AuthModel';
-import { service, getPlaceDetails } from '../../model/PlaceModel';
-import { createItem } from '../../model/itemModel';
+import { AuthContext, loginWithTwitter } from 'model/AuthModel';
+import { service, getPlaceDetails } from 'model/PlaceModel';
+import { createItem } from 'model/itemModel';
 
 type Props = {
 	placeId: string;
