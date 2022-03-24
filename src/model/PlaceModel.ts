@@ -13,7 +13,8 @@ export const initMap = () => {
 
 	map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
 		center: sendai,
-		zoom: zoom
+		zoom: zoom,
+		disableDefaultUI: true
 	});
 
 	service = new google.maps.places.PlacesService(map);
