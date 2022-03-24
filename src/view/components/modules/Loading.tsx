@@ -12,17 +12,18 @@ const Loading = () => {
 	const user = useContext(AuthContext);
 	const authUser = user.authUser;
 	const loadingRef = useRef<HTMLDivElement>(null);
+	const logoRef = useRef<HTMLImageElement>(null);
 
 	useEffect(() => {
-		if (authUser && loadingRef.current) {
-			loadingRef.current.style.display = 'none';
+		if (authUser && loadingRef.current && logoRef.current) {
+			loadingRef.current.style.backgroundColor = 'transparent';
+			logoRef.current.style.opacity = '0';
 		}
 	}, [authUser]);
 
 	return (
 		<div ref={loadingRef} className={style.loading}>
-			Loading ...
-			<img src={logoImg} className="" alt="" />
+			<img ref={logoRef} src={logoImg} className={style.logo} alt="" />
 		</div>
 	);
 };
