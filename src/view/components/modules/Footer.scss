@@ -5,6 +5,7 @@ footer {
 	position: fixed;
 	bottom: 0;
 	width: 100%;
+	max-width: $bodyMaxWidth;
 	height: $footerHeight;
 	border-top: 1px solid $borderColor;
 	background-color: $baseColor;
@@ -21,5 +22,5 @@ footer {
 }
 
 .menu-a {
-	height: 48px;
+	height: $footerHeight;
 }

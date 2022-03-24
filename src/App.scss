@@ -2,7 +2,7 @@
 
 body {
 	width: 100%;
-	max-width: 800px;
+	max-width: $bodyMaxWidth;
 	margin: 0 auto;
 
 	font-family: $fontFamily;
