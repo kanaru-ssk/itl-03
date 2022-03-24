@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 
 import { initMap } from 'model/PlaceModel';
 
-import SlideArea from 'view/components/modules/SlideArea';
+import SlideArea from 'view/components/modules/Slider';
 
 const Explore = () => {
 	useEffect(() => {

@@ -1,6 +1,6 @@
 // 通知ページ
 
-import style from './SlideArea.module.scss';
+import style from './Slider.module.scss';
 
 import { useParams } from 'react-router-dom';
 
