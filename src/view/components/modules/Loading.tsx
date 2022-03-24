@@ -1,6 +1,6 @@
 // ロード画面
 
-import 'view/common/Loading.scss';
+import './Loading.scss';
 
 const Loading = () => {
 	return <div className="Loading">Loading ...</div>;

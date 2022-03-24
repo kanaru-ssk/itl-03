@@ -5,8 +5,8 @@ import { useParams } from 'react-router-dom';
 
 import { initMap } from 'model/PlaceModel';
 
-import Search from 'view/explore/Search';
-import Details from 'view/explore/Details';
+import Search from 'view/components/modules/Search';
+import Details from 'view/components/modules/Details';
 
 const Explore = () => {
 	const { placeId } = useParams();

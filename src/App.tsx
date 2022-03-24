@@ -1,7 +1,7 @@
 // ルーティング
 
 // css取得
-import 'App.scss';
+import './App.scss';
 
 // 画像取得
 import logoImg from 'img/logo.svg';
@@ -19,62 +19,61 @@ import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import { AuthContext } from 'model/AuthModel';
 
 // コンポーネント取得
-import Home from 'view/home/Home';
-import User from 'view/user/User';
-import Explore from 'view/explore/Explore';
-import Loading from 'view/common/Loading';
+import Home from 'view/pages/Home';
+import User from 'view/pages/User';
+import Explore from 'view/pages/Explore';
+import Loading from 'view/components/modules/Loading';
 
 // ルーティング
 const App = () => {
 	const user = useContext(AuthContext);
 
-	if (user?.authUser) {
-		return (
-			<BrowserRouter>
-				<header>
-					<img src={logoImg} alt="" />
-					<Link to={'/' + user.dbUser?.user_id}>
-						<img src={userImg} alt="" />
-					</Link>
-				</header>
+	return (
+		<BrowserRouter>
+			<header>
+				<img src={logoImg} alt="" />
+				<Link to={'/' + user.dbUser?.user_id}>
+					<img src={userImg} alt="" />
+				</Link>
+			</header>
 
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/explore" element={<Explore />} />
-					<Route path="/explore/:placeId" element={<Explore />} />
-					<Route path="/:paramsUid" element={<User />} />
-				</Routes>
+			<Loading />
+			{/* {user?.authUser ? '' : <Loading />} */}
 
-				<footer>
-					<nav>
-						<ul>
-							<li>
-								<Link to="/">
-									<img src={homeImg} alt="" />
-								</Link>
-							</li>
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/explore" element={<Explore />} />
+				<Route path="/explore/:placeId" element={<Explore />} />
+				<Route path="/:paramsUid" element={<User />} />
+			</Routes>
 
-							<li>
-								<Link to="/explore">
-									<img src={exploreImg} alt="" />
-								</Link>
-							</li>
+			<footer>
+				<nav>
+					<ul>
+						<li>
+							<Link to="/">
+								<img src={homeImg} alt="" />
+							</Link>
+						</li>
 
-							<li>
-								<img src={noticeImg} alt="" />
-							</li>
+						<li>
+							<Link to="/explore">
+								<img src={exploreImg} alt="" />
+							</Link>
+						</li>
 
-							<li>
-								<img src={messageImg} alt="" />
-							</li>
-						</ul>
-					</nav>
-				</footer>
-			</BrowserRouter>
-		);
-	} else {
-		return <Loading />;
-	}
+						<li>
+							<img src={noticeImg} alt="" />
+						</li>
+
+						<li>
+							<img src={messageImg} alt="" />
+						</li>
+					</ul>
+				</nav>
+			</footer>
+		</BrowserRouter>
+	);
 };
 
 export default App;

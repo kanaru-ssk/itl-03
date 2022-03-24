@@ -7,7 +7,7 @@ import { AuthContext } from 'model/AuthModel';
 import { getUserDataByUserId } from 'model/UserModel';
 import { getItems } from 'model/itemModel';
 
-import Items from 'view/user/Items';
+import Items from 'view/components/modules/Items';
 
 // 匿名認証 => ユーザーページ
 // 表示userとログインuserが異なる => ユーザーページ
