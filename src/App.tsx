@@ -1,5 +1,8 @@
 // ルーティング
 
+// css取得
+import './App.scss';
+
 // React取得
 import { useContext } from 'react';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
@@ -20,18 +23,18 @@ const App = () => {
 	if (user?.authUser) {
 		return (
 			<BrowserRouter>
-				<nav>
-					<Link to="/">home</Link>&nbsp;
-					<Link to="/explore">explore</Link>&nbsp;
-					<Link to={'/' + user.dbUser?.user_id}>mypage</Link>
-				</nav>
-
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/explore" element={<Explore />} />
 					<Route path="/explore/:placeId" element={<Explore />} />
 					<Route path="/:paramsUid" element={<User />} />
 				</Routes>
+
+				<nav>
+					<Link to="/">home</Link>&nbsp;
+					<Link to="/explore">explore</Link>&nbsp;
+					<Link to={'/' + user.dbUser?.user_id}>mypage</Link>
+				</nav>
 			</BrowserRouter>
 		);
 	} else {
