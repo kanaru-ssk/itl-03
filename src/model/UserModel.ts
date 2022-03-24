@@ -15,8 +15,8 @@ export const getUserDataByUid = async (uid: string) => {
 			user_bio: docSnap.data().user_bio,
 			user_twitter_disp_id: docSnap.data().user_twitter_disp_id,
 			user_twitter_sys_id: docSnap.data().user_twitter_sys_id,
-			create_at: docSnap.data().create_at,
-			update_at: docSnap.data().update_at
+			at_created: docSnap.data().at_created,
+			at_updated: docSnap.data().at_updated
 		};
 		return result;
 	} else {
@@ -42,8 +42,8 @@ export const getUserDataByUserId = async (user_id: string | undefined): Promise<
 			user_bio: querySnapshot.docs[0].data().user_bio,
 			user_twitter_disp_id: querySnapshot.docs[0].data().user_twitter_disp_id,
 			user_twitter_sys_id: querySnapshot.docs[0].data().user_twitter_sys_id,
-			create_at: querySnapshot.docs[0].data().create_at,
-			update_at: querySnapshot.docs[0].data().update_at
+			at_created: querySnapshot.docs[0].data().at_created,
+			at_updated: querySnapshot.docs[0].data().at_updated
 		};
 		return result;
 	}
@@ -55,8 +55,8 @@ export const createUserData = async (newUserData: dbUser) => {
 
 	const db = getFirestore();
 
-	newUserData.create_at = serverTimestamp();
-	newUserData.update_at = serverTimestamp();
+	newUserData.at_created = serverTimestamp();
+	newUserData.at_updated = serverTimestamp();
 
 	setDoc(doc(db, 'users', newUserData.uid), newUserData);
 };

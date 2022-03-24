@@ -5,6 +5,9 @@ type node = {
 };
 
 type dbUser = {
+	at_created: Date | import('firebase/firestore').FieldValue;
+	at_updated: Date | import('firebase/firestore').FieldValue;
+
 	uid: string;
 	user_id: string;
 	user_name: string;
@@ -12,8 +15,6 @@ type dbUser = {
 	user_bio: string;
 	user_twitter_disp_id: string;
 	user_twitter_sys_id: string;
-	create_at: Date | import('firebase/firestore').FieldValue;
-	update_at: Date | import('firebase/firestore').FieldValue;
 };
 
 type authContextProps = {
@@ -67,12 +68,13 @@ type place = {
 };
 
 type item = {
+	at_created: Date | import('firebase/firestore').FieldValue;
+	at_updated: Date | import('firebase/firestore').FieldValue;
+	at_checked: Date | import('firebase/firestore').FieldValue;
+
 	iid: string;
 	item_name: string;
 	item_caption: string;
 	item_checked: boolean;
 	item_removed: boolean;
-	checked_at: Date | import('firebase/firestore').FieldValue;
-	create_at: Date | import('firebase/firestore').FieldValue;
-	update_at: Date | import('firebase/firestore').FieldValue;
 } & place;

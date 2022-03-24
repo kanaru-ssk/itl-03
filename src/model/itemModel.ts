@@ -16,9 +16,6 @@ export const getItems = async (uid: string | undefined) => {
 			item_caption: doc.data().item_caption,
 			item_checked: doc.data().item_checked,
 			item_removed: doc.data().item_removed,
-			create_at: doc.data().create_at,
-			update_at: doc.data().update_at,
-			checked_at: doc.data().checked_at,
 
 			place_id: doc.data().place_id,
 			place_name: doc.data().place_name,
@@ -32,7 +29,11 @@ export const getItems = async (uid: string | undefined) => {
 			place_website: doc.data().place_website,
 			place_opening_hours: doc.data().place_opening_hours,
 			place_price_level: doc.data().place_price_level,
-			place_reviews: doc.data().place_reviews
+			place_reviews: doc.data().place_reviews,
+
+			at_created: doc.data().at_created,
+			at_updated: doc.data().at_updated,
+			at_checked: doc.data().at_checked
 		};
 	});
 
@@ -51,9 +52,6 @@ export const createItem = async (uid: string | undefined, place: place) => {
 		item_caption: 'キャプション',
 		item_checked: false,
 		item_removed: false,
-		create_at: serverTimestamp(),
-		update_at: serverTimestamp(),
-		checked_at: null,
 
 		place_id: place.place_id,
 		place_name: place.place_name,
@@ -67,6 +65,10 @@ export const createItem = async (uid: string | undefined, place: place) => {
 		place_website: place.place_website,
 		place_opening_hours: place.place_opening_hours,
 		place_price_level: place.place_price_level,
-		place_reviews: place.place_reviews
+		place_reviews: place.place_reviews,
+
+		at_created: serverTimestamp(),
+		at_updated: serverTimestamp(),
+		at_checked: null
 	});
 };
