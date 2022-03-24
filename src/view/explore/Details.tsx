@@ -2,7 +2,7 @@
 
 import { useContext, useEffect, useState } from 'react';
 
-import { AuthContext } from '../../model/AuthModel';
+import { AuthContext, loginWithTwitter } from '../../model/AuthModel';
 import { service, getPlaceDetails } from '../../model/PlaceModel';
 import { createItem } from '../../model/itemModel';
 
@@ -22,6 +22,14 @@ const Details = ({ placeId }: Props) => {
 		}
 	}, [placeId, service]);
 
+	const onAddItem = (_user: authUser, place: place): void => {
+		if (user.authUser?.isAnonymous) {
+			loginWithTwitter();
+		} else {
+			createItem(_user?.uid, place);
+		}
+	};
+
 	if (place) {
 		return (
 			<div>
@@ -29,7 +37,7 @@ const Details = ({ placeId }: Props) => {
 
 				<h3>place詳細情報</h3>
 
-				<button onClick={() => createItem(user.authUser?.uid, place)}>リストに追加</button>
+				<button onClick={() => onAddItem(user?.authUser, place)}>リストに追加</button>
 
 				<div>名前 : {place?.place_name}</div>
 				{place?.place_photos?.map((value, key) => {
