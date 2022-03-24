@@ -19,7 +19,11 @@ const Header = () => {
 				<img className="header__item" src={logoImg} alt="logo" />
 			</Link>
 			<Link to={'/' + user.dbUser?.user_id}>
-				<img className="header__item" src={userImg} alt="user-icon" />
+				<img
+					className="header__item header__user-icon"
+					src={user.dbUser ? user.dbUser.user_icon : userImg}
+					alt="user-icon"
+				/>
 			</Link>
 		</header>
 	);

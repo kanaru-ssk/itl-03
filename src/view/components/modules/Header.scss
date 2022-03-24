@@ -5,6 +5,7 @@ header {
 	position: fixed;
 	top: 0;
 	width: 100%;
+	max-width: $bodyMaxWidth;
 	height: $headerHeight;
 	border-bottom: 1px solid $borderColor;
 	background-color: $baseColor;
@@ -15,4 +16,10 @@ header {
 
 .header__item {
 	padding: 8px $sideMargin;
+}
+
+.header__user-icon {
+	width: 32px;
+	height: 32px;
+	border-radius: 100%;
 }
