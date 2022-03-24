@@ -1,0 +1,9 @@
+@import 'variables';
+
+#map {
+	z-index: $mapIndex;
+	position: fixed !important;
+	top: $headerHeight;
+	width: 100%;
+	height: calc(100vh - #{$headerHeight} - #{$footerHeight});
+}
