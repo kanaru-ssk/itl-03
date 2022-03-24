@@ -1,0 +1,25 @@
+@import 'variables';
+
+footer {
+	z-index: $footerIndex;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: $footerHeight;
+	border-top: 1px solid $borderColor;
+	background-color: $baseColor;
+}
+
+#menu {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.menu-a {
+	height: 48px;
+}
