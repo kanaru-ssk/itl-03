@@ -8,9 +8,9 @@ import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 // コンポーネント取得
-import Loading from 'components/modules/Loading';
-import Header from 'components/modules/Header';
-import Footer from 'components/modules/Footer';
+import Loading from 'components/organisms/Loading';
+import Header from 'components/organisms/Header';
+import Footer from 'components/organisms/Footer';
 import Home from 'components/pages/Home';
 import Explore from 'components/pages/Explore';
 import Notice from 'components/pages/Notice';

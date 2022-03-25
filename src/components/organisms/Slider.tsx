@@ -4,8 +4,8 @@ import style from './Slider.module.scss';
 
 import { useParams } from 'react-router-dom';
 
-import Search from 'components/modules/Search';
-import Details from 'components/modules/Details';
+import Search from 'components/organisms/Search';
+import Details from 'components/organisms/Details';
 
 const SlideArea = () => {
 	const { placeId } = useParams();
