@@ -22,7 +22,7 @@ const Loading = ({ setIsLoading }: Props) => {
 			loadingRef.current.style.opacity = '0';
 			setTimeout(() => {
 				setIsLoading(false);
-			}, 600);
+			}, 800);
 		}
 	}, [authUser]);
 
