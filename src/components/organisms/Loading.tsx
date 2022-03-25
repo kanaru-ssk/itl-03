@@ -28,7 +28,7 @@ const Loading = ({ setIsLoaded }: Props) => {
 
 	return (
 		<div ref={loadingRef} className={style.loading}>
-			<img src={logoImg} className={style.logo} alt="" />
+			<img src={logoImg} className={style.logo} alt="logo" />
 		</div>
 	);
 };
