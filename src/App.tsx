@@ -8,14 +8,14 @@ import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 // コンポーネント取得
-import Loading from 'view/components/modules/Loading';
-import Header from 'view/components/modules/Header';
-import Footer from 'view/components/modules/Footer';
-import Home from 'view/pages/Home';
-import Explore from 'view/pages/Explore';
-import Notice from 'view/pages/Notice';
-import Message from 'view/pages/Message';
-import User from 'view/pages/User';
+import Loading from 'components/modules/Loading';
+import Header from 'components/modules/Header';
+import Footer from 'components/modules/Footer';
+import Home from 'components/pages/Home';
+import Explore from 'components/pages/Explore';
+import Notice from 'components/pages/Notice';
+import Message from 'components/pages/Message';
+import User from 'components/pages/User';
 
 // ルーティング
 const App = () => {
