@@ -24,11 +24,11 @@ const Details = ({ paramsPlaceId }: Props) => {
 		}
 	}, [paramsPlaceId, service]);
 
-	const onAddItem = (_user: dbUser, place: place): void => {
+	const onAddPost = (place: place): void => {
 		if (user.authUser?.isAnonymous) {
 			loginWithTwitter();
 		} else {
-			createPost(_user, place);
+			createPost(user.dbUser, place);
 		}
 	};
 
@@ -39,12 +39,12 @@ const Details = ({ paramsPlaceId }: Props) => {
 
 				<h3>place詳細情報</h3>
 
-				{place && <button onClick={() => onAddItem(user?.dbUser, place)}>リストに追加</button>}
+				{place && <button onClick={() => onAddPost(place)}>リストに追加</button>}
 
 				<div>名前 : {placeResult.name}</div>
-				{/* {placeResult?.photos?.map((value, key) => {
-					return <img key={key} src={value} width="160px" height="90px" alt="" />;
-				})} */}
+				{placeResult?.photos?.map((value, key) => {
+					return <img key={key} src={value.getUrl({ maxWidth: 400 })} width="160px" height="90px" alt="" />;
+				})}
 
 				<div>
 					タイプ :
