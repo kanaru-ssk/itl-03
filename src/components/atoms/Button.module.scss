@@ -1,0 +1,10 @@
+@import 'variables';
+
+.button {
+	width: 240px;
+	height: 36px;
+	border: none;
+	border-radius: 18px;
+	background-color: $twitterColor;
+	color: $baseColor;
+}
