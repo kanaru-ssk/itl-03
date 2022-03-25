@@ -8,6 +8,7 @@ import { AuthContext, logout } from 'model/AuthModel';
 
 // コンポーネント取得
 import Header from 'components/organisms/Header';
+import Main from 'components/atoms/Main';
 import Footer from 'components/organisms/Footer';
 import Login from 'components/organisms/Login';
 
@@ -15,15 +16,19 @@ const Home = () => {
 	const user = useContext(AuthContext);
 
 	if (user.authUser?.isAnonymous) {
-		return <Login />;
+		return (
+			<Main isHeaderShow={false}>
+				<Login />
+			</Main>
+		);
 	} else {
 		return (
 			<>
 				<Header />
-				<main>
+				<Main isHeaderShow={true}>
 					<h1>Home</h1>
 					<button onClick={logout}>ログアウト</button>
-				</main>
+				</Main>
 				<Footer />
 			</>
 		);

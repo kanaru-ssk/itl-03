@@ -10,7 +10,7 @@ import Button from 'components/atoms/Button';
 
 const Login = () => {
 	return (
-		<main className={style.login}>
+		<div className={style.login}>
 			<div>
 				<img src={logoImg} className={style.logo} alt="" />
 				<div className={style.copy}>
@@ -22,7 +22,7 @@ const Login = () => {
 
 			<div className={style.start}>行きたいとこリストを始めよう</div>
 			<Button onClick={loginWithTwitter}>Twitterサインイン</Button>
-		</main>
+		</div>
 	);
 };
 

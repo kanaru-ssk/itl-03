@@ -10,6 +10,7 @@ import { getUserDataByUserId } from 'model/UserModel';
 import { getItems } from 'model/itemModel';
 
 // コンポーネント取得
+import Main from 'components/atoms/Main';
 import Footer from 'components/organisms/Footer';
 import Items from 'components/organisms/Items';
 
@@ -33,7 +34,7 @@ const User = () => {
 
 	return (
 		<>
-			<main>
+			<Main isHeaderShow={false}>
 				<h1>User</h1>
 				<div>パラメーターuid : {paramsUid}</div>
 				{user.dbUser?.user_id === paramsUid ? <h2>マイページ</h2> : <h2>ユーザーページ</h2>}
@@ -47,7 +48,7 @@ const User = () => {
 				</div>
 
 				<Items items={items} />
-			</main>
+			</Main>
 			<Footer />
 		</>
 	);
