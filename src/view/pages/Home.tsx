@@ -1,5 +1,9 @@
 // トップページ
 
+import style from './Home.module.scss';
+
+import logoImg from 'img/logo.svg';
+
 import { useContext } from 'react';
 
 import { AuthContext, loginWithTwitter, logout } from 'model/AuthModel';
@@ -11,11 +15,16 @@ const Home = () => {
 
 	if (authUser?.isAnonymous) {
 		return (
-			<main>
-				<h1>Login</h1>
-				<div>匿名認証なのでログイン画面を表示</div>
-				<div>ログインuid : {authUser?.uid}</div>
-				<button onClick={loginWithTwitter}>ログイン</button>
+			<main className={style.login}>
+				<img src={logoImg} className={style.logo} alt="" />
+				<div className={style.copy}>
+					一緒に行く人を
+					<br />
+					ゆるく募集
+				</div>
+
+				<div>行きたいとこリストを始めよう</div>
+				<button onClick={loginWithTwitter}>Twitterでサインイン</button>
 			</main>
 		);
 	} else {

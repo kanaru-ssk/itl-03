@@ -1,0 +1,20 @@
+@import 'variables';
+
+.login {
+	z-index: $loginIndex;
+	position: fixed;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: $mainColor;
+}
+
+.copy {
+	color: $baseColor;
+	font-size: 24px;
+	font-weight: 700;
+}
+
+.logo {
+	width: 80px;
+}
