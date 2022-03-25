@@ -1,4 +1,4 @@
-// ロード画面
+// フッター
 
 import style from './Footer.module.scss';
 

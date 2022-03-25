@@ -1,4 +1,4 @@
-// 通知ページ
+// 検索結果を表示するスライダー
 
 import style from './Slider.module.scss';
 

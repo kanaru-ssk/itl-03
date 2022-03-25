@@ -1,4 +1,4 @@
-// 検索ページ
+// 検索
 
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';

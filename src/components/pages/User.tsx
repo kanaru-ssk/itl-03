@@ -1,12 +1,15 @@
 // ユーザーページ
 
+// React取得
 import { useContext, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
+// model取得
 import { AuthContext } from 'model/AuthModel';
 import { getUserDataByUserId } from 'model/UserModel';
 import { getItems } from 'model/itemModel';
 
+// コンポーネント取得
 import Items from 'components/organisms/Items';
 
 // 匿名認証 => ユーザーページ

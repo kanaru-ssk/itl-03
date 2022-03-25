@@ -1,4 +1,4 @@
-// ロード画面
+// ヘッダー
 
 import style from './Header.module.scss';
 

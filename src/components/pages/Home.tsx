@@ -1,9 +1,12 @@
 // トップページ
 
+// React取得
 import { useContext } from 'react';
 
+// model取得
 import { AuthContext, logout } from 'model/AuthModel';
 
+// コンポーネント取得
 import Login from 'components/organisms/Login';
 
 const Home = () => {

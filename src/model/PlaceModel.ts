@@ -1,4 +1,4 @@
-// google place apiへのリクエスト
+// google place api 関係の処理
 
 let map: google.maps.Map;
 export let service: google.maps.places.PlacesService;

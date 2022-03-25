@@ -1,4 +1,4 @@
-// ユーザーデータ関係の処理
+// アイテムデータfetch
 
 // ドキュメントidからアイテムデータ取得
 export const getItems = async (uid: string | undefined) => {
