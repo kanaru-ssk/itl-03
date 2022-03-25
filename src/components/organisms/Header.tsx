@@ -21,8 +21,9 @@ const Header = () => {
 			<Link to={'/' + user.dbUser?.user_id}>
 				<img
 					className={`${style.item} ${style.icon}`}
-					src={user.dbUser ? user.dbUser.user_icon : userImg}
+					src={user.dbUser ? user?.dbUser.user_icon : userImg}
 					alt="user-icon"
+					onError={(e: any) => (e.target.src = userImg)}
 				/>
 			</Link>
 		</header>
