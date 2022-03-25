@@ -5,5 +5,6 @@
 	position: fixed !important;
 	top: $headerHeight;
 	width: 100%;
+	max-width: $bodyMaxWidth;
 	height: calc(100vh - #{$headerHeight});
 }

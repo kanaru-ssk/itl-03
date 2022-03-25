@@ -1,11 +1,10 @@
 // 検索ページ
 
-import './Explore.scss';
-
 import { useEffect } from 'react';
 
 import { initMap } from 'model/PlaceModel';
 
+import Map from 'components/organisms/Map';
 import SlideArea from 'components/organisms/Slider';
 
 const Explore = () => {
@@ -15,7 +14,7 @@ const Explore = () => {
 
 	return (
 		<main>
-			<div id="map"></div>
+			<Map />
 			<SlideArea />
 		</main>
 	);
