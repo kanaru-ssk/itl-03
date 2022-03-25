@@ -5,7 +5,7 @@ import style from './Header.module.scss';
 import logoImg from 'img/logo.svg';
 import userImg from 'img/user.svg';
 
-import { useContext, useEffect, useRef } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import { AuthContext } from 'model/AuthModel';
