@@ -8,14 +8,26 @@
 	max-width: $bodyMaxWidth;
 	height: 100vh;
 	background-color: $mainColor;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.logo {
+	width: 80px;
+	margin-right: 24px;
 }
 
 .copy {
 	color: $baseColor;
 	font-size: 24px;
 	font-weight: 700;
+	margin-bottom: 32px;
 }
 
-.logo {
-	width: 80px;
+.start {
+	color: $baseColor;
+	font-size: 16px;
+	padding: 8px;
 }
