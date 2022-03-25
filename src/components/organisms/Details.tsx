@@ -7,20 +7,20 @@ import { service, getPlaceDetails } from 'model/PlaceModel';
 import { createItem } from 'model/itemModel';
 
 type Props = {
-	placeId: string;
+	paramsPlaceId: string;
 };
 
-const Details = ({ placeId }: Props) => {
+const Details = ({ paramsPlaceId }: Props) => {
 	const user = useContext(AuthContext);
 	const [place, setPlace] = useState<place>();
 
 	useEffect(() => {
-		if (placeId && service) {
-			getPlaceDetails(placeId).then((result) => {
+		if (paramsPlaceId && service) {
+			getPlaceDetails(paramsPlaceId).then((result) => {
 				setPlace(result);
 			});
 		}
-	}, [placeId, service]);
+	}, [paramsPlaceId, service]);
 
 	const onAddItem = (_user: authUser, place: place): void => {
 		if (user.authUser?.isAnonymous) {

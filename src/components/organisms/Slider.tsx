@@ -8,12 +8,12 @@ import Search from 'components/organisms/Search';
 import Details from 'components/organisms/Details';
 
 const SlideArea = () => {
-	const { placeId } = useParams();
+	const { paramsPlaceId } = useParams();
 	return (
 		<div className={style.slider}>
 			<div className={style.bar}></div>
 			<h3>SlideArea</h3>
-			{placeId ? <Details placeId={placeId} /> : <Search />}
+			{paramsPlaceId ? <Details paramsPlaceId={paramsPlaceId} /> : <Search />}
 		</div>
 	);
 };
