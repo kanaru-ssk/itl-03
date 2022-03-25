@@ -7,12 +7,12 @@ import { useParams } from 'react-router-dom';
 // model取得
 import { AuthContext } from 'model/AuthModel';
 import { getUserDataByUserId } from 'model/UserModel';
-import { getItems } from 'model/itemModel';
+import { getPostsByUserId } from 'model/PostModel';
 
 // コンポーネント取得
 import Main from 'components/atoms/Main';
 import Footer from 'components/organisms/Footer';
-import Items from 'components/organisms/Items';
+import Posts from 'components/organisms/posts';
 
 // 匿名認証 => ユーザーページ
 // 表示userとログインuserが異なる => ユーザーページ
@@ -23,13 +23,11 @@ const User = () => {
 	const user = useContext(AuthContext);
 
 	const [paramsUser, setParamsUser] = useState<dbUser | undefined>(undefined);
-	const [items, setItems] = useState<item[]>([]);
+	const [posts, setPosts] = useState<post[]>([]);
 
 	useEffect(() => {
-		getUserDataByUserId(paramsUid).then((user) => {
-			setParamsUser(user);
-			getItems(user?.uid).then((result) => setItems(result));
-		});
+		getUserDataByUserId(paramsUid).then((user) => setParamsUser(user));
+		getPostsByUserId(paramsUid).then((result) => setPosts(result));
 	}, [paramsUid]);
 
 	return (
@@ -47,7 +45,7 @@ const User = () => {
 					<div>{paramsUser?.user_twitter_disp_id}</div>
 				</div>
 
-				<Items items={items} />
+				<Posts posts={posts} />
 			</Main>
 			<Footer />
 		</>

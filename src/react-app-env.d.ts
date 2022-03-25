@@ -80,3 +80,8 @@ type item = {
 	item_checked: boolean;
 	item_removed: boolean;
 } & place;
+
+type post = {
+	user_id: string;
+	place_name: string;
+};
