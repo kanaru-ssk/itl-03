@@ -10,7 +10,6 @@ export const getPostsByUserId = async (user_id: string | undefined): Promise<pos
 	const q = query(collection(db, 'posts'), where('user_id', '==', user_id));
 	const snapshot = await getDocs(q);
 	const posts: post[] = snapshot.docs.map((doc) => {
-		console.log(doc.data().item_name);
 		return {
 			user_id: doc.data().user_id,
 			place_name: doc.data().place_name
