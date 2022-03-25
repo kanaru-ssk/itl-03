@@ -4,7 +4,7 @@ type node = {
 	children: React.ReactNode;
 };
 
-type authUser = import('firebase/auth').User | undefined;
+type authUser = import('firebase/auth').User | null;
 
 type dbUser = {
 	at_created: Date | import('firebase/firestore').FieldValue;
@@ -20,7 +20,7 @@ type dbUser = {
 
 type authContextProps = {
 	authUser: authUser;
-	dbUser: dbUser | undefined;
+	dbUser: dbUser | null;
 };
 
 type placeType =

@@ -11,15 +11,15 @@ import {
 } from 'firebase/auth';
 
 export const AuthContext = createContext<authContextProps>({
-	authUser: undefined,
-	dbUser: undefined
+	authUser: null,
+	dbUser: null
 });
 
 // ログイン認証
 export const AuthProvider = ({ children }: node) => {
 	const [user, setUser] = useState<authContextProps>({
-		authUser: undefined,
-		dbUser: undefined
+		authUser: null,
+		dbUser: null
 	});
 
 	const auth = getAuth();
@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }: node) => {
 	useEffect(() => {
 		const unsubscribed = onAuthStateChanged(auth, async (user: any) => {
 			if (user) {
-				setUser({ authUser: user, dbUser: undefined });
+				setUser({ authUser: user, dbUser: null });
 
 				if (!user.isAnonymous) {
 					const { Timestamp } = await import('firebase/firestore');
