@@ -19,12 +19,12 @@ import User from 'components/pages/User';
 
 // ルーティング
 const App = () => {
-	const [isLoading, setIsLoading] = useState<boolean>(true);
+	const [isLoaded, setIsLoaded] = useState<boolean>(false);
 	return (
 		<BrowserRouter>
 			<Header />
 
-			{isLoading && <Loading setIsLoading={setIsLoading} />}
+			{!isLoaded && <Loading setIsLoaded={setIsLoaded} />}
 
 			<Routes>
 				<Route path="/" element={<Home />} />
