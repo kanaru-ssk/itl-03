@@ -48,6 +48,10 @@ type post = {
 	at_updated: import('firebase/firestore').FieldValue;
 	at_checked: import('firebase/firestore').FieldValue | null;
 
+	post_caption: string;
+	post_checked: boolean;
+	post_removed: boolean;
+
 	uid: string;
 	user_id: string;
 } & place;
