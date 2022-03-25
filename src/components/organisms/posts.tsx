@@ -1,8 +1,7 @@
 // アイテム一覧
 
-// 匿名認証 => ユーザーページ
-// 表示userとログインuserが異なる => ユーザーページ
-// 表示userとログインuserが同じ => マイページ
+// React取得
+import { Link } from 'react-router-dom';
 
 type Props = {
 	posts: post[];
@@ -13,8 +12,12 @@ const Posts = ({ posts }: Props) => {
 		<div>
 			<h3>posts</h3>
 			<ul>
-				{posts.map((value, key) => {
-					return <li key={key}>{value.place_name}&nbsp;&nbsp;</li>;
+				{posts.map((post, key) => {
+					return (
+						<li key={key}>
+							<Link to={'/explore/' + post.place_id}>{post.place_name}</Link>
+						</li>
+					);
 				})}
 			</ul>
 		</div>
