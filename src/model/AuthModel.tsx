@@ -39,6 +39,7 @@ export const AuthProvider = ({ children }: node) => {
 						// 新規ユーザーデータ作成
 						const providerData = user.reloadUserInfo.providerUserInfo[0];
 						const newUserData: dbUser = {
+							uid: user.uid,
 							user_id: providerData.screenName,
 							user_name: providerData.displayName,
 							user_icon: providerData.photoUrl,
