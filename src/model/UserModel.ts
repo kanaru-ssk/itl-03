@@ -19,19 +19,19 @@ export const getUserDataByUid = async (uid: string) => {
 		};
 		return result;
 	} else {
-		return false;
+		return null;
 	}
 };
 
 // ユーザーidからユーザーデータ取得
-export const getUserDataByUserId = async (user_id: string | undefined): Promise<dbUser | undefined> => {
+export const getUserDataByUserId = async (user_id: string | undefined): Promise<dbUser | null> => {
 	const { getFirestore, collection, query, where, getDocs } = await import('firebase/firestore');
 	const db = getFirestore();
 	const q = query(collection(db, 'users'), where('user_id', '==', user_id));
 
 	const querySnapshot = await getDocs(q);
 	if (querySnapshot.size === 0) {
-		return undefined;
+		return null;
 	} else {
 		const result: dbUser = {
 			user_id: querySnapshot.docs[0].data().user_id,

@@ -22,7 +22,7 @@ const User = () => {
 	const { paramsUid } = useParams();
 	const user = useContext(AuthContext);
 
-	const [paramsUser, setParamsUser] = useState<dbUser | undefined>(undefined);
+	const [paramsUser, setParamsUser] = useState<dbUser | null>(null);
 	const [posts, setPosts] = useState<post[]>([]);
 
 	useEffect(() => {
