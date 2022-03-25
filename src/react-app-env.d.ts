@@ -10,7 +10,6 @@ type dbUser = {
 	at_created: Date | import('firebase/firestore').FieldValue;
 	at_updated: Date | import('firebase/firestore').FieldValue;
 
-	uid: string;
 	user_id: string;
 	user_name: string;
 	user_icon: string;

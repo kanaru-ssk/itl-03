@@ -8,7 +8,6 @@ export const getUserDataByUid = async (uid: string) => {
 	const docSnap = await getDoc(docRef);
 	if (docSnap.exists()) {
 		const result: dbUser = {
-			uid: uid,
 			user_id: docSnap.data().user_id,
 			user_name: docSnap.data().user_name,
 			user_icon: docSnap.data().user_icon,
@@ -35,7 +34,6 @@ export const getUserDataByUserId = async (user_id: string | undefined): Promise<
 		return undefined;
 	} else {
 		const result: dbUser = {
-			uid: querySnapshot.docs[0].id,
 			user_id: querySnapshot.docs[0].data().user_id,
 			user_name: querySnapshot.docs[0].data().user_name,
 			user_icon: querySnapshot.docs[0].data().user_icon,
@@ -50,7 +48,7 @@ export const getUserDataByUserId = async (user_id: string | undefined): Promise<
 };
 
 // ユーザーデータ作成
-export const createUserData = async (newUserData: dbUser) => {
+export const createUserData = async (uid: string, newUserData: dbUser) => {
 	const { getFirestore, setDoc, doc, serverTimestamp } = await import('firebase/firestore');
 
 	const db = getFirestore();
@@ -58,5 +56,5 @@ export const createUserData = async (newUserData: dbUser) => {
 	newUserData.at_created = serverTimestamp();
 	newUserData.at_updated = serverTimestamp();
 
-	setDoc(doc(db, 'users', newUserData.uid), newUserData);
+	setDoc(doc(db, 'users', uid), newUserData);
 };
