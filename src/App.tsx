@@ -4,6 +4,7 @@
 import './App.scss';
 
 // React取得
+import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 // コンポーネント取得
@@ -18,11 +19,12 @@ import User from 'view/pages/User';
 
 // ルーティング
 const App = () => {
+	const [isLoading, setIsLoading] = useState<boolean>(true);
 	return (
 		<BrowserRouter>
 			<Header />
 
-			<Loading />
+			{isLoading && <Loading setIsLoading={setIsLoading} />}
 
 			<Routes>
 				<Route path="/" element={<Home />} />
