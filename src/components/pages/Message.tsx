@@ -1,10 +1,18 @@
 // DMページ
 
+// コンポーネント取得
+import Header from 'components/organisms/Header';
+import Footer from 'components/organisms/Footer';
+
 const Message = () => {
 	return (
-		<main>
-			<h1>Message</h1>
-		</main>
+		<>
+			<Header />
+			<main>
+				<h1>Message</h1>
+			</main>
+			<Footer />
+		</>
 	);
 };
 

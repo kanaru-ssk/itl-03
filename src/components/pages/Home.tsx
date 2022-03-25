@@ -7,6 +7,8 @@ import { useContext } from 'react';
 import { AuthContext, logout } from 'model/AuthModel';
 
 // コンポーネント取得
+import Header from 'components/organisms/Header';
+import Footer from 'components/organisms/Footer';
 import Login from 'components/organisms/Login';
 
 const Home = () => {
@@ -16,10 +18,14 @@ const Home = () => {
 		return <Login />;
 	} else {
 		return (
-			<main>
-				<h1>Home</h1>
-				<button onClick={logout}>ログアウト</button>
-			</main>
+			<>
+				<Header />
+				<main>
+					<h1>Home</h1>
+					<button onClick={logout}>ログアウト</button>
+				</main>
+				<Footer />
+			</>
 		);
 	}
 };

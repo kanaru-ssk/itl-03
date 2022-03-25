@@ -9,8 +9,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 // コンポーネント取得
 import Loading from 'components/organisms/Loading';
-import Header from 'components/organisms/Header';
-import Footer from 'components/organisms/Footer';
 import Home from 'components/pages/Home';
 import Explore from 'components/pages/Explore';
 import Notice from 'components/pages/Notice';
@@ -22,8 +20,6 @@ const App = () => {
 	const [isLoaded, setIsLoaded] = useState<boolean>(false);
 	return (
 		<BrowserRouter>
-			<Header />
-
 			{!isLoaded && <Loading setIsLoaded={setIsLoaded} />}
 
 			<Routes>
@@ -34,8 +30,6 @@ const App = () => {
 				<Route path="/message" element={<Message />} />
 				<Route path="/:paramsUid" element={<User />} />
 			</Routes>
-
-			<Footer />
 		</BrowserRouter>
 	);
 };

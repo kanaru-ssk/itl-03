@@ -3,8 +3,8 @@
 #map {
 	z-index: $mapIndex;
 	position: fixed !important;
-	top: $headerHeight;
+	top: 0;
 	width: 100%;
 	max-width: $bodyMaxWidth;
-	height: calc(100vh - #{$headerHeight});
+	height: 100vh;
 }
