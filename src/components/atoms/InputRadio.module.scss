@@ -21,7 +21,7 @@
 	white-space: nowrap;
 	cursor: pointer;
 
-	&:hover {
+	&:active {
 		border-color: $hoverBorderColor !important;
 	}
 }

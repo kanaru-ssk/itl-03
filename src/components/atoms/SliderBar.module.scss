@@ -3,11 +3,6 @@
 .grabArea {
 	padding: 16px;
 	cursor: grab;
-	&:hover {
-		.bar {
-			background-color: $hoverBorderColor;
-		}
-	}
 	&:active {
 		.bar {
 			background-color: $activeBorderColor;
