@@ -1,7 +1,15 @@
 @import 'variables';
 
 .ul {
+	overflow-x: auto;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
 	display: flex;
+	flex-wrap: nowrap;
+	gap: 8px;
 }
 
 .li {
