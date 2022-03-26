@@ -17,8 +17,10 @@ type Props = {
 
 const Slider = ({ isOpen, setIsOpen, children }: Props) => {
 	const { innerHeight: height } = window;
+	const top = 48;
+	const under = height - 179;
 	const [isPermitSlide, setIsPermitSlide] = useState<boolean>(false);
-	const [slidePos, setSlidePos] = useState<number>(height - 176);
+	const [slidePos, setSlidePos] = useState<number>(under);
 	const slider = useRef<HTMLDivElement>(null);
 	const sliderBar = useRef<HTMLDivElement>(null);
 
@@ -30,9 +32,9 @@ const Slider = ({ isOpen, setIsOpen, children }: Props) => {
 
 	useEffect(() => {
 		if (isOpen) {
-			setSlidePos(48);
+			setSlidePos(top);
 		} else {
-			setSlidePos(height - 176);
+			setSlidePos(under);
 		}
 	}, [isOpen]);
 
@@ -83,7 +85,7 @@ const Slider = ({ isOpen, setIsOpen, children }: Props) => {
 		}
 		if (slidePos < height / 2) {
 			if (isOpen) {
-				setSlidePos(48);
+				setSlidePos(top);
 			} else {
 				setIsOpen(true);
 			}
@@ -91,7 +93,7 @@ const Slider = ({ isOpen, setIsOpen, children }: Props) => {
 			if (isOpen) {
 				setIsOpen(false);
 			} else {
-				setSlidePos(height - 176);
+				setSlidePos(under);
 			}
 		}
 	};
