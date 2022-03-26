@@ -1,4 +1,4 @@
-// アイテム一覧
+// 投稿一覧
 
 // css取得
 import style from './Posts.module.scss';
