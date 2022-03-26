@@ -4,6 +4,7 @@
 import Main from 'components/atoms/Main';
 import Footer from 'components/organisms/Footer';
 import Map from 'components/organisms/Map';
+import Slider from 'components/molecules/Slider';
 import SlideArea from 'components/organisms/Slider';
 
 const ExplorePage = () => {
@@ -11,7 +12,7 @@ const ExplorePage = () => {
 		<>
 			<Main isHeaderShow={false}>
 				<Map />
-				<SlideArea />
+				<Slider>テスト</Slider>
 			</Main>
 			<Footer />
 		</>

@@ -1,0 +1,13 @@
+@import 'variables';
+
+.slider {
+	position: fixed;
+	top: 100px;
+	width: 100%;
+	max-width: $bodyMaxWidth;
+	height: 100vh;
+	padding: 0 16px;
+	border-radius: 16px 16px 0 0;
+	box-shadow: 0 0 25px $shodowColor;
+	background-color: $baseColor;
+}
