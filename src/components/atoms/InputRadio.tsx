@@ -7,12 +7,13 @@ import style from './InputRadio.module.scss';
 import { useRef } from 'react';
 
 type Props = {
+	label: string;
 	value: string;
 	setValue: (e: any) => void;
 	before: placeType;
 };
 
-const InputRadio = ({ value, setValue, before }: Props) => {
+const InputRadio = ({ label, value, setValue, before }: Props) => {
 	const ref = useRef<HTMLInputElement>(null);
 
 	const onClick = (e: any) => {
@@ -35,7 +36,7 @@ const InputRadio = ({ value, setValue, before }: Props) => {
 				ref={ref}
 			/>
 			<label htmlFor={value} className={style.label}>
-				{value}
+				{label}
 			</label>
 		</div>
 	);
