@@ -1,0 +1,25 @@
+@import 'variables';
+
+.radio {
+	display: none;
+	&:checked {
+		+ .label {
+			background-color: $activeButtonColor;
+			border-color: $activeBorderColor;
+		}
+	}
+}
+
+.label {
+	padding: 4px 16px;
+	background-color: $baseColor;
+	border: solid;
+	border-radius: 4px;
+	border-color: $borderColor;
+	color: $fontColor;
+	cursor: pointer;
+
+	&:hover {
+		border-color: $hoverBorderColor !important;
+	}
+}
