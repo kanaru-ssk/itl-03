@@ -6,7 +6,7 @@ import logoImg from 'img/logo.svg';
 
 import { loginWithTwitter } from 'model/AuthModel';
 
-import Button from 'components/atoms/Button';
+import ButtonLogin from 'components/atoms/ButtonLogin';
 
 const Login = () => {
 	return (
@@ -21,7 +21,7 @@ const Login = () => {
 			</div>
 
 			<div className={style.start}>行きたいとこリストを始めよう</div>
-			<Button onClick={loginWithTwitter}>Twitterサインイン</Button>
+			<ButtonLogin onClick={loginWithTwitter}>Twitterサインイン</ButtonLogin>
 		</div>
 	);
 };
