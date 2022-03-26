@@ -14,7 +14,7 @@ import UserHeader from 'components/organisms/UserHeader';
 import Main from 'components/atoms/Main';
 import Footer from 'components/organisms/Footer';
 import Profile from 'components/organisms/Profile';
-import Posts from 'components/organisms/Posts';
+import Posts from '../organisms/Posts';
 
 // 匿名認証 => ユーザーページ
 // 表示userとログインuserが異なる => ユーザーページ
