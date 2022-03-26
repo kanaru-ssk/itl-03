@@ -5,12 +5,12 @@
 	cursor: grab;
 	&:hover {
 		.bar {
-			background-color: $hoverBarColor;
+			background-color: $hoverBorderColor;
 		}
 	}
 	&:active {
 		.bar {
-			background-color: $activeBarColor;
+			background-color: $activeBorderColor;
 		}
 	}
 }
@@ -20,5 +20,5 @@
 	height: 4px;
 	border-radius: 2px;
 	margin: 0 auto;
-	background-color: $barColor;
+	background-color: $borderColor;
 }
