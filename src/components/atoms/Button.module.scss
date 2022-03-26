@@ -4,7 +4,7 @@
 	height: 32px;
 	padding: 0 16px;
 	background-color: $baseColor;
-	border: solid;
+	border: solid $borderWeight;
 	border-radius: 4px;
 	border-color: $borderColor;
 	color: $fontColor;

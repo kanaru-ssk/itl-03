@@ -7,7 +7,7 @@
 	width: 100%;
 	max-width: $bodyMaxWidth;
 	height: $headerHeight;
-	border-bottom: 1px solid $borderColor;
+	border-bottom: $borderWeight solid $borderColor;
 	background-color: $baseColor;
 
 	display: flex;

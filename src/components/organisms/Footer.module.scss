@@ -7,7 +7,7 @@ footer {
 	width: 100%;
 	max-width: $bodyMaxWidth;
 	height: $footerHeight;
-	border-top: 1px solid $borderColor;
+	border-top: $borderWeight solid $borderColor;
 	background-color: $baseColor;
 }
 
