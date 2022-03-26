@@ -54,4 +54,6 @@ type post = {
 
 	uid: string;
 	user_id: string;
+	user_name: string;
+	user_icon: string;
 } & place;

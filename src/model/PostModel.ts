@@ -22,7 +22,9 @@ export const getPostsByUserId = async (user_id: string | undefined): Promise<pos
 			post_checked: doc.data().post_checked,
 			post_removed: doc.data().post_removed,
 			uid: doc.data().uid,
-			user_id: doc.data().user_id
+			user_id: doc.data().user_id,
+			user_name: doc.data().user_name,
+			user_icon: doc.data().user_icon
 		};
 	});
 
@@ -40,15 +42,17 @@ export const createPost = async (user: dbUser, place: place) => {
 		at_created: serverTimestamp(),
 		at_updated: serverTimestamp(),
 		at_checked: null,
-		uid: user.uid,
-		user_id: user.user_id,
 		place_id: place.place_id,
 		place_name: place.place_name,
 		place_type: place.place_type,
 		place_photos: place.place_photos,
 		post_caption: 'キャプション',
 		post_checked: false,
-		post_removed: false
+		post_removed: false,
+		uid: user.uid,
+		user_id: user.user_id,
+		user_name: user.user_name,
+		user_icon: user.user_icon
 	};
 
 	addDoc(collection(db, 'posts'), newPost);
