@@ -2,12 +2,14 @@ $baseColor: #fff;
 $mainColor: #eeb842;
 $borderColor: #dbdbdb;
 $fontColor: #000;
+$userIdColor: #676767;
 $twitterColor: #00acee;
 $shodowColor: rgba(0, 0, 0, 0.5);
 
-$fontFamily: sans-serif;
+$fontFamily: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 
-$fontSize: 14px;
+$baseFontSize: 14px;
+$smallFontSize: 12px;
 
 $loadingIndex: 5;
 $loginIndex: 4;

@@ -6,13 +6,14 @@ body {
 	margin: 0 auto;
 
 	font-family: $fontFamily;
-	font-size: $fontSize;
+	font-size: $baseFontSize;
 	color: $fontColor;
 	line-height: 2;
 	letter-spacing: 1.4;
 }
 
-div {
+div,
+li {
 	box-sizing: border-box;
 }
 

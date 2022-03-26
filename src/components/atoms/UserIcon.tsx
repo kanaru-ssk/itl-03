@@ -15,9 +15,12 @@ const UserIcon = ({ extendClass, src }: Props) => {
 	return (
 		<img
 			className={`${extendClass} ${style.icon}`}
-			src={src}
+			src={src ? src : userImg}
 			alt="user-icon"
-			onError={(e: any) => (e.target.src = userImg)}
+			onError={(e: any) => {
+				e.target.src = userImg;
+				console.log('error');
+			}}
 		/>
 	);
 };

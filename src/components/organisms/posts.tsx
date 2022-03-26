@@ -13,8 +13,8 @@ type Props = {
 const Posts = ({ posts }: Props) => {
 	return (
 		<ul className={style.container}>
-			{posts.map((post) => {
-				return <Post post={post} />;
+			{posts.map((post, key) => {
+				return <Post key={key} post={post} />;
 			})}
 		</ul>
 	);

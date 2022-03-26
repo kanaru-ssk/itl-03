@@ -6,8 +6,7 @@ import style from './Post.module.scss';
 // React取得
 import { Link } from 'react-router-dom';
 
-// コンポーネント取得
-import UserIcon from 'components/atoms/UserIcon';
+import User from 'components/molecules/User';
 
 type Props = {
 	post: post;
@@ -16,7 +15,7 @@ type Props = {
 const Posts = ({ post }: Props) => {
 	return (
 		<li className={style.item}>
-			<UserIcon src={post.user_icon} />
+			<User userId={post.user_id} userName={post.user_name} userIcon={post.user_icon} />
 			<Link to={'/explore/' + post.place_id}>{post.place_name}</Link>
 		</li>
 	);
