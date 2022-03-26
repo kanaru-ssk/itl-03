@@ -15,6 +15,7 @@ body {
 main {
 	padding: $headerHeight 0 $footerHeight;
 }
+
 header,
 div,
 li {
@@ -24,4 +25,9 @@ li {
 a,
 img {
 	display: block;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
 }
