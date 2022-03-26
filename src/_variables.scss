@@ -15,8 +15,14 @@ $shadowColor: rgba(20, 10, 10, 0.5);
 
 $fontFamily: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 
+$inputBorderRadius: 8px;
 $baseFontSize: 14px;
 $smallFontSize: 12px;
+
+$bodyMaxWidth: 800px;
+$headerHeight: 48px;
+$footerHeight: 48px;
+$sideMargin: 16px;
 
 $loadingIndex: 5;
 $loginIndex: 4;
@@ -24,8 +30,3 @@ $headerIndex: 3;
 $footerIndex: 3;
 $slideAreaIndex: 1;
 $mapIndex: -1;
-
-$bodyMaxWidth: 800px;
-$headerHeight: 48px;
-$footerHeight: 48px;
-$sideMargin: 16px;
