@@ -10,6 +10,7 @@ import { getUserDataByUserId } from 'model/UserModel';
 import { getPostsByUserId } from 'model/PostModel';
 
 // コンポーネント取得
+import UserHeader from 'components/organisms/UserHeader';
 import Main from 'components/atoms/Main';
 import Footer from 'components/organisms/Footer';
 import Profile from 'components/organisms/Profile';
@@ -33,7 +34,8 @@ const UserPage = () => {
 
 	return (
 		<>
-			<Main isHeaderShow={false}>
+			<UserHeader />
+			<Main isHeaderShow={true}>
 				{paramsUser && <Profile user={paramsUser} isMaypage={user.dbUser?.user_id === paramsUid} />}
 
 				<Posts posts={posts} />
