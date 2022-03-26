@@ -14,7 +14,11 @@ const Posts = ({ posts }: Props) => {
 	return (
 		<ul className={style.container}>
 			{posts.map((post, key) => {
-				return <Post key={key} post={post} />;
+				return (
+					<li key={key}>
+						<Post post={post} />
+					</li>
+				);
 			})}
 		</ul>
 	);

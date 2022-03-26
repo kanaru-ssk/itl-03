@@ -14,10 +14,10 @@ type Props = {
 
 const Posts = ({ post }: Props) => {
 	return (
-		<li className={style.item}>
+		<div className={style.item}>
 			<User userId={post.user_id} userName={post.user_name} userIcon={post.user_icon} />
 			<Link to={'/explore/' + post.place_id}>{post.place_name}</Link>
-		</li>
+		</div>
 	);
 };
 
