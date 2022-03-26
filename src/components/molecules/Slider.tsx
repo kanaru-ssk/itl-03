@@ -42,7 +42,7 @@ const Slider = ({ isOpen, setIsOpen, children }: Props) => {
 		window.addEventListener('mouseup', onSlideEnd, { passive: false });
 
 		sliderBar.current?.addEventListener('touchstart', onSlideStart, { passive: false });
-		window.addEventListener('touchmove', onTouchMove, { passive: false });
+		sliderBar.current?.addEventListener('touchmove', onTouchMove, { passive: false });
 		window.addEventListener('touchend', onSlideEnd, { passive: false });
 		return () => {
 			sliderBar.current?.removeEventListener('mousedown', onSlideStart);
@@ -50,7 +50,7 @@ const Slider = ({ isOpen, setIsOpen, children }: Props) => {
 			window.removeEventListener('mouseup', onSlideEnd);
 
 			sliderBar.current?.removeEventListener('touchstart', onSlideStart);
-			window.removeEventListener('touchmove', onTouchMove);
+			sliderBar.current?.removeEventListener('touchmove', onTouchMove);
 			window.removeEventListener('touchend', onSlideEnd);
 		};
 	});
