@@ -7,14 +7,13 @@ import style from './UserIcon.module.scss';
 import userImg from 'img/user.svg';
 
 type Props = {
-	extendClass?: string | undefined;
 	src: string | undefined;
 };
 
-const UserIcon = ({ extendClass, src }: Props) => {
+const UserIcon = ({ src }: Props) => {
 	return (
 		<img
-			className={`${extendClass} ${style.icon}`}
+			className={style.icon}
 			src={src ? src : userImg}
 			alt="user-icon"
 			onError={(e: any) => {

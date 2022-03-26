@@ -20,7 +20,9 @@ const Header = () => {
 				<img className={style.item} src={logoImg} alt="logo" />
 			</Link>
 			<Link to={'/' + user.dbUser?.user_id}>
-				<UserIcon extendClass={style.item} src={user?.dbUser?.user_icon} />
+				<div className={style.item}>
+					<UserIcon src={user?.dbUser?.user_icon} />
+				</div>
 			</Link>
 		</header>
 	);
