@@ -2,45 +2,28 @@
 
 // css取得
 import style from './SearchInput.module.scss';
+
+// React取得
+import { useState } from 'react';
+
 // コンポーネント取得
-import InputRadio from 'components/atoms/InputRadio';
+import InputText from 'components/atoms/InputText';
 
 type Props = {
-	placeType: placeType;
-	setPlaceType: React.Dispatch<React.SetStateAction<placeType>>;
+	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+	setQueryText: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const SearchInput = ({ placeType, setPlaceType }: Props) => {
+const SearchInput = ({ setIsOpen, setQueryText }: Props) => {
+	const [inputText, setInputText] = useState<string>('');
+
 	return (
-		<ul className={style.ul}>
-			<li>
-				<InputRadio label="カフェ" value="cafe" before={placeType} setValue={setPlaceType} />
-			</li>
-			<li>
-				<InputRadio label="レストラン" value="restaurant" before={placeType} setValue={setPlaceType} />
-			</li>
-			<li>
-				<InputRadio label="バー" value="bar" before={placeType} setValue={setPlaceType} />
-			</li>
-			<li>
-				<InputRadio label="図書館" value="library" before={placeType} setValue={setPlaceType} />
-			</li>
-			<li>
-				<InputRadio label="美術館" value="art_gallery" before={placeType} setValue={setPlaceType} />
-			</li>
-			<li>
-				<InputRadio label="水族館" value="aquarium" before={placeType} setValue={setPlaceType} />
-			</li>
-			<li>
-				<InputRadio label="公園" value="park" before={placeType} setValue={setPlaceType} />
-			</li>
-			<li>
-				<InputRadio label="映画館" value="movie_theater" before={placeType} setValue={setPlaceType} />
-			</li>
-			<li>
-				<InputRadio label="宿泊" value="lodging" before={placeType} setValue={setPlaceType} />
-			</li>
-		</ul>
+		<div className={style.container}>
+			<InputText placeholder="キーワード検索" onFocus={() => setIsOpen(true)} onChange={setInputText} />
+			<button className={style.button} onClick={() => setQueryText(inputText)}>
+				検索
+			</button>
+		</div>
 	);
 };
 

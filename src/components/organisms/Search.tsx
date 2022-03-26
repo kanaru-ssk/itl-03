@@ -8,14 +8,12 @@ import { searchMap } from 'model/PlaceModel';
 
 // コンポーネント取得
 import Slider from 'components/molecules/Slider';
+import SearchType from './SearchType';
 import SearchInput from './SearchInput';
 import SearchResult from './SearchResult';
-import InputText from 'components/atoms/InputText';
-import InputRadio from 'components/atoms/InputRadio';
 
 const Search = () => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
-	const [inputText, setInputText] = useState<string>('');
 	const [queryText, setQueryText] = useState<string>('');
 	const [placeType, setPlaceType] = useState<placeType>('');
 	const [placeResults, setPlaceResult] = useState<google.maps.places.PlaceResult[]>([]);
@@ -28,9 +26,8 @@ const Search = () => {
 
 	return (
 		<Slider isOpen={isOpen} setIsOpen={setIsOpen}>
-			<InputText onChange={setInputText} />
-			<button onClick={() => setQueryText(inputText)}>検索</button>
-			<SearchInput placeType={placeType} setPlaceType={setPlaceType} />
+			<SearchInput setIsOpen={setIsOpen} setQueryText={setQueryText} />
+			<SearchType placeType={placeType} setPlaceType={setPlaceType} />
 
 			<SearchResult placeResults={placeResults} />
 		</Slider>
