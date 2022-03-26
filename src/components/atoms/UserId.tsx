@@ -1,4 +1,4 @@
-// ユーザーアイコン
+// ユーザーID
 
 // css取得
 import style from './UserId.module.scss';
