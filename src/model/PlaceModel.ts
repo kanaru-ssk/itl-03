@@ -47,6 +47,7 @@ export const searchMap = async (queryText: string, placeType: placeType) => {
 					for (let i: number = 0; i < len; i++) {
 						createMarker(results[i]);
 					}
+					map.setCenter(results[0].geometry!.location!);
 					resolve(results);
 				}
 			}
