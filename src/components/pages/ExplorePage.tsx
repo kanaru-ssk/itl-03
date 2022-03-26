@@ -1,18 +1,22 @@
 // 検索ページ
 
+import { useParams } from 'react-router-dom';
+
 // コンポーネント取得
+import Search from 'components/organisms/Search';
+import Details from 'components/organisms/Details';
 import Main from 'components/atoms/Main';
 import Footer from 'components/organisms/Footer';
 import Map from 'components/organisms/Map';
 import Slider from 'components/molecules/Slider';
-import SlideArea from 'components/organisms/Slider';
 
 const ExplorePage = () => {
+	const { paramsPlaceId } = useParams();
 	return (
 		<>
 			<Main isHeaderShow={false}>
 				<Map />
-				<Slider>テスト</Slider>
+				<Slider>{paramsPlaceId ? <Details paramsPlaceId={paramsPlaceId} /> : <Search />}</Slider>
 			</Main>
 			<Footer />
 		</>
