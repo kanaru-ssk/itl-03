@@ -10,13 +10,15 @@ import { useState, useRef, useEffect } from 'react';
 import SliderBar from 'components/atoms/SliderBar';
 
 type Props = {
+	isOpen: boolean;
+	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 	children: React.ReactNode;
 };
 
-const Slider = ({ children }: Props) => {
+const Slider = ({ isOpen, setIsOpen, children }: Props) => {
 	const { innerHeight: height } = window;
 	const [isPermitSlide, setIsPermitSlide] = useState<boolean>(false);
-	const [slidePos, setSlidePos] = useState<number>(height - 132);
+	const [slidePos, setSlidePos] = useState<number>(height - 176);
 	const slider = useRef<HTMLDivElement>(null);
 	const sliderBar = useRef<HTMLDivElement>(null);
 
@@ -25,6 +27,14 @@ const Slider = ({ children }: Props) => {
 			slider.current.style.transform = 'translateY(' + slidePos + 'px)';
 		}
 	}, [slidePos]);
+
+	useEffect(() => {
+		if (isOpen) {
+			setSlidePos(48);
+		} else {
+			setSlidePos(height - 176);
+		}
+	}, [isOpen]);
 
 	useEffect(() => {
 		sliderBar.current?.addEventListener('mousedown', onSlideStart, { passive: false });
@@ -72,9 +82,17 @@ const Slider = ({ children }: Props) => {
 			slider.current.style.transition = 'all 0.2s ease';
 		}
 		if (slidePos < height / 2) {
-			setSlidePos(48);
+			if (isOpen) {
+				setSlidePos(48);
+			} else {
+				setIsOpen(true);
+			}
 		} else {
-			setSlidePos(height - 132);
+			if (isOpen) {
+				setIsOpen(false);
+			} else {
+				setSlidePos(height - 176);
+			}
 		}
 	};
 
