@@ -12,11 +12,13 @@ body {
 	letter-spacing: 1.4;
 }
 
+header,
 div,
 li {
 	box-sizing: border-box;
 }
 
-a {
+a,
+img {
 	display: block;
 }

@@ -17,12 +17,10 @@ const Header = () => {
 	return (
 		<header>
 			<Link to={'/'}>
-				<img className={style.item} src={logoImg} alt="logo" />
+				<img src={logoImg} alt="logo" />
 			</Link>
 			<Link to={'/' + user.dbUser?.user_id}>
-				<div className={style.item}>
-					<UserIcon src={user?.dbUser?.user_icon} />
-				</div>
+				<UserIcon src={user?.dbUser?.user_icon} />
 			</Link>
 		</header>
 	);
