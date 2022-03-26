@@ -2,9 +2,15 @@
 
 .grabArea {
 	padding: 16px;
+	cursor: grab;
+	&:hover {
+		.bar {
+			background-color: $hoverBarColor;
+		}
+	}
 	&:active {
 		.bar {
-			background-color: $userIdColor;
+			background-color: $activeBarColor;
 		}
 	}
 }
@@ -14,5 +20,5 @@
 	height: 4px;
 	border-radius: 2px;
 	margin: 0 auto;
-	background-color: $borderColor;
+	background-color: $barColor;
 }

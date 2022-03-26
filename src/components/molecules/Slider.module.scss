@@ -11,5 +11,6 @@
 	box-shadow: 0 0 25px $shodowColor;
 	background-color: $baseColor;
 
+	transform: translateY(100%);
 	transition: all 0.2s ease;
 }

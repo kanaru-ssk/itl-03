@@ -15,7 +15,8 @@ type Props = {
 
 const Slider = ({ children }: Props) => {
 	const { innerHeight: height } = window;
-	const [slidePos, setSlidePos] = useState<number>(100);
+	const [isPermitSlide, setIsPermitSlide] = useState<boolean>(false);
+	const [slidePos, setSlidePos] = useState<number>(height - 132);
 	const slider = useRef<HTMLDivElement>(null);
 	const sliderBar = useRef<HTMLDivElement>(null);
 
@@ -26,17 +27,26 @@ const Slider = ({ children }: Props) => {
 	}, [slidePos]);
 
 	useEffect(() => {
-		sliderBar.current?.addEventListener('touchstart', onTouchStart, { passive: false });
-		sliderBar.current?.addEventListener('touchmove', onTouchMove, { passive: false });
-		sliderBar.current?.addEventListener('touchend', onTouchEnd, { passive: false });
+		sliderBar.current?.addEventListener('mousedown', onSlideStart, { passive: false });
+		window.addEventListener('mousemove', onMouseMove, { passive: false });
+		window.addEventListener('mouseup', onSlideEnd, { passive: false });
+
+		sliderBar.current?.addEventListener('touchstart', onSlideStart, { passive: false });
+		window.addEventListener('touchmove', onTouchMove, { passive: false });
+		window.addEventListener('touchend', onSlideEnd, { passive: false });
 		return () => {
-			sliderBar.current?.removeEventListener('touchstart', onTouchStart);
-			sliderBar.current?.removeEventListener('touchmove', onTouchMove);
-			sliderBar.current?.removeEventListener('touchend', onTouchEnd);
+			sliderBar.current?.removeEventListener('mousedown', onSlideStart);
+			window.removeEventListener('mousemove', onMouseMove);
+			window.removeEventListener('mouseup', onSlideEnd);
+
+			sliderBar.current?.removeEventListener('touchstart', onSlideStart);
+			window.removeEventListener('touchmove', onTouchMove);
+			window.removeEventListener('touchend', onSlideEnd);
 		};
 	});
 
-	const onTouchStart = () => {
+	const onSlideStart = () => {
+		setIsPermitSlide(true);
 		if (slider.current) {
 			slider.current.style.transition = 'none';
 		}
@@ -44,19 +54,27 @@ const Slider = ({ children }: Props) => {
 
 	const onTouchMove = (e: any) => {
 		e.preventDefault();
-		if (slider.current) {
+		if (isPermitSlide) {
 			setSlidePos(e.touches[0].pageY - 16);
 		}
 	};
 
-	const onTouchEnd = () => {
+	const onMouseMove = (e: any) => {
+		e.preventDefault();
+		if (isPermitSlide) {
+			setSlidePos(e.pageY - 16);
+		}
+	};
+
+	const onSlideEnd = () => {
+		setIsPermitSlide(false);
 		if (slider.current) {
 			slider.current.style.transition = 'all 0.2s ease';
-			if (slidePos < height / 2) {
-				setSlidePos(100);
-			} else {
-				setSlidePos(height - 100);
-			}
+		}
+		if (slidePos < height / 2) {
+			setSlidePos(48);
+		} else {
+			setSlidePos(height - 132);
 		}
 	};
 
