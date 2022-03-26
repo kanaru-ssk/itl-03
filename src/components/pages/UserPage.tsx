@@ -12,6 +12,7 @@ import { getPostsByUserId } from 'model/PostModel';
 // コンポーネント取得
 import Main from 'components/atoms/Main';
 import Footer from 'components/organisms/Footer';
+import Profile from 'components/organisms/Profile';
 import Posts from 'components/organisms/Posts';
 
 // 匿名認証 => ユーザーページ
@@ -33,17 +34,7 @@ const UserPage = () => {
 	return (
 		<>
 			<Main isHeaderShow={false}>
-				<h1>User</h1>
-				<div>パラメーターuid : {paramsUid}</div>
-				{user.dbUser?.user_id === paramsUid ? <h2>マイページ</h2> : <h2>ユーザーページ</h2>}
-
-				<h3>ユーザー情報</h3>
-				<div>
-					<img src={paramsUser?.user_icon} alt="" />
-					<div>{paramsUser?.user_name}</div>
-					<div>{paramsUser?.user_bio}</div>
-					<div>{paramsUser?.user_twitter_disp_id}</div>
-				</div>
+				{paramsUser && <Profile user={paramsUser} isMaypage={user.dbUser?.user_id === paramsUid} />}
 
 				<Posts posts={posts} />
 			</Main>
