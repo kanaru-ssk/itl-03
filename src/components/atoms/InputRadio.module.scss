@@ -11,12 +11,14 @@
 }
 
 .label {
+	display: block;
 	padding: 4px 16px;
 	background-color: $baseColor;
-	border: solid;
+	border: solid $borderWeight;
 	border-radius: 4px;
 	border-color: $borderColor;
 	color: $fontColor;
+	white-space: nowrap;
 	cursor: pointer;
 
 	&:hover {
