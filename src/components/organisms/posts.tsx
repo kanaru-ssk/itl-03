@@ -1,7 +1,10 @@
 // アイテム一覧
 
-// React取得
-import { Link } from 'react-router-dom';
+// css取得
+import style from './Posts.module.scss';
+
+// コンポーネント取得
+import Post from 'components/organisms/Post';
 
 type Props = {
 	posts: post[];
@@ -9,18 +12,11 @@ type Props = {
 
 const Posts = ({ posts }: Props) => {
 	return (
-		<div>
-			<h3>posts</h3>
-			<ul>
-				{posts.map((post, key) => {
-					return (
-						<li key={key}>
-							<Link to={'/explore/' + post.place_id}>{post.place_name}</Link>
-						</li>
-					);
-				})}
-			</ul>
-		</div>
+		<ul className={style.container}>
+			{posts.map((post) => {
+				return <Post post={post} />;
+			})}
+		</ul>
 	);
 };
 
