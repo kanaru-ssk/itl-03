@@ -7,14 +7,13 @@ import Search from 'components/organisms/Search';
 import Details from 'components/organisms/Details';
 import Footer from 'components/organisms/Footer';
 import Map from 'components/organisms/Map';
-import Slider from 'components/molecules/Slider';
 
 const ExplorePage = () => {
 	const { paramsPlaceId } = useParams();
 	return (
 		<>
 			<Map />
-			<Slider>{paramsPlaceId ? <Details paramsPlaceId={paramsPlaceId} /> : <Search />}</Slider>
+			{paramsPlaceId ? <Details paramsPlaceId={paramsPlaceId} /> : <Search />}
 
 			<Footer />
 		</>
