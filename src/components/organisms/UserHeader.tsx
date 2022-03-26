@@ -1,31 +1,30 @@
 // ヘッダー
 
-import style from './Header.module.scss';
+// 画像取得
+import menuIgm from 'img/menu.svg';
 
-import logoImg from 'img/logo.svg';
-import prevIgm from 'img/prev.svg';
-
+// React取得
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
 
+// model取得
 import { AuthContext } from 'model/AuthModel';
 
-import UserIcon from 'components/atoms/UserIcon';
+// コンポーネント取得
+import Header from 'components/atoms/Header';
+import UserId from 'components/atoms/UserId';
 
-const UserHeader = () => {
+type Props = {
+	paramsUid: string | undefined;
+};
+
+const UserHeader = ({ paramsUid }: Props) => {
 	const user = useContext(AuthContext);
 
 	return (
-		<header>
-			<Link to={'/'}>
-				<img className={style.item} src={prevIgm} alt="prev-button" />
-			</Link>
-			<Link to={'/' + user.dbUser?.user_id}>
-				<div className={style.item}>
-					<UserIcon src={user?.dbUser?.user_icon} />
-				</div>
-			</Link>
-		</header>
+		<Header>
+			<UserId>{paramsUid}</UserId>
+			<img src={menuIgm} alt="menu-button" />
+		</Header>
 	);
 };
 

@@ -7,7 +7,7 @@ import { useContext } from 'react';
 import { AuthContext, logout } from 'model/AuthModel';
 
 // コンポーネント取得
-import Header from 'components/organisms/Header';
+import BaseHeader from 'components/organisms/BaseHeader';
 import Main from 'components/atoms/Main';
 import Footer from 'components/organisms/Footer';
 import Login from 'components/organisms/Login';
@@ -24,7 +24,7 @@ const Home = () => {
 	} else {
 		return (
 			<>
-				<Header />
+				<BaseHeader />
 				<Main isHeaderShow={true}>
 					<h1>Home</h1>
 					<button onClick={logout}>ログアウト</button>

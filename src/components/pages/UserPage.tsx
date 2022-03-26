@@ -34,7 +34,7 @@ const UserPage = () => {
 
 	return (
 		<>
-			<UserHeader />
+			<UserHeader paramsUid={paramsUid} />
 			<Main isHeaderShow={true}>
 				{paramsUser && <Profile user={paramsUser} isMaypage={user.dbUser?.user_id === paramsUid} />}
 
