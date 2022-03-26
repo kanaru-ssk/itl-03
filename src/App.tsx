@@ -9,11 +9,11 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 // コンポーネント取得
 import Loading from 'components/organisms/Loading';
-import Home from 'components/pages/Home';
-import Explore from 'components/pages/Explore';
-import Notice from 'components/pages/Notice';
-import Message from 'components/pages/Message';
-import User from 'components/pages/User';
+import TopPage from 'components/pages/TopPage';
+import ExplorePage from 'components/pages/ExplorePage';
+import NoticePage from 'components/pages/NoticePage';
+import MessagePage from 'components/pages/MessagePage';
+import UserPage from 'components/pages/UserPage';
 
 // ルーティング
 const App = () => {
@@ -23,12 +23,12 @@ const App = () => {
 			{!isLoaded && <Loading setIsLoaded={setIsLoaded} />}
 
 			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="/explore" element={<Explore />} />
-				<Route path="/explore/:paramsPlaceId" element={<Explore />} />
-				<Route path="/notice" element={<Notice />} />
-				<Route path="/message" element={<Message />} />
-				<Route path="/:paramsUid" element={<User />} />
+				<Route path="/" element={<TopPage />} />
+				<Route path="/explore" element={<ExplorePage />} />
+				<Route path="/explore/:paramsPlaceId" element={<ExplorePage />} />
+				<Route path="/notice" element={<NoticePage />} />
+				<Route path="/message" element={<MessagePage />} />
+				<Route path="/:paramsUid" element={<UserPage />} />
 			</Routes>
 		</BrowserRouter>
 	);

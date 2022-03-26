@@ -1,20 +1,20 @@
-// 通知ページ
+// DMページ
 
 // コンポーネント取得
 import Header from 'components/organisms/Header';
 import Main from 'components/atoms/Main';
 import Footer from 'components/organisms/Footer';
 
-const Notice = () => {
+const MessagePage = () => {
 	return (
 		<>
 			<Header />
 			<Main isHeaderShow={true}>
-				<h1>Notice</h1>
+				<h1>Message</h1>
 			</Main>
 			<Footer />
 		</>
 	);
 };
 
-export default Notice;
+export default MessagePage;

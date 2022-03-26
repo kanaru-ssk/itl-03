@@ -6,7 +6,7 @@ import Footer from 'components/organisms/Footer';
 import Map from 'components/organisms/Map';
 import SlideArea from 'components/organisms/Slider';
 
-const Explore = () => {
+const ExplorePage = () => {
 	return (
 		<>
 			<Main isHeaderShow={false}>
@@ -18,4 +18,4 @@ const Explore = () => {
 	);
 };
 
-export default Explore;
+export default ExplorePage;

@@ -18,7 +18,7 @@ import Posts from 'components/organisms/Posts';
 // 表示userとログインuserが異なる => ユーザーページ
 // 表示userとログインuserが同じ => マイページ
 
-const User = () => {
+const UserPage = () => {
 	const { paramsUid } = useParams();
 	const user = useContext(AuthContext);
 
@@ -52,4 +52,4 @@ const User = () => {
 	);
 };
 
-export default User;
+export default UserPage;
