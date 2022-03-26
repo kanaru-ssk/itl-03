@@ -14,31 +14,31 @@ const SearchInput = ({ placeType, setPlaceType }: Props) => {
 	return (
 		<ul className={style.ul}>
 			<li>
-				<InputRadio value="cafe" before={placeType} setValue={setPlaceType} />
+				<InputRadio label="カフェ" value="cafe" before={placeType} setValue={setPlaceType} />
 			</li>
 			<li>
-				<InputRadio value="restaurant" before={placeType} setValue={setPlaceType} />
+				<InputRadio label="レストラン" value="restaurant" before={placeType} setValue={setPlaceType} />
 			</li>
 			<li>
-				<InputRadio value="bar" before={placeType} setValue={setPlaceType} />
+				<InputRadio label="バー" value="bar" before={placeType} setValue={setPlaceType} />
 			</li>
 			<li>
-				<InputRadio value="library" before={placeType} setValue={setPlaceType} />
+				<InputRadio label="図書館" value="library" before={placeType} setValue={setPlaceType} />
 			</li>
 			<li>
-				<InputRadio value="art_gallery" before={placeType} setValue={setPlaceType} />
+				<InputRadio label="美術館" value="art_gallery" before={placeType} setValue={setPlaceType} />
 			</li>
 			<li>
-				<InputRadio value="aquarium" before={placeType} setValue={setPlaceType} />
+				<InputRadio label="水族館" value="aquarium" before={placeType} setValue={setPlaceType} />
 			</li>
 			<li>
-				<InputRadio value="park" before={placeType} setValue={setPlaceType} />
+				<InputRadio label="公園" value="park" before={placeType} setValue={setPlaceType} />
 			</li>
 			<li>
-				<InputRadio value="movie_theater" before={placeType} setValue={setPlaceType} />
+				<InputRadio label="映画館" value="movie_theater" before={placeType} setValue={setPlaceType} />
 			</li>
 			<li>
-				<InputRadio value="lodging" before={placeType} setValue={setPlaceType} />
+				<InputRadio label="宿泊" value="lodging" before={placeType} setValue={setPlaceType} />
 			</li>
 		</ul>
 	);
