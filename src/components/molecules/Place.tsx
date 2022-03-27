@@ -39,7 +39,7 @@ const Place = ({ place }: Props) => {
 						<PlaceIcon src={place.place_photos?.[0]} />
 					</div>
 					<div className={style.name}>
-						<PlaceName>{place.place_name}</PlaceName>
+						<PlaceName name={place.place_name} />
 					</div>
 					<div className={style.type}>{convertPlaceType(place.place_type)}</div>
 				</div>

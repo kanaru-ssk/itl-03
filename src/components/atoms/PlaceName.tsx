@@ -4,11 +4,11 @@
 import style from './PlaceName.module.scss';
 
 type Props = {
-	children: React.ReactNode;
+	name: string;
 };
 
-const PlaceName = ({ children }: Props) => {
-	return <span className={style.name}>{children}</span>;
+const PlaceName = ({ name }: Props) => {
+	return <span className={style.name}>{name}</span>;
 };
 
 export default PlaceName;
