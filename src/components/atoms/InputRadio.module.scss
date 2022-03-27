@@ -12,11 +12,10 @@
 
 .label {
 	display: block;
-	padding: 4px 16px;
+	padding: 4px 18px;
 	background-color: $baseColor;
-	border: solid $borderWeight;
+	border: $borderColor solid $borderWeight;
 	border-radius: $inputBorderRadius;
-	border-color: $borderColor;
 	color: $fontColor;
 	white-space: nowrap;
 	cursor: pointer;

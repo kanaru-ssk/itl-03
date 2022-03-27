@@ -8,8 +8,8 @@ body {
 	font-family: $fontFamily;
 	font-size: $baseFontSize;
 	color: $fontColor;
-	line-height: 2;
-	letter-spacing: 1.4;
+	line-height: $lineHeight;
+	letter-spacing: $letterSpacing;
 }
 
 main {
@@ -19,13 +19,28 @@ main {
 header,
 div,
 li,
-input {
+button,
+input,
+label {
 	box-sizing: border-box;
+}
+
+a,
+button {
+	font-family: $fontFamily;
+	font-size: $baseFontSize;
+	color: $fontColor;
+	line-height: $lineHeight;
+	letter-spacing: $letterSpacing;
 }
 
 a,
 img {
 	display: block;
+}
+
+a {
+	text-decoration: none;
 }
 
 ul {
