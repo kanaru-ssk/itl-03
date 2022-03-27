@@ -17,10 +17,10 @@ const Stars = ({ rating }: Props) => {
 			<defs>
 				{/* グラデーションを使用して塗る */}
 				<linearGradient id="a" gradientUnits="objectBoundingBox">
-					<stop offset="0" stop-color="#eeb842" />
-					<stop offset={offset} stop-color="#eeb842" />
-					<stop offset={offset} stop-color="#ddd" />
-					<stop offset="1" stop-color="#ddd" />
+					<stop offset="0" stopColor="#eeb842" />
+					<stop offset={offset} stopColor="#eeb842" />
+					<stop offset={offset} stopColor="#ddd" />
+					<stop offset="1" stopColor="#ddd" />
 				</linearGradient>
 			</defs>
 			<path
