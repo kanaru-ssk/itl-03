@@ -10,9 +10,10 @@ export const getOgp = async (url: string | undefined) => {
 };
 
 const checkURL = (url: string | undefined) => {
+	const pattern = /https?:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#\u3000-\u30FE\u4E00-\u9FA0\uFF01-\uFFE3]+/g;
 	if (url === undefined) {
 		return false;
-	} else if (url.match(/(http[s]?|ftp):\/\/[^\/\.]+?\..+\w$/i) == null) {
+	} else if (!pattern.test(url)) {
 		return false;
 	} else {
 		return true;
