@@ -8,7 +8,6 @@ import { useState } from 'react';
 
 // コンポーネント取得
 import InputText from 'components/atoms/InputText';
-import Button from 'components/atoms/Button';
 
 type Props = {
 	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -19,12 +18,14 @@ const SearchInput = ({ setIsOpen, setQueryText }: Props) => {
 	const [inputText, setInputText] = useState<string>('');
 
 	return (
-		<div className={style.container}>
+		<form
+			onSubmit={(e) => {
+				e.preventDefault();
+				setQueryText(inputText);
+			}}
+		>
 			<InputText placeholder="キーワード検索" onFocus={() => setIsOpen(true)} onChange={setInputText} />
-			<div className={style.button}>
-				<Button onClick={() => setQueryText(inputText)}>検索</Button>
-			</div>
-		</div>
+		</form>
 	);
 };
 
