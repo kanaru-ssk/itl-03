@@ -8,7 +8,7 @@ type Props = {
 };
 
 const RatingTotal = ({ ratingTotal }: Props) => {
-	return <span className={style.rating}>({ratingTotal ? ratingTotal : 0})</span>;
+	return <span className={style.rating}>({ratingTotal ? ratingTotal : 0}件)</span>;
 };
 
 export default RatingTotal;
