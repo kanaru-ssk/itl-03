@@ -4,7 +4,7 @@
 import style from './PlaceImage.module.scss';
 
 // img取得
-import userImg from 'img/user.svg';
+import notFoundImg from 'img/notfound.svg';
 
 type Props = {
 	src: string | undefined;
@@ -14,9 +14,9 @@ const PlaceImage = ({ src }: Props) => {
 	return (
 		<img
 			className={style.image}
-			src={src ? src : userImg}
+			src={src ? src : notFoundImg}
 			alt="place"
-			onError={(e: any) => (e.target.src = userImg)}
+			onError={(e: any) => (e.target.src = notFoundImg)}
 		/>
 	);
 };
