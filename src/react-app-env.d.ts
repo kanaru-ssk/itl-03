@@ -56,3 +56,10 @@ type post = {
 	user_name: string;
 	user_icon: string;
 } & place;
+
+type ogp = {
+	title: string | undefined;
+	description: string | undefined;
+	url: string | undefined;
+	image: string | undefined;
+};
