@@ -1,0 +1,8 @@
+@import 'variables';
+
+.container {
+	display: flex;
+	width: 100%;
+	overflow-x: auto;
+	gap: 16px;
+}

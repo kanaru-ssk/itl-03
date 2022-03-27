@@ -12,6 +12,8 @@ import { service, getPlaceDetails, convertPlace } from 'model/PlaceModel';
 // component取得
 import Slider from 'components/molecules/Slider';
 import Place from 'components/molecules/Place';
+import PlaceImage from 'components/atoms/PlaceImage';
+import PlaceImages from 'components/molecules/PlaceImages';
 
 type Props = {
 	paramsPlaceId: string;
@@ -39,11 +41,7 @@ const Details = ({ paramsPlaceId }: Props) => {
 				</div>
 
 				<div className={style.container}>
-					{placeResult?.photos?.map((value, key) => {
-						return (
-							<img key={key} src={value.getUrl({ maxWidth: 400 })} width="160px" height="90px" alt="" />
-						);
-					})}
+					<PlaceImages photos={placeResult.photos} />
 
 					<div>住所 : {placeResult.formatted_address}</div>
 
