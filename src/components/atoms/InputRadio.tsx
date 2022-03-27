@@ -3,7 +3,7 @@
 // css取得
 import style from './InputRadio.module.scss';
 
-// React取得
+// react取得
 import { useRef } from 'react';
 
 type Props = {

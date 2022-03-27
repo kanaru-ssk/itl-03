@@ -1,6 +1,6 @@
 // トップページ
 
-// React取得
+// react取得
 import { useContext } from 'react';
 
 // model取得

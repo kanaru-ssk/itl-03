@@ -3,7 +3,7 @@
 // css取得
 import style from './Slider.module.scss';
 
-// React取得
+// react取得
 import { useState, useRef, useEffect } from 'react';
 
 // component取得

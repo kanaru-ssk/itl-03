@@ -3,7 +3,7 @@
 // css取得
 import './App.scss';
 
-// React取得
+// react取得
 import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 

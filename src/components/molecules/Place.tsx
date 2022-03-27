@@ -3,7 +3,7 @@
 // css取得
 import style from './Place.module.scss';
 
-// React取得
+// react取得
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 

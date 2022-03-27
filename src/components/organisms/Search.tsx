@@ -1,6 +1,6 @@
 // 検索
 
-// React取得
+// react取得
 import { useEffect, useState } from 'react';
 
 // モデル取得

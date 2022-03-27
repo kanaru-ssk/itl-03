@@ -1,6 +1,6 @@
 // place Type選択
 
-// React取得
+// react取得
 import { useState } from 'react';
 
 // component取得

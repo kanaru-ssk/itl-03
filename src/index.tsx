@@ -1,11 +1,11 @@
-// React系取得
+// react取得
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 // component取得
 import App from 'App';
 
-// firebase系取得
+// firebase取得
 import { initFirebase } from 'model/InitModel';
 import { AuthProvider } from 'model/AuthModel';
 

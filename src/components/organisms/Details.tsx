@@ -3,7 +3,7 @@
 // css取得
 import style from './Details.module.scss';
 
-// React取得
+// react取得
 import { useEffect, useState } from 'react';
 
 // model取得

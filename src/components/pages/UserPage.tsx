@@ -1,6 +1,6 @@
 // ユーザーページ
 
-// React取得
+// react取得
 import { useContext, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 

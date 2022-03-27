@@ -1,6 +1,6 @@
 // 検索ページ
 
-// React取得
+// react取得
 import { useParams } from 'react-router-dom';
 
 // component取得
