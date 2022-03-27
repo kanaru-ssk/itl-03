@@ -17,7 +17,7 @@ const Footer = () => {
 				<ul className={style.menu}>
 					<li>
 						<Link to="/" className={style.a}>
-							<img src={homeImg} alt="home" />
+							<img src={homeImg} alt="top" />
 						</Link>
 					</li>
 
