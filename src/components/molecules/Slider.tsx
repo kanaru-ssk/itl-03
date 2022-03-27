@@ -6,7 +6,7 @@ import style from './Slider.module.scss';
 // React取得
 import { useState, useRef, useEffect } from 'react';
 
-// コンポーネント取得
+// component取得
 import SliderBar from 'components/atoms/SliderBar';
 
 type Props = {

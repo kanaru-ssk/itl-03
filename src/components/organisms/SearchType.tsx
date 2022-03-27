@@ -3,7 +3,7 @@
 // css取得
 import style from './SearchType.module.scss';
 
-// コンポーネント取得
+// component取得
 import InputRadio from 'components/atoms/InputRadio';
 
 type Props = {

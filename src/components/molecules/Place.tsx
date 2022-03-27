@@ -12,7 +12,7 @@ import { AuthContext, loginWithTwitter } from 'model/AuthModel';
 import { createPost } from 'model/PostModel';
 import { convertPlaceType } from 'model/PlaceModel';
 
-// コンポーネント取得
+// component取得
 import PlaceIcon from 'components/atoms/PlaceIcon';
 import PlaceName from 'components/atoms/PlaceName';
 import Button from 'components/atoms/Button';

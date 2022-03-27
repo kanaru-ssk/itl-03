@@ -6,7 +6,7 @@ import style from './SearchResults.module.scss';
 // model取得
 import { convertPlace } from 'model/PlaceModel';
 
-// コンポーネント取得
+// component取得
 import Place from 'components/molecules/Place';
 
 type Props = {

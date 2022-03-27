@@ -3,7 +3,7 @@
 // css取得
 import style from './User.module.scss';
 
-// コンポーネント取得
+// component取得
 import UserIcon from 'components/atoms/UserIcon';
 import UserName from 'components/atoms/UserName';
 import UserId from 'components/atoms/UserId';

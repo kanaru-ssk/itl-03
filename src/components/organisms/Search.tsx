@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 // モデル取得
 import { searchMap } from 'model/PlaceModel';
 
-// コンポーネント取得
+// component取得
 import Slider from 'components/molecules/Slider';
 import SearchType from './SearchType';
 import SearchInput from './SearchInput';

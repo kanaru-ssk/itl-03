@@ -1,8 +1,9 @@
 // 検索ページ
 
+// React取得
 import { useParams } from 'react-router-dom';
 
-// コンポーネント取得
+// component取得
 import Search from 'components/organisms/Search';
 import Details from 'components/organisms/Details';
 import Footer from 'components/organisms/Footer';

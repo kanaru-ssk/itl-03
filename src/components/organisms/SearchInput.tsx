@@ -3,7 +3,7 @@
 // React取得
 import { useState } from 'react';
 
-// コンポーネント取得
+// component取得
 import InputSearch from 'components/atoms/InputSearch';
 
 type Props = {

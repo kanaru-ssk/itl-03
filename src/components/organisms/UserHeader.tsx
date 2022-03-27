@@ -3,7 +3,7 @@
 // 画像取得
 import menuIgm from 'img/menu.svg';
 
-// コンポーネント取得
+// component取得
 import Header from 'components/atoms/Header';
 import UserId from 'components/atoms/UserId';
 

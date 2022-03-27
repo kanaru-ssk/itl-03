@@ -1,6 +1,6 @@
 // 通知ページ
 
-// コンポーネント取得
+// component取得
 import BaseHeader from 'components/organisms/BaseHeader';
 import Footer from 'components/organisms/Footer';
 

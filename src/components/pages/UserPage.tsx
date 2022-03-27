@@ -9,7 +9,7 @@ import { AuthContext } from 'model/AuthModel';
 import { getUserDataByUserId } from 'model/UserModel';
 import { getPostsByUserId } from 'model/PostModel';
 
-// コンポーネント取得
+// component取得
 import UserHeader from 'components/organisms/UserHeader';
 import Footer from 'components/organisms/Footer';
 import Profile from 'components/organisms/Profile';

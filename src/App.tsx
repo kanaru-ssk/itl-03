@@ -7,7 +7,7 @@ import './App.scss';
 import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-// コンポーネント取得
+// component取得
 import Loading from 'components/organisms/Loading';
 import TopPage from 'components/pages/TopPage';
 import ExplorePage from 'components/pages/ExplorePage';

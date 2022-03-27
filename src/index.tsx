@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// コンポーネント取得
+// component取得
 import App from 'App';
 
 // firebase系取得

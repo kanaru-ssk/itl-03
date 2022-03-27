@@ -6,7 +6,7 @@ import { useContext } from 'react';
 // model取得
 import { AuthContext, logout } from 'model/AuthModel';
 
-// コンポーネント取得
+// component取得
 import BaseHeader from 'components/organisms/BaseHeader';
 import Footer from 'components/organisms/Footer';
 import Login from 'components/organisms/Login';
