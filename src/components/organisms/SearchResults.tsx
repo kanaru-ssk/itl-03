@@ -1,43 +1,25 @@
 // 検索
 
-// React取得
-import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+// css取得
+import style from './SearchResults.module.scss';
 
 // model取得
-import { AuthContext, loginWithTwitter } from 'model/AuthModel';
-import { convertPlace, convertPlaceType } from 'model/PlaceModel';
-import { createPost } from 'model/PostModel';
+import { convertPlace } from 'model/PlaceModel';
 
-import PlaceIcon from 'components/atoms/PlaceIcon';
-import PlaceName from 'components/atoms/PlaceName';
+// コンポーネント取得
+import Place from 'components/molecules/Place';
 
 type Props = {
 	placeResults: google.maps.places.PlaceResult[];
 };
 
 const SearchResults = ({ placeResults }: Props) => {
-	const user = useContext(AuthContext);
-
-	const onAddPost = (place: place): void => {
-		if (user.authUser?.isAnonymous) {
-			loginWithTwitter();
-		} else {
-			createPost(user.dbUser, place);
-		}
-	};
-
 	return (
-		<ul>
+		<ul className={style.container}>
 			{placeResults.map((place, key) => {
 				return (
-					<li key={key}>
-						<Link to={'/explore/' + place.place_id}>
-							<PlaceIcon src={place.photos?.[0].getUrl({ maxWidth: 96 })} />
-							<PlaceName>{place.name}</PlaceName>
-							<div>{convertPlaceType(place.types?.[0])}</div>
-						</Link>
-						<button onClick={() => onAddPost(convertPlace(place))}>追加</button>
+					<li key={key} className={style.item}>
+						<Place place={convertPlace(place)} />
 					</li>
 				);
 			})}
