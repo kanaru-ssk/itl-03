@@ -6,7 +6,9 @@ export const getOgp = async (url: string | undefined) => {
 	const functions = getFunctions();
 	const get = httpsCallable(functions, 'getOgpFromExternalWebsite');
 
-	return get({ url: url });
+	const result = await get({ url: url });
+	console.log(result);
+	return convertOgp(result);
 };
 
 const checkURL = (url: string | undefined) => {
@@ -18,4 +20,14 @@ const checkURL = (url: string | undefined) => {
 	} else {
 		return true;
 	}
+};
+
+const convertOgp = (res: any): ogp => {
+	const ogp: ogp = {
+		title: res.data['og:title'],
+		description: res.data['og:description'],
+		url: res.data['og:url'],
+		image: res.data['og:image']
+	};
+	return ogp;
 };

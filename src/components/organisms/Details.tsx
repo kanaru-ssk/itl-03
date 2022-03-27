@@ -16,6 +16,7 @@ import Place from 'components/molecules/Place';
 import PlaceImages from 'components/molecules/PlaceImages';
 import Ratings from 'components/molecules/Ratings';
 import Reviews from 'components/organisms/Reviews';
+import Ogp from 'components/molecules/Ogp';
 
 type Props = {
 	paramsPlaceId: string;
@@ -25,6 +26,7 @@ const Details = ({ paramsPlaceId }: Props) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const [place, setPlace] = useState<place>();
 	const [placeResult, setPlaceResult] = useState<google.maps.places.PlaceResult>();
+	const [ogp, setOgp] = useState<ogp | undefined>(undefined);
 
 	useEffect(() => {
 		if (paramsPlaceId) {
@@ -37,7 +39,7 @@ const Details = ({ paramsPlaceId }: Props) => {
 
 	useEffect(() => {
 		getOgp(placeResult?.website).then((result) => {
-			console.log(result?.data);
+			setOgp(result);
 		});
 	}, [placeResult]);
 
@@ -56,9 +58,11 @@ const Details = ({ paramsPlaceId }: Props) => {
 
 					<Reviews reviews={placeResult?.reviews} />
 
+					{placeResult?.website && <Ogp ogp={ogp} url={placeResult.website} />}
+					{/* {ogp && 'ogpカード'}
 					<div>
 						<a href={placeResult?.website}>webサイト</a>
-					</div>
+					</div> */}
 
 					<div>{placeResult.formatted_address?.substring(placeResult.formatted_address?.indexOf('〒'))}</div>
 
