@@ -1,6 +1,6 @@
 @import 'variables';
 
-#map {
+.map {
 	z-index: $mapIndex;
 	position: fixed !important;
 	top: 0;
