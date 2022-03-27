@@ -1,14 +1,6 @@
 // 認証関係の処理
 
 import { createContext, useState, useEffect } from 'react';
-import {
-	getAuth,
-	onAuthStateChanged,
-	signInAnonymously,
-	signInWithRedirect,
-	TwitterAuthProvider,
-	signOut
-} from 'firebase/auth';
 
 export const AuthContext = createContext<authContextProps>({
 	authUser: null,
@@ -16,7 +8,8 @@ export const AuthContext = createContext<authContextProps>({
 });
 
 // ログイン認証
-export const AuthProvider = ({ children }: node) => {
+export const AuthProvider = async ({ children }: node) => {
+	const { getAuth, onAuthStateChanged, signInAnonymously } = await import('firebase/auth');
 	const [user, setUser] = useState<authContextProps>({
 		authUser: null,
 		dbUser: null
@@ -67,15 +60,19 @@ export const AuthProvider = ({ children }: node) => {
 };
 
 // twitterログイン
-export const loginWithTwitter = () => {
+export const loginWithTwitter = async () => {
+	const { getAuth, TwitterAuthProvider, signInWithRedirect } = await import('firebase/auth');
 	const auth = getAuth();
 	const provider = new TwitterAuthProvider();
+
+	provider.setCustomParameters({ force_login: 'true' });
 
 	signInWithRedirect(auth, provider);
 };
 
 // ログアウト
-export const logout = () => {
+export const logout = async () => {
+	const { getAuth, signOut } = await import('firebase/auth');
 	const auth = getAuth();
 	signOut(auth);
 };
