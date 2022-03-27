@@ -1,7 +1,7 @@
 // テキストinput
 
 // css取得
-import style from './InputText.module.scss';
+import style from './InputSearch.module.scss';
 
 type Props = {
 	placeholder: string;
@@ -9,11 +9,11 @@ type Props = {
 	onChange: (e: any) => void;
 };
 
-const InputText = ({ placeholder, onFocus, onChange }: Props) => {
+const InputSearch = ({ placeholder, onFocus, onChange }: Props) => {
 	return (
 		<input
 			className={style.input}
-			type="text"
+			type="search"
 			placeholder={placeholder}
 			onFocus={onFocus}
 			onChange={(e) => onChange(e.target.value)}
@@ -21,4 +21,4 @@ const InputText = ({ placeholder, onFocus, onChange }: Props) => {
 	);
 };
 
-export default InputText;
+export default InputSearch;

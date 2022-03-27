@@ -1,13 +1,10 @@
 // place Type選択
 
-// css取得
-import style from './SearchInput.module.scss';
-
 // React取得
 import { useState } from 'react';
 
 // コンポーネント取得
-import InputText from 'components/atoms/InputText';
+import InputSearch from 'components/atoms/InputSearch';
 
 type Props = {
 	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -24,7 +21,7 @@ const SearchInput = ({ setIsOpen, setQueryText }: Props) => {
 				setQueryText(inputText);
 			}}
 		>
-			<InputText placeholder="キーワード検索" onFocus={() => setIsOpen(true)} onChange={setInputText} />
+			<InputSearch placeholder="キーワード検索" onFocus={() => setIsOpen(true)} onChange={setInputText} />
 		</form>
 	);
 };
