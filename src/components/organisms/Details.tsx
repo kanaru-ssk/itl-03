@@ -7,7 +7,8 @@ import style from './Details.module.scss';
 import { useEffect, useState } from 'react';
 
 // model取得
-import { service, getPlaceDetails, convertPlace } from 'model/PlaceModel';
+import { getPlaceDetails, convertPlace } from 'model/PlaceModel';
+import { getOgp } from 'model/OgpModel';
 
 // component取得
 import Slider from 'components/molecules/Slider';
@@ -26,13 +27,19 @@ const Details = ({ paramsPlaceId }: Props) => {
 	const [placeResult, setPlaceResult] = useState<google.maps.places.PlaceResult>();
 
 	useEffect(() => {
-		if (paramsPlaceId && service) {
+		if (paramsPlaceId) {
 			getPlaceDetails(paramsPlaceId).then((result) => {
 				setPlaceResult(result);
 				setPlace(convertPlace(result));
 			});
 		}
-	}, [paramsPlaceId, service]);
+	}, [paramsPlaceId]);
+
+	useEffect(() => {
+		getOgp(placeResult?.website).then((result) => {
+			console.log(result?.data);
+		});
+	}, [placeResult]);
 
 	if (place && placeResult) {
 		return (
@@ -48,7 +55,12 @@ const Details = ({ paramsPlaceId }: Props) => {
 					<PlaceImages photos={placeResult.photos} />
 
 					<Reviews reviews={placeResult?.reviews} />
-					<div>住所 : {placeResult.formatted_address}</div>
+
+					<div>
+						<a href={placeResult?.website}>webサイト</a>
+					</div>
+
+					<div>{placeResult.formatted_address?.substring(placeResult.formatted_address?.indexOf('〒'))}</div>
 
 					<div>
 						<ul>
@@ -56,10 +68,6 @@ const Details = ({ paramsPlaceId }: Props) => {
 								return <li key={key}>{value}</li>;
 							})}
 						</ul>
-					</div>
-
-					<div>
-						<a href={placeResult?.website}>webサイト</a>
 					</div>
 				</div>
 			</Slider>
