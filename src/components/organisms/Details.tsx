@@ -12,7 +12,6 @@ import { service, getPlaceDetails, convertPlace } from 'model/PlaceModel';
 // component取得
 import Slider from 'components/molecules/Slider';
 import Place from 'components/molecules/Place';
-import PlaceImage from 'components/atoms/PlaceImage';
 import PlaceImages from 'components/molecules/PlaceImages';
 
 type Props = {
