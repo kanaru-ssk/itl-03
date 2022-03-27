@@ -1,6 +1,6 @@
 // アイテムデータfetch
 
-// ドキュメントidからアイテムデータ取得
+// user_idからアイテムデータ取得
 export const getPostsByUserId = async (user_id: string | undefined): Promise<post[]> => {
 	if (user_id === undefined) return [];
 
@@ -20,7 +20,6 @@ export const getPostsByUserId = async (user_id: string | undefined): Promise<pos
 			place_photos: doc.data().place_photos,
 			post_caption: doc.data().post_caption,
 			post_checked: doc.data().post_checked,
-			post_removed: doc.data().post_removed,
 			uid: doc.data().uid,
 			user_id: doc.data().user_id,
 			user_name: doc.data().user_name,
@@ -48,7 +47,6 @@ export const createPost = async (user: dbUser, place: place) => {
 		place_photos: place.place_photos,
 		post_caption: 'キャプション',
 		post_checked: false,
-		post_removed: false,
 		uid: user.uid,
 		user_id: user.user_id,
 		user_name: user.user_name,
