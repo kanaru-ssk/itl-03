@@ -1,11 +1,15 @@
 // ロード画面
 
+// css取得
 import style from './Loading.module.scss';
 
+// img取得
 import logoImg from 'img/logo.svg';
 
+// react取得
 import { useContext, useEffect, useRef } from 'react';
 
+// model取得
 import { AuthContext } from 'model/AuthModel';
 
 type Props = {

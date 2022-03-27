@@ -1,5 +1,6 @@
 // ボタン
 
+// css取得
 import style from './Button.module.scss';
 
 type Props = {

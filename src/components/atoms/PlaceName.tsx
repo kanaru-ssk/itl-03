@@ -1,4 +1,4 @@
-// ユーザー名
+// プレイス名
 
 // css取得
 import style from './PlaceName.module.scss';

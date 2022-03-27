@@ -1,13 +1,15 @@
 // フッター
 
+// css取得
 import style from './Footer.module.scss';
 
-// 画像取得
+// img取得
 import homeImg from 'img/home.svg';
 import exploreImg from 'img/explore.svg';
 import noticeImg from 'img/notice.svg';
 import messageImg from 'img/message.svg';
 
+// react取得
 import { Link } from 'react-router-dom';
 
 const Footer = () => {

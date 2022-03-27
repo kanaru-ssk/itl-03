@@ -1,4 +1,4 @@
-// テキストinput
+// サーチinput
 
 // css取得
 import style from './InputSearch.module.scss';

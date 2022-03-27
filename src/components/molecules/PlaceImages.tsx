@@ -3,6 +3,7 @@
 // css取得
 import style from './PlaceImages.module.scss';
 
+// component取得
 import PlaceImage from 'components/atoms/PlaceImage';
 
 type Props = {

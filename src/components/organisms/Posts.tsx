@@ -3,7 +3,7 @@
 // css取得
 import style from './Posts.module.scss';
 
-// コンポーネント取得
+// component取得
 import Post from 'components/organisms/Post';
 
 type Props = {

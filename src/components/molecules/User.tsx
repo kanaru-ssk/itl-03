@@ -1,4 +1,4 @@
-// ユーザーアイコン
+// ユーザー
 
 // css取得
 import style from './User.module.scss';

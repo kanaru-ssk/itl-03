@@ -3,7 +3,7 @@
 // react取得
 import { useEffect, useState } from 'react';
 
-// モデル取得
+// model取得
 import { searchMap } from 'model/PlaceModel';
 
 // component取得

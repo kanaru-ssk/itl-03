@@ -3,7 +3,7 @@
 // css取得
 import style from './UserIcon.module.scss';
 
-// 画像取得
+// img取得
 import userImg from 'img/user.svg';
 
 type Props = {

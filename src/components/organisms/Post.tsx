@@ -6,6 +6,7 @@ import style from './Post.module.scss';
 // react取得
 import { Link } from 'react-router-dom';
 
+// component取得
 import User from 'components/molecules/User';
 
 type Props = {
