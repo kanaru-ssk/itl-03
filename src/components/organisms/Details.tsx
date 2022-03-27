@@ -1,17 +1,24 @@
 // place詳細画面
 
-import { useContext, useEffect, useState } from 'react';
+// css取得
+import style from './Details.module.scss';
 
-import { AuthContext, loginWithTwitter } from 'model/AuthModel';
+// React取得
+import { useEffect, useState } from 'react';
+
+// model取得
 import { service, getPlaceDetails, convertPlace } from 'model/PlaceModel';
-import { createPost } from 'model/PostModel';
+
+// component取得
+import Slider from 'components/molecules/Slider';
+import Place from 'components/molecules/Place';
 
 type Props = {
 	paramsPlaceId: string;
 };
 
 const Details = ({ paramsPlaceId }: Props) => {
-	const user = useContext(AuthContext);
+	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const [place, setPlace] = useState<place>();
 	const [placeResult, setPlaceResult] = useState<google.maps.places.PlaceResult>();
 
@@ -24,70 +31,55 @@ const Details = ({ paramsPlaceId }: Props) => {
 		}
 	}, [paramsPlaceId, service]);
 
-	const onAddPost = (place: place): void => {
-		if (user.authUser?.isAnonymous) {
-			loginWithTwitter();
-		} else {
-			createPost(user.dbUser, place);
-		}
-	};
-
-	if (placeResult) {
+	if (place && placeResult) {
 		return (
-			<div>
-				<h2>Detail</h2>
-
-				<h3>place詳細情報</h3>
-
-				{place && <button onClick={() => onAddPost(place)}>リストに追加</button>}
-
-				<div>名前 : {placeResult.name}</div>
-				{placeResult?.photos?.map((value, key) => {
-					return <img key={key} src={value.getUrl({ maxWidth: 400 })} width="160px" height="90px" alt="" />;
-				})}
-
-				<div>
-					タイプ :
-					<ul>
-						{placeResult.types?.map((value, key) => {
-							return <li key={key}>{value}</li>;
-						})}
-					</ul>
+			<Slider isOpen={isOpen} setIsOpen={setIsOpen}>
+				<div className={style.head}>
+					<Place place={place} />
 				</div>
 
-				<div>住所 : {placeResult.formatted_address}</div>
+				<div className={style.container}>
+					{placeResult?.photos?.map((value, key) => {
+						return (
+							<img key={key} src={value.getUrl({ maxWidth: 400 })} width="160px" height="90px" alt="" />
+						);
+					})}
 
-				<div>
-					営業時間 :
-					<ul>
-						{placeResult?.opening_hours?.weekday_text?.map((value, key) => {
-							return <li key={key}>{value}</li>;
-						})}
-					</ul>
+					<div>住所 : {placeResult.formatted_address}</div>
+
+					<div>
+						営業時間 :
+						<ul>
+							{placeResult?.opening_hours?.weekday_text?.map((value, key) => {
+								return <li key={key}>{value}</li>;
+							})}
+						</ul>
+					</div>
+
+					<div>
+						<a href={placeResult?.website}>webサイト</a>
+					</div>
+
+					<div>評価 : {placeResult?.rating}</div>
+
+					<div>評価数 : {placeResult?.user_ratings_total}</div>
+
+					<div>
+						レビュー :
+						<ul>
+							{placeResult?.reviews?.map((value, key) => {
+								return (
+									<li key={key}>
+										星{value.rating}&nbsp;&nbsp;{value.author_name}&nbsp;&nbsp;{value.text}
+										&nbsp;&nbsp;
+										{value.time}
+									</li>
+								);
+							})}
+						</ul>
+					</div>
 				</div>
-
-				<div>
-					<a href={placeResult?.website}>webサイト</a>
-				</div>
-
-				<div>評価 : {placeResult?.rating}</div>
-
-				<div>評価数 : {placeResult?.user_ratings_total}</div>
-
-				<div>
-					レビュー :
-					<ul>
-						{placeResult?.reviews?.map((value, key) => {
-							return (
-								<li key={key}>
-									星{value.rating}&nbsp;&nbsp;{value.author_name}&nbsp;&nbsp;{value.text}&nbsp;&nbsp;
-									{value.time}
-								</li>
-							);
-						})}
-					</ul>
-				</div>
-			</div>
+			</Slider>
 		);
 	} else {
 		return <div>Loading ...</div>;

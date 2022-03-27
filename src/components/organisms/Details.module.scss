@@ -1,0 +1,16 @@
+@import 'variables';
+
+.head {
+	padding: 24px 0;
+}
+
+.container {
+	margin: 0;
+	height: calc(100vh - $headerHeight - 179px);
+	overflow-y: auto;
+}
+
+.item {
+	padding: 16px 0;
+	border-bottom: $borderWeight solid $borderColor;
+}
