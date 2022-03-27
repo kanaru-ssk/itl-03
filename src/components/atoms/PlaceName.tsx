@@ -1,14 +1,14 @@
 // ユーザー名
 
 // css取得
-import style from './UserName.module.scss';
+import style from './PlaceName.module.scss';
 
 type Props = {
 	children: React.ReactNode;
 };
 
-const PlaceIcon = ({ children }: Props) => {
+const PlaceName = ({ children }: Props) => {
 	return <span className={style.name}>{children}</span>;
 };
 
-export default PlaceIcon;
+export default PlaceName;
