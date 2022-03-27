@@ -6,7 +6,7 @@
 
 .container {
 	margin: 0;
-	height: calc(100vh - $headerHeight - 179px);
+	height: calc(100% - $headerHeight - 179px);
 	overflow-y: auto;
 }
 
