@@ -3,10 +3,10 @@
 // css取得
 import style from './Slider.module.scss';
 
-// react取得
+// React取得
 import { useState, useRef, useEffect } from 'react';
 
-// component取得
+// コンポーネント取得
 import SliderBar from 'components/atoms/SliderBar';
 
 type Props = {
@@ -103,8 +103,7 @@ const Slider = ({ isOpen, setIsOpen, children }: Props) => {
 			<div ref={sliderBar}>
 				<SliderBar />
 			</div>
-
-			{children}
+			<div className={style.children}>{children}</div>
 		</div>
 	);
 };
