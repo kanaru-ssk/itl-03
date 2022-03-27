@@ -10,7 +10,7 @@ import { searchMap } from 'model/PlaceModel';
 import Slider from 'components/molecules/Slider';
 import SearchType from './SearchType';
 import SearchInput from './SearchInput';
-import SearchResult from './SearchResult';
+import SearchResults from './SearchResults';
 
 const Search = () => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -29,7 +29,7 @@ const Search = () => {
 			<SearchInput setIsOpen={setIsOpen} setQueryText={setQueryText} />
 			<SearchType placeType={placeType} setPlaceType={setPlaceType} />
 
-			<SearchResult placeResults={placeResults} />
+			<SearchResults placeResults={placeResults} />
 		</Slider>
 	);
 };
