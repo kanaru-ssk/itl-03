@@ -13,6 +13,7 @@ import { service, getPlaceDetails, convertPlace } from 'model/PlaceModel';
 import Slider from 'components/molecules/Slider';
 import Place from 'components/molecules/Place';
 import PlaceImages from 'components/molecules/PlaceImages';
+import Ratings from 'components/molecules/Ratings';
 
 type Props = {
 	paramsPlaceId: string;
@@ -40,6 +41,7 @@ const Details = ({ paramsPlaceId }: Props) => {
 				</div>
 
 				<div className={style.container}>
+					<Ratings rating={placeResult?.rating} ratingTotal={placeResult?.user_ratings_total} />
 					<PlaceImages photos={placeResult.photos} />
 
 					<div>住所 : {placeResult.formatted_address}</div>
@@ -56,10 +58,6 @@ const Details = ({ paramsPlaceId }: Props) => {
 					<div>
 						<a href={placeResult?.website}>webサイト</a>
 					</div>
-
-					<div>評価 : {placeResult?.rating}</div>
-
-					<div>評価数 : {placeResult?.user_ratings_total}</div>
 
 					<div>
 						レビュー :
