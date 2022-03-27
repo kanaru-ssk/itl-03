@@ -14,6 +14,7 @@ import Slider from 'components/molecules/Slider';
 import Place from 'components/molecules/Place';
 import PlaceImages from 'components/molecules/PlaceImages';
 import Ratings from 'components/molecules/Ratings';
+import Reviews from 'components/organisms/Reviews';
 
 type Props = {
 	paramsPlaceId: string;
@@ -38,16 +39,18 @@ const Details = ({ paramsPlaceId }: Props) => {
 			<Slider isOpen={isOpen} setIsOpen={setIsOpen}>
 				<div className={style.head}>
 					<Place place={place} />
+					<div className={style.rating}>
+						<Ratings rating={placeResult?.rating} ratingTotal={placeResult?.user_ratings_total} />
+					</div>
 				</div>
 
 				<div className={style.container}>
-					<Ratings rating={placeResult?.rating} ratingTotal={placeResult?.user_ratings_total} />
 					<PlaceImages photos={placeResult.photos} />
 
+					<Reviews reviews={placeResult?.reviews} />
 					<div>住所 : {placeResult.formatted_address}</div>
 
 					<div>
-						営業時間 :
 						<ul>
 							{placeResult?.opening_hours?.weekday_text?.map((value, key) => {
 								return <li key={key}>{value}</li>;
@@ -57,21 +60,6 @@ const Details = ({ paramsPlaceId }: Props) => {
 
 					<div>
 						<a href={placeResult?.website}>webサイト</a>
-					</div>
-
-					<div>
-						レビュー :
-						<ul>
-							{placeResult?.reviews?.map((value, key) => {
-								return (
-									<li key={key}>
-										星{value.rating}&nbsp;&nbsp;{value.author_name}&nbsp;&nbsp;{value.text}
-										&nbsp;&nbsp;
-										{value.time}
-									</li>
-								);
-							})}
-						</ul>
 					</div>
 				</div>
 			</Slider>
