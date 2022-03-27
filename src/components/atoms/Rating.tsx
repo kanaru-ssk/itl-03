@@ -11,7 +11,7 @@ const Rating = ({ rating }: Props) => {
 	if (rating === undefined) {
 		return <span className={style.rating}>評価なし</span>;
 	} else {
-		return <span className={style.rating}>{rating}</span>;
+		return <span className={style.rating}>{rating.toFixed(1)}</span>;
 	}
 };
 
