@@ -136,3 +136,27 @@ export const convertPlace = (placeResult: google.maps.places.PlaceResult): place
 
 	return place;
 };
+
+export const convertPlaceType = (type: string | undefined): string => {
+	if (type === 'cafe') {
+		return 'カフェ';
+	} else if (type === 'restaurant') {
+		return 'レストラン';
+	} else if (type === 'bar') {
+		return 'バー';
+	} else if (type === 'library') {
+		return '図書館';
+	} else if (type === 'art_gallery') {
+		return '美術館';
+	} else if (type === 'aquarium') {
+		return '水族館';
+	} else if (type === 'park') {
+		return '公園';
+	} else if (type === 'movie_theater') {
+		return '映画館';
+	} else if (type === 'lodging') {
+		return '宿泊';
+	} else {
+		return 'その他';
+	}
+};
