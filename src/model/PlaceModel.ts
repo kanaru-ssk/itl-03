@@ -1,7 +1,7 @@
 // google place api 関係の処理
 
 let map: google.maps.Map;
-export let service: google.maps.places.PlacesService;
+let service: google.maps.places.PlacesService;
 let infowindow: google.maps.InfoWindow;
 let markers: google.maps.Marker[] = [];
 
