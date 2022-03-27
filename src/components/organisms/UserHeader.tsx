@@ -15,7 +15,7 @@ const UserHeader = ({ paramsUid }: Props) => {
 	return (
 		<Header>
 			<UserId>{paramsUid}</UserId>
-			<img src={menuIgm} alt="menu-button" />
+			<img src={menuIgm} alt="menu" />
 		</Header>
 	);
 };
