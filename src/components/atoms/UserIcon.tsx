@@ -15,7 +15,7 @@ const UserIcon = ({ src }: Props) => {
 		<img
 			className={style.icon}
 			src={src ? src : userImg}
-			alt="user-icon"
+			alt="user"
 			onError={(e: any) => (e.target.src = userImg)}
 		/>
 	);

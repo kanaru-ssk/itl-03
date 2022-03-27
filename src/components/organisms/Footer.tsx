@@ -17,25 +17,25 @@ const Footer = () => {
 				<ul className={style.menu}>
 					<li>
 						<Link to="/" className={style.a}>
-							<img src={homeImg} alt="home-icon" />
+							<img src={homeImg} alt="home" />
 						</Link>
 					</li>
 
 					<li>
 						<Link to="/explore" className={style.a}>
-							<img src={exploreImg} alt="explore-icon" />
+							<img src={exploreImg} alt="explore" />
 						</Link>
 					</li>
 
 					<li>
 						<Link to="/notice" className={style.a}>
-							<img src={noticeImg} alt="notice-icon" />
+							<img src={noticeImg} alt="notice" />
 						</Link>
 					</li>
 
 					<li>
 						<Link to="/message" className={style.a}>
-							<img src={messageImg} alt="message-icon" />
+							<img src={messageImg} alt="message" />
 						</Link>
 					</li>
 				</ul>
