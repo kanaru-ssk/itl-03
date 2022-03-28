@@ -8,14 +8,16 @@ type Props = {
 	isMaypage: boolean;
 };
 
+import ProfileIcon from 'components/atoms/ProfileIcon';
+
 const Posts = ({ user, isMaypage }: Props) => {
 	return (
 		<div>
 			<div>
-				<img src={user?.user_icon} alt="" />
+				<ProfileIcon src={user?.user_icon} />
+				{/* <img src={user?.user_icon} alt="" /> */}
 				<div>{user?.user_name}</div>
 				<div>{user?.user_bio}</div>
-				<div>{user?.user_twitter_disp_id}</div>
 			</div>
 			{isMaypage ? 'マイページ' : 'ユーザーページ'}
 		</div>
