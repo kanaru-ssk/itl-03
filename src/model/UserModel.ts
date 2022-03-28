@@ -10,6 +10,12 @@ export const getUserDataByUid = async (uid: string) => {
 		const result: dbUser = {
 			at_created: docSnap.data().at_created,
 			at_updated: docSnap.data().at_updated,
+
+			count_follow: docSnap.data().count_follow,
+			count_followed: docSnap.data().count_followed,
+			count_post: docSnap.data().count_post,
+			count_post_checked: docSnap.data().count_post_checked,
+
 			uid: docSnap.data().uid,
 			user_id: docSnap.data().user_id,
 			user_name: docSnap.data().user_name,
@@ -37,6 +43,12 @@ export const getUserDataByUserId = async (user_id: string | undefined): Promise<
 		const result: dbUser = {
 			at_created: querySnap.docs[0].data().at_created,
 			at_updated: querySnap.docs[0].data().at_updated,
+
+			count_follow: querySnap.docs[0].data().count_follow,
+			count_followed: querySnap.docs[0].data().count_followed,
+			count_post: querySnap.docs[0].data().count_post,
+			count_post_checked: querySnap.docs[0].data().count_post_checked,
+
 			uid: querySnap.docs[0].data().uid,
 			user_id: querySnap.docs[0].data().user_id,
 			user_name: querySnap.docs[0].data().user_name,

@@ -32,15 +32,21 @@ export const AuthProvider = ({ children }: node) => {
 						// 新規ユーザーデータ作成
 						const providerData = user.reloadUserInfo.providerUserInfo[0];
 						const newUserData: dbUser = {
+							at_created: Timestamp.now(),
+							at_updated: Timestamp.now(),
+
+							count_follow: 0,
+							count_followed: 0,
+							count_post: 0,
+							count_post_checked: 0,
+
 							uid: user.uid,
 							user_id: providerData.screenName,
 							user_name: providerData.displayName,
 							user_icon: providerData.photoUrl,
 							user_bio: '',
 							user_twitter_disp_id: providerData.screenName,
-							user_twitter_sys_id: providerData.rawId,
-							at_created: Timestamp.now(),
-							at_updated: Timestamp.now()
+							user_twitter_sys_id: providerData.rawId
 						};
 
 						setUser({ authUser: user, dbUser: newUserData });
