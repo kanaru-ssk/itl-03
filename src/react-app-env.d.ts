@@ -10,10 +10,10 @@ type dbUser = {
 	at_created: import('firebase/firestore').FieldValue;
 	at_updated: import('firebase/firestore').FieldValue;
 
-	count_follow: number;
-	count_followed: number;
-	count_post: number;
-	count_post_checked: number;
+	count_follows: number;
+	count_followers: number;
+	count_posts: number;
+	count_posts_checked: number;
 
 	uid: string;
 	user_id: string;
