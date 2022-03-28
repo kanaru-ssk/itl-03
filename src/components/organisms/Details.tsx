@@ -3,6 +3,8 @@
 // css取得
 import style from './Details.module.scss';
 
+import pinImg from 'img/pin.svg';
+
 // react取得
 import { useEffect, useState } from 'react';
 
@@ -54,19 +56,29 @@ const Details = ({ paramsPlaceId }: Props) => {
 				</div>
 
 				<div className={style.container}>
-					<PlaceImages photos={placeResult.photos} />
+					<div className={style.item}>
+						<PlaceImages photos={placeResult.photos} />
+					</div>
 
-					<Reviews reviews={placeResult?.reviews} />
+					<div className={style.item}>
+						<Reviews reviews={placeResult?.reviews} />
+					</div>
 
-					{placeResult?.website && <Ogp ogp={ogp} url={placeResult.website} />}
-					{/* {ogp && 'ogpカード'}
-					<div>
-						<a href={placeResult?.website}>webサイト</a>
-					</div> */}
+					<div className={style.item}>
+						{placeResult?.website && <Ogp ogp={ogp} url={placeResult.website} />}
+					</div>
 
-					<div>{placeResult.formatted_address?.substring(placeResult.formatted_address?.indexOf('〒'))}</div>
+					<div className={style.item}>
+						<div className={style.address}>
+							<img src={pinImg} alt="pin" />
+							<div>
+								{placeResult.formatted_address?.substring(placeResult.formatted_address?.indexOf('〒'))}
+							</div>
+						</div>
+					</div>
 
-					<div>
+					<div className={style.item}>
+						<h4>営業時間</h4>
 						<ul>
 							{placeResult?.opening_hours?.weekday_text?.map((value, key) => {
 								return <li key={key}>{value}</li>;

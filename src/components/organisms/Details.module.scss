@@ -17,5 +17,10 @@
 
 .item {
 	padding: 16px 0;
-	border-bottom: $borderWeight solid $borderColor;
+}
+
+.address {
+	display: flex;
+	gap: 8px;
+	align-items: center;
 }
