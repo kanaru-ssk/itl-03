@@ -82,9 +82,6 @@ const deleteMarker = () => {
 };
 
 export const getPlaceDetails = (placeId: string) => {
-	// マーカーを削除
-	deleteMarker();
-
 	return new Promise<google.maps.places.PlaceResult>((resolve) => {
 		const request: google.maps.places.PlaceDetailsRequest = {
 			placeId: placeId,
