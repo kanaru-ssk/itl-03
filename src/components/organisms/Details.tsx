@@ -10,7 +10,6 @@ import { useEffect, useState } from 'react';
 
 // model取得
 import { getPlaceDetails, convertPlace } from 'model/PlaceModel';
-import { getOgp } from 'model/OgpModel';
 
 // component取得
 import Slider from 'components/molecules/Slider';
@@ -28,7 +27,6 @@ const Details = ({ paramsPlaceId }: Props) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const [place, setPlace] = useState<place>();
 	const [placeResult, setPlaceResult] = useState<google.maps.places.PlaceResult>();
-	const [ogp, setOgp] = useState<ogp | undefined>(undefined);
 
 	useEffect(() => {
 		if (paramsPlaceId) {
@@ -38,12 +36,6 @@ const Details = ({ paramsPlaceId }: Props) => {
 			});
 		}
 	}, [paramsPlaceId]);
-
-	useEffect(() => {
-		getOgp(placeResult?.website).then((result) => {
-			setOgp(result);
-		});
-	}, [placeResult]);
 
 	if (place && placeResult) {
 		return (
@@ -64,9 +56,11 @@ const Details = ({ paramsPlaceId }: Props) => {
 						<Reviews reviews={placeResult?.reviews} />
 					</div>
 
-					<div className={style.item}>
-						{placeResult?.website && <Ogp ogp={ogp} url={placeResult.website} />}
-					</div>
+					{placeResult?.website && (
+						<div className={style.item}>
+							<Ogp url={placeResult.website} />
+						</div>
+					)}
 
 					<div className={style.item}>
 						<div className={style.address}>
