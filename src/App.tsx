@@ -28,7 +28,7 @@ const App = () => {
 				<Route path="/explore/:paramsPlaceId" element={<ExplorePage />} />
 				<Route path="/notice" element={<NoticePage />} />
 				<Route path="/message" element={<MessagePage />} />
-				<Route path="/:paramsUid" element={<UserPage />} />
+				<Route path="/:paramsUserId" element={<UserPage />} />
 			</Routes>
 		</BrowserRouter>
 	);
