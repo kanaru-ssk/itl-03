@@ -120,15 +120,13 @@ export const getPlaceDetails = (placeId: string) => {
 export const convertPlace = (placeResult: google.maps.places.PlaceResult): place => {
 	const type: string = placeResult.types ? placeResult.types[0] : '';
 
-	const photos: string[] | undefined = placeResult.photos?.map((value) => {
-		return value.getUrl({ maxWidth: 400 });
-	});
+	const photo: string | undefined = placeResult.photos?.[0].getUrl({ maxWidth: 400 });
 
 	const place: place = {
 		place_id: placeResult.place_id,
 		place_name: placeResult.name,
 		place_type: type,
-		place_photos: photos
+		place_photo: photo
 	};
 
 	return place;
