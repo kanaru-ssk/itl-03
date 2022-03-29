@@ -9,13 +9,13 @@ import { Link } from 'react-router-dom';
 
 // model取得
 import { AuthContext, loginWithTwitter } from 'model/AuthModel';
-import { createPost } from 'model/PostModel';
 import { convertPlaceType } from 'model/PlaceModel';
+import { createListItem } from 'model/ListModel';
 
 // component取得
 import PlaceIcon from 'components/atoms/PlaceIcon';
 import PlaceName from 'components/atoms/PlaceName';
-import Button from 'components/atoms/Button';
+import PlaceAddButton from 'components/atoms/PlaceAddButton';
 
 type Props = {
 	place: place;
@@ -28,15 +28,16 @@ const Place = ({ place }: Props) => {
 		if (user.authUser?.isAnonymous) {
 			loginWithTwitter();
 		} else {
-			createPost(user.dbUser, place);
+			createListItem(user.dbUser, place);
 		}
 	};
+
 	return (
 		<div className={style.parent}>
 			<Link to={'/explore/' + place.place_id}>
 				<div className={style.container}>
 					<div className={style.icon}>
-						<PlaceIcon src={place.place_photos?.[0]} />
+						<PlaceIcon src={place.place_photo} />
 					</div>
 					<div className={style.name}>
 						<PlaceName name={place.place_name} />
@@ -45,7 +46,7 @@ const Place = ({ place }: Props) => {
 				</div>
 			</Link>
 			<div className={style.button}>
-				<Button onClick={() => onAddPost(place)}>追加</Button>
+				<PlaceAddButton value={place.place_name} onChange={() => onAddPost(place)} />
 			</div>
 		</div>
 	);
