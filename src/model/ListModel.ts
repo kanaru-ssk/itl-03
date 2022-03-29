@@ -4,10 +4,10 @@
 export const getList = async (uid: string | undefined): Promise<item[]> => {
 	if (uid === undefined) return [];
 
-	const { getFirestore, collection, getDocs } = await import('firebase/firestore');
+	const { getFirestore, collection, getDocs, query, orderBy, limit } = await import('firebase/firestore');
 
 	const db = getFirestore();
-	const queryRef = collection(db, 'users', uid, 'list');
+	const queryRef = query(collection(db, 'users', uid, 'list'), orderBy('at_created', 'desc'), limit(20));
 	const querySnap = await getDocs(queryRef);
 
 	const items: item[] = querySnap.docs.map((doc) => {
