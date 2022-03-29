@@ -13,8 +13,8 @@ export const getUserDataByUid = async (uid: string) => {
 
 			count_follows: docSnap.data().count_follow,
 			count_followers: docSnap.data().count_followed,
-			count_posts: docSnap.data().count_post,
-			count_posts_checked: docSnap.data().count_post_checked,
+			count_list: docSnap.data().count_post,
+			count_list_checked: docSnap.data().count_post_checked,
 
 			user_uid: docSnap.id,
 			user_id: docSnap.data().user_id,
@@ -46,8 +46,8 @@ export const getUserDataByUserId = async (user_id: string | undefined): Promise<
 
 			count_follows: querySnap.docs[0].data().count_follow,
 			count_followers: querySnap.docs[0].data().count_followed,
-			count_posts: querySnap.docs[0].data().count_post,
-			count_posts_checked: querySnap.docs[0].data().count_post_checked,
+			count_list: querySnap.docs[0].data().count_post,
+			count_list_checked: querySnap.docs[0].data().count_post_checked,
 
 			user_uid: querySnap.docs[0].id,
 			user_id: querySnap.docs[0].data().user_id,

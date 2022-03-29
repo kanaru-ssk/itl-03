@@ -12,8 +12,8 @@ type dbUser = {
 
 	count_follows: number;
 	count_followers: number;
-	count_posts: number;
-	count_posts_checked: number;
+	count_list: number;
+	count_list_checked: number;
 
 	user_uid: string;
 	user_id: string;

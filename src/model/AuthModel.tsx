@@ -37,8 +37,8 @@ export const AuthProvider = ({ children }: node) => {
 
 							count_follows: 0,
 							count_followers: 0,
-							count_posts: 0,
-							count_posts_checked: 0,
+							count_list: 0,
+							count_list_checked: 0,
 
 							user_uid: user.uid,
 							user_id: providerData.screenName,
