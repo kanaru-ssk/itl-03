@@ -7,7 +7,6 @@ export const getOgp = async (url: string | undefined) => {
 	const get = httpsCallable(functions, 'getOgpFromExternalWebsite');
 
 	const result = await get({ url: url });
-	console.log(result);
 	return convertOgp(result);
 };
 
