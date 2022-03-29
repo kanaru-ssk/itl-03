@@ -6,6 +6,12 @@ import style from './Ogp.module.scss';
 // 画像取得
 import externalImg from 'img/external.svg';
 
+// react取得
+import { useEffect, useState } from 'react';
+
+// model取得
+import { getOgp } from 'model/OgpModel';
+
 // component取得
 import OgpTitle from 'components/atoms/OgpTitle';
 import OgpDescription from 'components/atoms/OgpDescription';
@@ -13,11 +19,19 @@ import OgpUrl from 'components/atoms/OgpUrl';
 import OgpImage from 'components/atoms/OgpImage';
 
 type Props = {
-	ogp: ogp | undefined;
 	url: string;
 };
 
-const Ogp = ({ ogp, url }: Props) => {
+const Ogp = ({ url }: Props) => {
+	const [ogp, setOgp] = useState<ogp | undefined>(undefined);
+
+	useEffect(() => {
+		if (url) {
+			getOgp(url).then((result) => {
+				setOgp(result);
+			});
+		}
+	}, [url]);
 	return (
 		<a href={url}>
 			<div className={style.container}>
