@@ -46,7 +46,7 @@ const Place = ({ place }: Props) => {
 				</div>
 			</Link>
 			<div className={style.button}>
-				<PlaceAddButton value={place.place_name} onChange={() => onAddPost(place)} />
+				<PlaceAddButton name={place.place_name} onChange={() => onAddPost(place)} />
 			</div>
 		</div>
 	);

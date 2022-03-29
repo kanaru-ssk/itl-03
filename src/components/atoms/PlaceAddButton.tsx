@@ -4,22 +4,15 @@
 import style from './InputRadio.module.scss';
 
 type Props = {
-	value: string;
+	name: string;
 	onChange: (e: any) => void;
 };
 
-const PlaceAddButton = ({ value, onChange }: Props) => {
+const PlaceAddButton = ({ name, onChange }: Props) => {
 	return (
 		<div>
-			<input
-				className={style.radio}
-				type="radio"
-				name="place-type"
-				value={value}
-				id={value}
-				onChange={onChange}
-			/>
-			<label htmlFor={value} className={style.label}>
+			<input className={style.radio} type="radio" name={name} id={name} onChange={onChange} />
+			<label htmlFor={name} className={style.label}>
 				追加
 			</label>
 		</div>
