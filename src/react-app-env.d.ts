@@ -45,21 +45,30 @@ type place = {
 	place_id: string | undefined;
 	place_name: string;
 	place_type: string;
-	place_photos: string[] | undefined;
+	place_photo: string | undefined;
 };
 
 type post = {
 	at_created: import('firebase/firestore').FieldValue;
 	at_updated: import('firebase/firestore').FieldValue;
-	at_checked: import('firebase/firestore').FieldValue | null;
 
+	post_images: string[] | null;
 	post_caption: string;
-	post_checked: boolean;
 
 	user_uid: string;
 	user_id: string;
 	user_name: string;
 	user_icon: string;
+} & place;
+
+type item = {
+	at_created: import('firebase/firestore').FieldValue;
+	at_checked: import('firebase/firestore').FieldValue | null;
+
+	is_checked: boolean;
+
+	user_uid: string;
+	user_twitter_sys_id: string;
 } & place;
 
 type ogp = {
@@ -68,3 +77,5 @@ type ogp = {
 	url: string | undefined;
 	image: string | undefined;
 };
+
+type tab = 'list' | 'checkedList' | 'posts';
