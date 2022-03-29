@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }: node) => {
 							count_posts: 0,
 							count_posts_checked: 0,
 
-							uid: user.uid,
+							user_uid: user.uid,
 							user_id: providerData.screenName,
 							user_name: providerData.displayName,
 							user_icon: providerData.photoUrl,

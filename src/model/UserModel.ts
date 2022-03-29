@@ -16,7 +16,7 @@ export const getUserDataByUid = async (uid: string) => {
 			count_posts: docSnap.data().count_post,
 			count_posts_checked: docSnap.data().count_post_checked,
 
-			uid: docSnap.data().uid,
+			user_uid: docSnap.id,
 			user_id: docSnap.data().user_id,
 			user_name: docSnap.data().user_name,
 			user_icon: docSnap.data().user_icon,
@@ -49,7 +49,7 @@ export const getUserDataByUserId = async (user_id: string | undefined): Promise<
 			count_posts: querySnap.docs[0].data().count_post,
 			count_posts_checked: querySnap.docs[0].data().count_post_checked,
 
-			uid: querySnap.docs[0].data().uid,
+			user_uid: querySnap.docs[0].id,
 			user_id: querySnap.docs[0].data().user_id,
 			user_name: querySnap.docs[0].data().user_name,
 			user_icon: querySnap.docs[0].data().user_icon,

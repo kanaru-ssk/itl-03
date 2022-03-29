@@ -15,7 +15,7 @@ type dbUser = {
 	count_posts: number;
 	count_posts_checked: number;
 
-	uid: string;
+	user_uid: string;
 	user_id: string;
 	user_name: string;
 	user_icon: string;
@@ -56,7 +56,7 @@ type post = {
 	post_caption: string;
 	post_checked: boolean;
 
-	uid: string;
+	user_uid: string;
 	user_id: string;
 	user_name: string;
 	user_icon: string;
