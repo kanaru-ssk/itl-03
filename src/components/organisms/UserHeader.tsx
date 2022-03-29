@@ -8,13 +8,13 @@ import Header from 'components/atoms/Header';
 import UserId from 'components/atoms/UserId';
 
 type Props = {
-	paramsUid: string | undefined;
+	paramsUserId: string | undefined;
 };
 
-const UserHeader = ({ paramsUid }: Props) => {
+const UserHeader = ({ paramsUserId }: Props) => {
 	return (
 		<Header>
-			<UserId>{paramsUid}</UserId>
+			<UserId>{paramsUserId}</UserId>
 			<img src={menuImg} alt="menu" />
 		</Header>
 	);
