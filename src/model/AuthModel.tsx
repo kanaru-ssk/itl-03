@@ -46,7 +46,8 @@ export const AuthProvider = ({ children }: node) => {
 							user_icon: providerData.photoUrl,
 							user_bio: '',
 							user_twitter_disp_id: providerData.screenName,
-							user_twitter_sys_id: providerData.rawId
+							user_twitter_sys_id: providerData.rawId,
+							user_is_public: true
 						};
 
 						setUser({ authUser: user, dbUser: newUserData });

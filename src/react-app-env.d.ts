@@ -22,6 +22,7 @@ type dbUser = {
 	user_bio: string;
 	user_twitter_disp_id: string;
 	user_twitter_sys_id: string;
+	user_is_public: boolean;
 } | null;
 
 type authContextProps = {

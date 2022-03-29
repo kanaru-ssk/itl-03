@@ -22,7 +22,8 @@ export const getUserDataByUid = async (uid: string) => {
 			user_icon: docSnap.data().user_icon,
 			user_bio: docSnap.data().user_bio,
 			user_twitter_disp_id: docSnap.data().user_twitter_disp_id,
-			user_twitter_sys_id: docSnap.data().user_twitter_sys_id
+			user_twitter_sys_id: docSnap.data().user_twitter_sys_id,
+			user_is_public: docSnap.data().user_is_public
 		};
 		return result;
 	} else {
@@ -55,7 +56,8 @@ export const getUserDataByUserId = async (user_id: string | undefined): Promise<
 			user_icon: querySnap.docs[0].data().user_icon,
 			user_bio: querySnap.docs[0].data().user_bio,
 			user_twitter_disp_id: querySnap.docs[0].data().user_twitter_disp_id,
-			user_twitter_sys_id: querySnap.docs[0].data().user_twitter_sys_id
+			user_twitter_sys_id: querySnap.docs[0].data().user_twitter_sys_id,
+			user_is_public: querySnap.docs[0].data().user_is_public
 		};
 		return result;
 	}
