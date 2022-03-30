@@ -1,4 +1,4 @@
-// スライダー
+// モーダル
 
 // css取得
 import style from './Modal.module.scss';
@@ -57,7 +57,13 @@ export const ModalProvider = ({ children }: node) => {
 		}
 	}, [slidePos]);
 
+	const clickOnOther = (e: any) => {
+		if (e.target === overlayRef.current) hideModal();
+	};
+
 	useEffect(() => {
+		window.addEventListener('click', clickOnOther, { passive: false });
+
 		sliderBarRef.current?.addEventListener('mousedown', onSlideStart, { passive: false });
 		window.addEventListener('mousemove', onMouseMove, { passive: false });
 		window.addEventListener('mouseup', onSlideEnd, { passive: false });
@@ -66,6 +72,8 @@ export const ModalProvider = ({ children }: node) => {
 		sliderBarRef.current?.addEventListener('touchmove', onTouchMove, { passive: false });
 		sliderBarRef.current?.addEventListener('touchend', onSlideEnd, { passive: false });
 		return () => {
+			window.removeEventListener('click', clickOnOther);
+
 			sliderBarRef.current?.removeEventListener('mousedown', onSlideStart);
 			window.removeEventListener('mousemove', onMouseMove);
 			window.removeEventListener('mouseup', onSlideEnd);
@@ -124,7 +132,7 @@ export const ModalProvider = ({ children }: node) => {
 						<div ref={sliderBarRef}>
 							<SliderBar />
 						</div>
-						modal{modalContents}
+						{modalContents}
 					</div>
 				)}
 			</div>
