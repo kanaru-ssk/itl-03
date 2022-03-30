@@ -58,7 +58,10 @@ export const ModalProvider = ({ children }: node) => {
 	}, [slidePos]);
 
 	const clickOnOther = (e: any) => {
-		if (e.target === overlayRef.current) hideModal();
+		if (e.target === overlayRef.current && !isPermitSlide) {
+			hideModal();
+		}
+		setIsPermitSlide(false);
 	};
 
 	useEffect(() => {
@@ -112,7 +115,6 @@ export const ModalProvider = ({ children }: node) => {
 	};
 
 	const onSlideEnd = () => {
-		setIsPermitSlide(false);
 		if (sliderRef.current) {
 			sliderRef.current.style.transition = 'all 0.2s ease';
 		}
