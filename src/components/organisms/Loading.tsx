@@ -12,11 +12,7 @@ import { useContext, useEffect, useRef } from 'react';
 // model取得
 import { AuthContext } from 'model/AuthModel';
 
-type Props = {
-	setIsLoaded: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-const Loading = ({ setIsLoaded }: Props) => {
+const Loading = () => {
 	const user = useContext(AuthContext);
 	const authUser = user.authUser;
 	const loadingRef = useRef<HTMLDivElement>(null);
@@ -24,9 +20,6 @@ const Loading = ({ setIsLoaded }: Props) => {
 	useEffect(() => {
 		if (authUser && loadingRef.current) {
 			loadingRef.current.style.opacity = '0';
-			setTimeout(() => {
-				setIsLoaded(true);
-			}, 600);
 		}
 	}, [authUser]);
 

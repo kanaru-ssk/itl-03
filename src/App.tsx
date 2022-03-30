@@ -17,11 +17,8 @@ import UserPage from 'components/pages/UserPage';
 
 // ルーティング
 const App = () => {
-	const [isLoaded, setIsLoaded] = useState<boolean>(false);
 	return (
 		<BrowserRouter>
-			{!isLoaded && <Loading setIsLoaded={setIsLoaded} />}
-
 			<Routes>
 				<Route path="/" element={<TopPage />} />
 				<Route path="/explore" element={<ExplorePage />} />
@@ -30,6 +27,8 @@ const App = () => {
 				<Route path="/message" element={<MessagePage />} />
 				<Route path="/:paramsUserId" element={<UserPage />} />
 			</Routes>
+
+			<Loading />
 		</BrowserRouter>
 	);
 };
