@@ -1,0 +1,26 @@
+@import 'variables';
+
+$tabHeight: 48px;
+.tab {
+	height: $tabHeight;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	border-bottom: $borderWeight solid $borderColor;
+}
+
+.radio {
+	display: none;
+	&:checked {
+		+ .label {
+			border-bottom: 2px solid $mainColor;
+		}
+	}
+}
+
+.label {
+	width: 100%;
+	height: $tabHeight;
+	text-align: center;
+	padding: ($tabHeight - $baseFontSize * $lineHeight) / 2;
+}
