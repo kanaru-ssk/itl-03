@@ -16,12 +16,20 @@ import UserIcon from 'components/atoms/UserIcon';
 const BaseHeader = () => {
 	const user = useAuth();
 
+	const iconLink = () => {
+		if (user.dbUser) {
+			return '/' + user.dbUser?.user_id;
+		} else {
+			return '/';
+		}
+	};
+
 	return (
 		<Header>
 			<Link to={'/'}>
 				<img src={logoImg} alt="logo" />
 			</Link>
-			<Link to={'/' + user.dbUser?.user_id}>
+			<Link to={iconLink()}>
 				<UserIcon src={user?.dbUser?.user_icon} />
 			</Link>
 		</Header>
