@@ -44,7 +44,7 @@ const UserProfile = ({ user, isMaypage }: Props) => {
 						<br />
 						達成済み
 					</div>
-					<div className={style.counter}>
+					{/* <div className={style.counter}>
 						<UserCounter num={countToString(user?.count_followers)} />
 						<br />
 						フォロワー
@@ -53,7 +53,7 @@ const UserProfile = ({ user, isMaypage }: Props) => {
 						<UserCounter num={countToString(user?.count_follows)} />
 						<br />
 						フォロー中
-					</div>
+					</div> */}
 				</div>
 			</div>
 
@@ -63,12 +63,12 @@ const UserProfile = ({ user, isMaypage }: Props) => {
 			<div>{user?.user_bio}</div>
 
 			<div className={style.buttons}>
-				{isMaypage && <Button onClick={() => console.log('edit')}>プロフィール編集</Button>}
-				{!isMaypage && (
+				{isMaypage && <Button onClick={() => {}}>プロフィール編集</Button>}
+				{/* {!isMaypage && (
 					<div>
-						<Button onClick={() => console.log('follow')}>フォロー</Button>
+						<Button onClick={() => {}}>フォロー</Button>
 					</div>
-				)}
+				)} */}
 			</div>
 		</div>
 	);
