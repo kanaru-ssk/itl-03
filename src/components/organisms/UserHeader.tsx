@@ -11,6 +11,8 @@ import Header from 'components/atoms/Header';
 import UserId from 'components/atoms/UserId';
 import UserHeaderMenu from 'components/organisms/UserHeaderMenu';
 
+// css取得
+import style from './UserHeader.module.scss';
 type Props = {
 	paramsUserId: string | undefined;
 };
@@ -22,8 +24,11 @@ const UserHeader = ({ paramsUserId }: Props) => {
 	};
 	return (
 		<Header>
-			<UserId>{paramsUserId}</UserId>
-			<img src={menuImg} alt="menu" onClick={onClick} />
+			<div className={style.id}>
+				<UserId>{paramsUserId}</UserId>
+			</div>
+
+			<img className={style.menu} src={menuImg} alt="menu" onClick={onClick} />
 		</Header>
 	);
 };

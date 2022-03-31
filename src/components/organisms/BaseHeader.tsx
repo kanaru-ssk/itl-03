@@ -13,6 +13,9 @@ import { useAuth } from 'hooks/Auth';
 import Header from 'components/atoms/Header';
 import UserIcon from 'components/atoms/UserIcon';
 
+// css取得
+import style from './BaseHeader.module.scss';
+
 const BaseHeader = () => {
 	const user = useAuth();
 
@@ -27,10 +30,15 @@ const BaseHeader = () => {
 	return (
 		<Header>
 			<Link to={'/'}>
-				<img src={logoImg} alt="logo" />
+				<div className={style.logo}>
+					<img src={logoImg} alt="logo" />
+				</div>
 			</Link>
+
 			<Link to={iconLink()}>
-				<UserIcon src={user?.dbUser?.user_icon} />
+				<div className={style.icon}>
+					<UserIcon src={user?.dbUser?.user_icon} />
+				</div>
 			</Link>
 		</Header>
 	);
