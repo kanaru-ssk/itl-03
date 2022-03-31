@@ -9,7 +9,7 @@ import SliderBar from 'components/atoms/SliderBar';
 // css取得
 import style from './Slider.module.scss';
 
-type sliderContextProps = (contents: React.ReactNode | null) => void;
+type sliderContextProps = (contents: React.ReactNode) => void;
 
 const defaultContext: sliderContextProps = () => {};
 
