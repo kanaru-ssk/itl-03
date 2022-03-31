@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 // model取得
 import { AuthContext, loginWithTwitter } from 'model/AuthModel';
 import { convertPlaceType } from 'model/PlaceModel';
-import { createListItem } from 'model/ListModel';
+import { createItem } from 'model/ListModel';
 
 // component取得
 import PlaceIcon from 'components/atoms/PlaceIcon';
@@ -28,7 +28,7 @@ const Place = ({ place }: Props) => {
 		if (user.authUser?.isAnonymous) {
 			loginWithTwitter();
 		} else {
-			createListItem(user.dbUser, place);
+			createItem(user.dbUser, place);
 		}
 	};
 

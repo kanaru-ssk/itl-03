@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 // model取得
 import { AuthContext, loginWithTwitter } from 'model/AuthModel';
 import { convertPlaceType } from 'model/PlaceModel';
-import { createListItem } from 'model/ListModel';
+import { createItem } from 'model/ListModel';
 
 // component取得
 import PlaceIcon from 'components/atoms/PlaceIcon';
@@ -40,8 +40,17 @@ const Item = ({ item }: Props) => {
 		}
 	};
 
+	const onContextMenu = (item: item) => {
+		if (user.authUser?.isAnonymous) return;
+	};
+
 	return (
-		<div className={style.parent}>
+		<div
+			className={style.parent}
+			onContextMenu={() => {
+				onContextMenu(item);
+			}}
+		>
 			<div className={style.container}>
 				<div className={style.icon}>
 					<Link to={'/explore/' + item.place_id}>

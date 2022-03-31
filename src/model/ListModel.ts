@@ -32,7 +32,7 @@ export const getList = async (uid: string | undefined): Promise<item[]> => {
 };
 
 // アイテムデータ作成
-export const createListItem = async (user: dbUser | undefined, place: place) => {
+export const createItem = async (user: dbUser | undefined, place: place) => {
 	if (!user) return;
 	const { getFirestore, addDoc, collection, serverTimestamp } = await import('firebase/firestore');
 
@@ -55,3 +55,5 @@ export const createListItem = async (user: dbUser | undefined, place: place) => 
 
 	addDoc(collection(db, 'users', user.user_uid, 'list'), newItem);
 };
+
+export const deleteItem = () => {};
