@@ -3,14 +3,22 @@
 // model取得
 import { logout } from 'model/AuthModel';
 
+// hooks取得
+import { useSlider } from 'hooks/Slider';
+import { useModal } from 'hooks/Modal';
+
 // component取得
-import ModalItem from 'components/atoms/SliderItem';
+import SliderItem from 'components/atoms/SliderItem';
+import ModalLoguout from 'components/organisms/ModalLogout';
 
 type Props = {
 	paramsUserUid: string | undefined;
 };
 
 const UserHeaderMenu = ({ paramsUserUid }: Props) => {
+	const slider = useSlider();
+	const modal = useModal();
+
 	const shareOnTwitter = () => {
 		const linkUrl = 'https://' + process.env.REACT_APP_FB_DOMAIN_WEBAPP + '/' + paramsUserUid;
 		const hashtag = '行きたいとこリスト';
@@ -24,16 +32,21 @@ const UserHeaderMenu = ({ paramsUserUid }: Props) => {
 		navigator.clipboard.writeText(linkUrl);
 	};
 
+	const onClickLogout = () => {
+		slider(null);
+		modal(<ModalLoguout />);
+	};
+
 	return (
 		<ul>
 			<li>
-				<ModalItem text="Twitterで共有" onClick={shareOnTwitter} />
+				<SliderItem text="Twitterで共有" onClick={shareOnTwitter} />
 			</li>
 			<li>
-				<ModalItem text="URLをコピー" onClick={copyLink} />
+				<SliderItem text="URLをコピー" onClick={copyLink} />
 			</li>
 			<li>
-				<ModalItem text="ログアウト" onClick={logout} />
+				<SliderItem text="ログアウト" onClick={onClickLogout} />
 			</li>
 		</ul>
 	);

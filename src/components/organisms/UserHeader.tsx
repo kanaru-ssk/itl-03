@@ -16,9 +16,9 @@ type Props = {
 };
 
 const UserHeader = ({ paramsUserId }: Props) => {
-	const modal = useSlider();
+	const slider = useSlider();
 	const onClick = () => {
-		modal(<UserHeaderMenu paramsUserUid={paramsUserId} />);
+		slider(<UserHeaderMenu paramsUserUid={paramsUserId} />);
 	};
 	return (
 		<Header>
