@@ -1,14 +1,14 @@
-// Modalアイテム
+// Sliderアイテム
 
 // css取得
-import style from './ModalItem.module.scss';
+import style from './SliderItem.module.scss';
 
 type Props = {
 	text: string;
 	onClick?: () => void;
 };
 
-const ModalItem = ({ text, onClick }: Props) => {
+const SliderItem = ({ text, onClick }: Props) => {
 	return (
 		<div className={style.item} onClick={onClick}>
 			{text}
@@ -16,4 +16,4 @@ const ModalItem = ({ text, onClick }: Props) => {
 	);
 };
 
-export default ModalItem;
+export default SliderItem;

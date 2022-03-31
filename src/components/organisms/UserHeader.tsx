@@ -10,14 +10,14 @@ import { useContext } from 'react';
 import Header from 'components/atoms/Header';
 import UserId from 'components/atoms/UserId';
 import UserHeaderMenu from 'components/organisms/UserHeaderMenu';
-import { ModalContext } from 'components/organisms/Modal';
+import { SliderContext } from 'components/organisms/Slider';
 
 type Props = {
 	paramsUserId: string | undefined;
 };
 
 const UserHeader = ({ paramsUserId }: Props) => {
-	const modal = useContext(ModalContext);
+	const modal = useContext(SliderContext);
 	const onClick = () => {
 		modal(<UserHeaderMenu paramsUserUid={paramsUserId} />);
 	};

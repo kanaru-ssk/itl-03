@@ -12,7 +12,7 @@ import { getList, deleteItem } from 'model/ListModel';
 
 // component取得
 import Item from 'components/molecules/Item';
-import { ModalContext } from 'components/organisms/Modal';
+import { SliderContext } from 'components/organisms/Slider';
 import ListMenu from 'components/organisms/ListMenu';
 
 type Props = {
@@ -21,14 +21,14 @@ type Props = {
 
 const Posts = ({ uid }: Props) => {
 	const user = useContext(AuthContext);
-	const modal = useContext(ModalContext);
+	const slider = useContext(SliderContext);
 	const [list, setList] = useState<item[]>([]);
 
 	const onContextMenu = (e: any, item: item) => {
 		e.preventDefault();
 		if (user.authUser?.isAnonymous) return;
 
-		modal(<ListMenu item={item} list={list} setList={setList} />);
+		slider(<ListMenu item={item} list={list} setList={setList} />);
 	};
 
 	useEffect(() => {

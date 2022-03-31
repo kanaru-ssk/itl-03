@@ -1,7 +1,7 @@
-// モーダル
+// スライダー
 
 // css取得
-import style from './Modal.module.scss';
+import style from './Slider.module.scss';
 
 // React取得
 import React, { createContext, useCallback, useState, useRef, useEffect } from 'react';
@@ -9,35 +9,35 @@ import React, { createContext, useCallback, useState, useRef, useEffect } from '
 // コンポーネント取得
 import SliderBar from 'components/atoms/SliderBar';
 
-type modalContextProps = (contents: React.ReactNode) => void;
+type sliderContextProps = (contents: React.ReactNode) => void;
 
-const defaultContext: modalContextProps = () => {};
+const defaultContext: sliderContextProps = () => {};
 
-export const ModalContext = createContext<modalContextProps>(defaultContext);
+export const SliderContext = createContext<sliderContextProps>(defaultContext);
 
-export const ModalProvider = ({ children }: node) => {
+export const SliderProvider = ({ children }: node) => {
 	const [isPermitSlide, setIsPermitSlide] = useState<boolean>(false);
 	const [slidePos, setSlidePos] = useState<number>(100);
 	const overlayRef = useRef<HTMLDivElement>(null);
 	const sliderRef = useRef<HTMLDivElement>(null);
 	const sliderBarRef = useRef<HTMLDivElement>(null);
 
-	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-	const [modalContents, setModalContents] = useState<React.ReactNode>(null);
+	const [isSliderOpen, setIsSliderOpen] = useState<boolean>(false);
+	const [sliderContents, setSliderContents] = useState<React.ReactNode>(null);
 
 	const sliderHeight = sliderRef.current ? sliderRef.current.clientHeight : 0;
 
-	const setModal = useCallback((contents: React.ReactNode): void => {
+	const setSlider = useCallback((contents: React.ReactNode): void => {
 		if (contents === null) {
-			hideModal();
+			hideSlider();
 		} else {
-			showModal();
+			showSlider();
 		}
-		setModalContents(contents);
+		setSliderContents(contents);
 	}, []);
 
-	const showModal = () => {
-		setIsModalOpen(true);
+	const showSlider = () => {
+		setIsSliderOpen(true);
 		setSlidePos(0);
 		if (overlayRef.current) {
 			overlayRef.current.style.opacity = '1';
@@ -45,15 +45,15 @@ export const ModalProvider = ({ children }: node) => {
 		}
 	};
 
-	const hideModal = () => {
+	const hideSlider = () => {
 		setSlidePos(100);
 		if (overlayRef.current) {
 			overlayRef.current.style.opacity = '0';
 			overlayRef.current.style.pointerEvents = 'none';
 		}
-		if (isModalOpen) {
+		if (isSliderOpen) {
 			setTimeout(() => {
-				setIsModalOpen(false);
+				setIsSliderOpen(false);
 			}, 200);
 		}
 	};
@@ -66,7 +66,7 @@ export const ModalProvider = ({ children }: node) => {
 
 	const clickOnOther = (e: any) => {
 		if (e.target === overlayRef.current && !isPermitSlide) {
-			hideModal();
+			hideSlider();
 		}
 		setIsPermitSlide(false);
 	};
@@ -128,23 +128,23 @@ export const ModalProvider = ({ children }: node) => {
 		if (slidePos < 50) {
 			setSlidePos(0);
 		} else {
-			hideModal();
+			hideSlider();
 		}
 	};
 
 	return (
-		<ModalContext.Provider value={setModal}>
+		<SliderContext.Provider value={setSlider}>
 			{children}
 			<div className={style.overlay} ref={overlayRef}>
-				{isModalOpen && (
+				{isSliderOpen && (
 					<div className={style.slider} ref={sliderRef}>
 						<div ref={sliderBarRef}>
 							<SliderBar />
 						</div>
-						{modalContents}
+						{sliderContents}
 					</div>
 				)}
 			</div>
-		</ModalContext.Provider>
+		</SliderContext.Provider>
 	);
 };

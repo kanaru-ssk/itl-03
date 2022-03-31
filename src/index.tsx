@@ -8,7 +8,7 @@ import App from 'App';
 // firebase取得
 import { initFirebase } from 'model/InitModel';
 import { AuthProvider } from 'model/AuthModel';
-import { ModalProvider } from 'components/organisms/Modal';
+import { SliderProvider } from 'components/organisms/Slider';
 
 // firebase初期化
 initFirebase();
@@ -17,9 +17,9 @@ initFirebase();
 ReactDOM.render(
 	<React.StrictMode>
 		<AuthProvider>
-			<ModalProvider>
+			<SliderProvider>
 				<App />
-			</ModalProvider>
+			</SliderProvider>
 		</AuthProvider>
 	</React.StrictMode>,
 	document.getElementById('root')

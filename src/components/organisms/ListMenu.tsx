@@ -1,4 +1,4 @@
-// リストModalメニュー
+// リストSliderメニュー
 
 // css取得
 import style from './ListMenu.module.scss';
@@ -10,9 +10,9 @@ import { useContext } from 'react';
 import { deleteItem } from 'model/ListModel';
 
 // component取得
-import { ModalContext } from 'components/organisms/Modal';
-import ModalTitle from 'components/atoms/ModalTitle';
-import ModalItem from 'components/atoms/ModalItem';
+import { SliderContext } from 'components/organisms/Slider';
+import SliderTitle from 'components/atoms/SliderTitle';
+import SliderItem from 'components/atoms/SliderItem';
 
 type Props = {
 	item: item;
@@ -21,24 +21,24 @@ type Props = {
 };
 
 const ListMenu = ({ item, list, setList }: Props) => {
-	const modal = useContext(ModalContext);
+	const slider = useContext(SliderContext);
 
 	const onClickDelete = (item: item) => {
 		deleteItem(item);
-		modal(null);
+		slider(null);
 		setList(list.filter((value) => value !== item));
 	};
 
 	return (
 		<ul>
 			<li>
-				<ModalTitle text={item.place_name} />
+				<SliderTitle text={item.place_name} />
 			</li>
 			<li>
-				<ModalItem text="達成済みにする" />
+				<SliderItem text="達成済みにする" />
 			</li>
 			<li className={style.delete}>
-				<ModalItem text="削除" onClick={() => onClickDelete(item)} />
+				<SliderItem text="削除" onClick={() => onClickDelete(item)} />
 			</li>
 		</ul>
 	);

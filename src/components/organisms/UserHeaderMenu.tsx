@@ -1,7 +1,7 @@
 // 投稿一覧
 
 // component取得
-import ModalItem from 'components/atoms/ModalItem';
+import ModalItem from 'components/atoms/SliderItem';
 
 // model取得
 import { logout } from 'model/AuthModel';
