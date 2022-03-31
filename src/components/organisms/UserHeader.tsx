@@ -6,18 +6,20 @@ import menuImg from 'img/menu.svg';
 // react取得
 import { useContext } from 'react';
 
+// hooks取得
+import { useSlider } from 'hooks/Slider';
+
 // component取得
 import Header from 'components/atoms/Header';
 import UserId from 'components/atoms/UserId';
 import UserHeaderMenu from 'components/organisms/UserHeaderMenu';
-import { SliderContext } from 'components/organisms/Slider';
 
 type Props = {
 	paramsUserId: string | undefined;
 };
 
 const UserHeader = ({ paramsUserId }: Props) => {
-	const modal = useContext(SliderContext);
+	const modal = useSlider();
 	const onClick = () => {
 		modal(<UserHeaderMenu paramsUserUid={paramsUserId} />);
 	};

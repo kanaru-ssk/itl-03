@@ -1,10 +1,6 @@
 // ルーティング
 
-// css取得
-import './App.scss';
-
 // react取得
-import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 // component取得
@@ -14,6 +10,9 @@ import ExplorePage from 'components/pages/ExplorePage';
 import NoticePage from 'components/pages/NoticePage';
 import MessagePage from 'components/pages/MessagePage';
 import UserPage from 'components/pages/UserPage';
+
+// css取得
+import './App.scss';
 
 // ルーティング
 const App = () => {

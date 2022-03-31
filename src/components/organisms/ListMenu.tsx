@@ -3,16 +3,15 @@
 // css取得
 import style from './ListMenu.module.scss';
 
-// react取得
-import { useContext } from 'react';
-
 // model取得
 import { deleteItem } from 'model/ListModel';
 
 // component取得
-import { SliderContext } from 'components/organisms/Slider';
 import SliderTitle from 'components/atoms/SliderTitle';
 import SliderItem from 'components/atoms/SliderItem';
+
+// hooks取得
+import { useSlider } from 'hooks/Slider';
 
 type Props = {
 	item: item;
@@ -21,7 +20,7 @@ type Props = {
 };
 
 const ListMenu = ({ item, list, setList }: Props) => {
-	const slider = useContext(SliderContext);
+	const slider = useSlider();
 
 	const onClickDelete = (item: item) => {
 		deleteItem(item);

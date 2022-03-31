@@ -1,27 +1,29 @@
 // リスト一覧
 
-// css取得
-import style from './Posts.module.scss';
-
 // react取得
-import { useContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 // model取得
-import { AuthContext } from 'model/AuthModel';
-import { getList, deleteItem } from 'model/ListModel';
+import { getList } from 'model/ListModel';
+
+// hooks取得
+import { useAuth } from 'hooks/Auth';
+import { useSlider } from 'hooks/Slider';
 
 // component取得
 import Item from 'components/molecules/Item';
-import { SliderContext } from 'components/organisms/Slider';
 import ListMenu from 'components/organisms/ListMenu';
+
+// css取得
+import style from './Posts.module.scss';
 
 type Props = {
 	uid: string;
 };
 
 const Posts = ({ uid }: Props) => {
-	const user = useContext(AuthContext);
-	const slider = useContext(SliderContext);
+	const user = useAuth();
+	const slider = useSlider();
 	const [list, setList] = useState<item[]>([]);
 
 	const onContextMenu = (e: any, item: item) => {

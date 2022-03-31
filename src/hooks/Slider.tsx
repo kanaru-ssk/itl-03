@@ -4,16 +4,16 @@
 import style from './Slider.module.scss';
 
 // React取得
-import React, { createContext, useCallback, useState, useRef, useEffect } from 'react';
+import React, { createContext, useContext, useCallback, useState, useRef, useEffect } from 'react';
 
 // コンポーネント取得
 import SliderBar from 'components/atoms/SliderBar';
 
-type sliderContextProps = (contents: React.ReactNode) => void;
+type sliderContextProps = (contents: React.ReactNode | null) => void;
 
 const defaultContext: sliderContextProps = () => {};
 
-export const SliderContext = createContext<sliderContextProps>(defaultContext);
+const SliderContext = createContext<sliderContextProps>(defaultContext);
 
 export const SliderProvider = ({ children }: node) => {
 	const [isPermitSlide, setIsPermitSlide] = useState<boolean>(false);
@@ -148,3 +148,5 @@ export const SliderProvider = ({ children }: node) => {
 		</SliderContext.Provider>
 	);
 };
+
+export const useSlider = () => useContext(SliderContext);

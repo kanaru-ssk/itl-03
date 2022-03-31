@@ -1,10 +1,10 @@
 // トップページ
 
-// react取得
-import { useContext } from 'react';
-
 // model取得
-import { AuthContext, logout } from 'model/AuthModel';
+import { logout } from 'model/AuthModel';
+
+// hooks取得
+import { useAuth } from 'hooks/Auth';
 
 // component取得
 import BaseHeader from 'components/organisms/BaseHeader';
@@ -12,7 +12,7 @@ import Footer from 'components/organisms/Footer';
 import Login from 'components/organisms/Login';
 
 const Home = () => {
-	const user = useContext(AuthContext);
+	const user = useAuth();
 
 	if (user.authUser?.isAnonymous) {
 		return <Login />;

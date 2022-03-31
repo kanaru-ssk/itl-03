@@ -7,13 +7,13 @@ import style from './Loading.module.scss';
 import logoImg from 'img/logo.svg';
 
 // react取得
-import { useContext, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
-// model取得
-import { AuthContext } from 'model/AuthModel';
+// hooks取得
+import { useAuth } from 'hooks/Auth';
 
 const Loading = () => {
-	const user = useContext(AuthContext);
+	const user = useAuth();
 	const authUser = user.authUser;
 	const loadingRef = useRef<HTMLDivElement>(null);
 

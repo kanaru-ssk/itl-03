@@ -4,18 +4,17 @@
 import logoImg from 'img/logo.svg';
 
 // react取得
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-// model取得
-import { AuthContext } from 'model/AuthModel';
+// hooks取得
+import { useAuth } from 'hooks/Auth';
 
 // component取得
 import Header from 'components/atoms/Header';
 import UserIcon from 'components/atoms/UserIcon';
 
 const BaseHeader = () => {
-	const user = useContext(AuthContext);
+	const user = useAuth();
 
 	return (
 		<Header>

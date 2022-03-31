@@ -5,12 +5,14 @@
 // 表示userとログインuserが同じ => マイページ
 
 // react取得
-import { useContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 // model取得
-import { AuthContext } from 'model/AuthModel';
 import { getUserDataByUserId } from 'model/UserModel';
+
+// hooks取得
+import { useAuth } from 'hooks/Auth';
 
 // component取得
 import UserHeader from 'components/organisms/UserHeader';
@@ -20,7 +22,7 @@ import Profile from 'components/organisms/Profile';
 
 const UserPage = () => {
 	const { paramsUserId } = useParams();
-	const user = useContext(AuthContext);
+	const user = useAuth();
 
 	const [paramsUser, setParamsUser] = useState<dbUser | null>(null);
 	const [tab, setTab] = useState<tab>('list');

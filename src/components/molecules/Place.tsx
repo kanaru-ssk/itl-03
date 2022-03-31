@@ -4,13 +4,15 @@
 import style from './Place.module.scss';
 
 // react取得
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 // model取得
-import { AuthContext, loginWithTwitter } from 'model/AuthModel';
+import { loginWithTwitter } from 'model/AuthModel';
 import { convertPlaceType } from 'model/PlaceModel';
 import { createItem } from 'model/ListModel';
+
+// hooks取得
+import { useAuth } from 'hooks/Auth';
 
 // component取得
 import PlaceIcon from 'components/atoms/PlaceIcon';
@@ -22,7 +24,7 @@ type Props = {
 };
 
 const Place = ({ place }: Props) => {
-	const user = useContext(AuthContext);
+	const user = useAuth();
 
 	const onAddPost = (place: place): void => {
 		if (user.authUser?.isAnonymous) {
