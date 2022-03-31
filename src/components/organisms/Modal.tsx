@@ -28,15 +28,22 @@ export const ModalProvider = ({ children }: node) => {
 	const sliderHeight = sliderRef.current ? sliderRef.current.clientHeight : 0;
 
 	const setModal = useCallback((contents: React.ReactNode): void => {
-		setIsModalOpen(true);
+		if (contents === null) {
+			hideModal();
+		} else {
+			showModal();
+		}
 		setModalContents(contents);
-		setSlidePos(0);
+	}, []);
 
+	const showModal = () => {
+		setIsModalOpen(true);
+		setSlidePos(0);
 		if (overlayRef.current) {
 			overlayRef.current.style.opacity = '1';
 			overlayRef.current.style.pointerEvents = 'unset';
 		}
-	}, []);
+	};
 
 	const hideModal = () => {
 		setSlidePos(100);
