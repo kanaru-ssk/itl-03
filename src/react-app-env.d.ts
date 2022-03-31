@@ -66,7 +66,8 @@ type item = {
 	at_created: import('firebase/firestore').FieldValue;
 	at_checked: import('firebase/firestore').FieldValue | null;
 
-	is_checked: boolean;
+	item_iid: string;
+	item_is_checked: boolean;
 
 	user_uid: string;
 	user_twitter_sys_id: string;

@@ -15,7 +15,8 @@ export const getList = async (uid: string | undefined): Promise<item[]> => {
 			at_created: doc.data().at_created,
 			at_checked: doc.data().at_checked,
 
-			is_checked: doc.data().is_checked,
+			item_iid: doc.id,
+			item_is_checked: doc.data().is_checked,
 
 			user_uid: doc.data().user_uid,
 			user_twitter_sys_id: doc.data().user_twitter_sys_id,
@@ -37,11 +38,11 @@ export const createListItem = async (user: dbUser | undefined, place: place) => 
 
 	const db = getFirestore();
 
-	const newItem: item = {
+	const newItem: Omit<item, 'item_iid'> = {
 		at_created: serverTimestamp(),
 		at_checked: null,
 
-		is_checked: false,
+		item_is_checked: false,
 
 		user_uid: user.user_uid,
 		user_twitter_sys_id: user.user_twitter_sys_id,
