@@ -1,7 +1,7 @@
 // スライダー
 
 // react取得
-import React, { createContext, useCallback, useState, useRef, useEffect } from 'react';
+import React, { createContext, useContext, useCallback, useState, useRef, useEffect } from 'react';
 
 // css取得
 import style from './Modal.module.scss';
@@ -10,7 +10,7 @@ type modalContextProps = (contents: React.ReactNode) => void;
 
 const defaultContext: modalContextProps = () => {};
 
-export const ModalContext = createContext<modalContextProps>(defaultContext);
+const ModalContext = createContext<modalContextProps>(defaultContext);
 
 export const ModalProvider = ({ children }: node) => {
 	const overlayRef = useRef<HTMLDivElement>(null);
@@ -74,3 +74,5 @@ export const ModalProvider = ({ children }: node) => {
 		</ModalContext.Provider>
 	);
 };
+
+export const useModal = () => useContext(ModalContext);
