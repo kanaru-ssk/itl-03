@@ -56,4 +56,9 @@ export const createItem = async (user: dbUser | undefined, place: place) => {
 	addDoc(collection(db, 'users', user.user_uid, 'list'), newItem);
 };
 
-export const deleteItem = () => {};
+export const deleteItem = async (item: item) => {
+	const { getFirestore, doc, deleteDoc } = await import('firebase/firestore');
+
+	const db = getFirestore();
+	deleteDoc(doc(db, 'users', item.user_uid, 'list', item.item_iid));
+};
