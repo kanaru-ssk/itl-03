@@ -16,4 +16,5 @@ export const logout = async () => {
 	const { getAuth, signOut } = await import('firebase/auth');
 	const auth = getAuth();
 	signOut(auth);
+	location.href = '/';
 };
