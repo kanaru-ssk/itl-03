@@ -32,8 +32,8 @@ export const SliderProvider = ({ children }: node) => {
 			hideSlider();
 		} else {
 			showSlider();
+			setSliderContents(contents);
 		}
-		setSliderContents(contents);
 	}, []);
 
 	const showSlider = () => {
@@ -50,6 +50,9 @@ export const SliderProvider = ({ children }: node) => {
 		if (overlayRef.current) {
 			overlayRef.current.style.opacity = '0';
 			overlayRef.current.style.pointerEvents = 'none';
+		}
+		if (sliderRef.current) {
+			sliderRef.current.style.transition = 'all 0.2s ease';
 		}
 		if (isSliderOpen) {
 			setTimeout(() => {
@@ -122,13 +125,14 @@ export const SliderProvider = ({ children }: node) => {
 	};
 
 	const onSlideEnd = () => {
-		if (sliderRef.current) {
-			sliderRef.current.style.transition = 'all 0.2s ease';
-		}
-		if (slidePos < 50) {
-			setSlidePos(0);
-		} else {
-			hideSlider();
+		if (isPermitSlide) {
+			setIsPermitSlide(false);
+
+			if (slidePos < 50) {
+				setSlidePos(0);
+			} else {
+				hideSlider();
+			}
 		}
 	};
 
