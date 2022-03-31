@@ -38,13 +38,13 @@ const UserProfile = ({ user, isMaypage }: Props) => {
 				<div>
 					<ProfileIcon src={user?.user_icon} />
 				</div>
-				<div className={style.flex}>
+				{/* <div className={style.flex}>
 					<div className={style.counter}>
 						<UserCounter num={checkedPerList()} />
 						<br />
 						達成済み
 					</div>
-					{/* <div className={style.counter}>
+					<div className={style.counter}>
 						<UserCounter num={countToString(user?.count_followers)} />
 						<br />
 						フォロワー
@@ -53,8 +53,8 @@ const UserProfile = ({ user, isMaypage }: Props) => {
 						<UserCounter num={countToString(user?.count_follows)} />
 						<br />
 						フォロー中
-					</div> */}
-				</div>
+					</div>
+				</div> */}
 			</div>
 
 			<div className={style.name}>
