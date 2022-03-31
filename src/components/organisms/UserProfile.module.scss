@@ -1,0 +1,30 @@
+@import 'variables';
+
+.container {
+	padding: 16px;
+}
+
+.grid {
+	display: grid;
+	// grid-template-rows: 48px 16px;
+	grid-template-columns: 72px 1fr;
+	align-items: center;
+}
+
+.flex {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.counter {
+	text-align: center;
+}
+
+.name {
+	padding-top: 8px;
+}
+
+.buttons {
+	padding: 16px 0;
+}
