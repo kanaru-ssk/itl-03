@@ -6,13 +6,11 @@ import menuImg from 'img/menu.svg';
 // react取得
 import { useContext } from 'react';
 
-// model取得
-import { ModalContext } from './Modal';
-
 // component取得
 import Header from 'components/atoms/Header';
 import UserId from 'components/atoms/UserId';
 import UserHeaderMenu from 'components/organisms/UserHeaderMenu';
+import { ModalContext } from 'components/organisms/Modal';
 
 type Props = {
 	paramsUserId: string | undefined;
