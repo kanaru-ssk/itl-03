@@ -4,6 +4,7 @@
 import { logout } from 'model/AuthModel';
 
 // hooks取得
+import { useAuth } from 'hooks/Auth';
 import { useSlider } from 'hooks/Slider';
 import { useModal } from 'hooks/Modal';
 
@@ -17,6 +18,7 @@ type Props = {
 };
 
 const UserHeaderMenu = ({ paramsUserUid }: Props) => {
+	const user = useAuth();
 	const slider = useSlider();
 	const modal = useModal();
 
@@ -43,15 +45,21 @@ const UserHeaderMenu = ({ paramsUserUid }: Props) => {
 
 	return (
 		<ul>
-			<li>
-				<SliderItem text="Twitterで共有" onClick={shareOnTwitter} />
-			</li>
+			{user.dbUser?.user_id === paramsUserUid && (
+				<li>
+					<SliderItem text="Twitterで共有" onClick={shareOnTwitter} />
+				</li>
+			)}
+
 			<li>
 				<SliderItem text="URLをコピー" onClick={copyLink} />
 			</li>
-			<li>
-				<SliderItem text="ログアウト" onClick={onClickLogout} />
-			</li>
+
+			{user.dbUser?.user_id === paramsUserUid && (
+				<li>
+					<SliderItem text="ログアウト" onClick={onClickLogout} />
+				</li>
+			)}
 		</ul>
 	);
 };
