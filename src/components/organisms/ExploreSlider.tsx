@@ -1,7 +1,7 @@
 // スライダー
 
 // css取得
-import style from './Slider.module.scss';
+import style from './ExploreSlider.module.scss';
 
 // React取得
 import { useState, useRef, useEffect } from 'react';
@@ -15,7 +15,7 @@ type Props = {
 	children: React.ReactNode;
 };
 
-const Slider = ({ isOpen, setIsOpen, children }: Props) => {
+const ExploreSlider = ({ isOpen, setIsOpen, children }: Props) => {
 	const { innerHeight: height } = window;
 	const top = 48;
 	const under = height - 179;
@@ -108,4 +108,4 @@ const Slider = ({ isOpen, setIsOpen, children }: Props) => {
 	);
 };
 
-export default Slider;
+export default ExploreSlider;

@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react';
 import { getPlaceDetails, convertPlace } from 'model/PlaceModel';
 
 // component取得
-import Slider from 'components/molecules/Slider';
+import ExploreSlider from 'components/organisms/ExploreSlider';
 import Place from 'components/molecules/Place';
 import PlaceImages from 'components/molecules/PlaceImages';
 import Ratings from 'components/molecules/Ratings';
@@ -39,7 +39,7 @@ const Details = ({ paramsPlaceId }: Props) => {
 
 	if (place && placeResult) {
 		return (
-			<Slider isOpen={isOpen} setIsOpen={setIsOpen}>
+			<ExploreSlider isOpen={isOpen} setIsOpen={setIsOpen}>
 				<div className={style.head}>
 					<Place place={place} />
 					<div className={style.rating}>
@@ -80,7 +80,7 @@ const Details = ({ paramsPlaceId }: Props) => {
 						</ul>
 					</div>
 				</div>
-			</Slider>
+			</ExploreSlider>
 		);
 	} else {
 		return <div>Loading ...</div>;

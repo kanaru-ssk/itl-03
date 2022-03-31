@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { searchMap } from 'model/PlaceModel';
 
 // component取得
-import Slider from 'components/molecules/Slider';
+import ExploreSlider from 'components/organisms/ExploreSlider';
 import SearchType from './SearchType';
 import SearchInput from './SearchInput';
 import SearchResults from './SearchResults';
@@ -25,12 +25,12 @@ const Search = () => {
 	}, [placeType, queryText]);
 
 	return (
-		<Slider isOpen={isOpen} setIsOpen={setIsOpen}>
+		<ExploreSlider isOpen={isOpen} setIsOpen={setIsOpen}>
 			<SearchInput setIsOpen={setIsOpen} setQueryText={setQueryText} />
 			<SearchType placeType={placeType} setPlaceType={setPlaceType} />
 
 			<SearchResults placeResults={placeResults} />
-		</Slider>
+		</ExploreSlider>
 	);
 };
 
