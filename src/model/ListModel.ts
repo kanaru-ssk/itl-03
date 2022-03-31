@@ -1,7 +1,7 @@
 // アイテムデータfetch
 
 // user_idからアイテムデータ取得
-export const getList = async (uid: string | undefined): Promise<item[]> => {
+export const getList = async (uid: string | undefined, isChecked: boolean): Promise<item[]> => {
 	if (uid === undefined) return [];
 
 	const { getFirestore, collection, getDocs, query, where, orderBy, limit } = await import('firebase/firestore');
@@ -9,7 +9,7 @@ export const getList = async (uid: string | undefined): Promise<item[]> => {
 	const db = getFirestore();
 	const queryRef = query(
 		collection(db, 'users', uid, 'list'),
-		where('is_checked', '==', false),
+		where('is_checked', '==', isChecked),
 		orderBy('at_created', 'desc'),
 		limit(20)
 	);
