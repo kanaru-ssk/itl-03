@@ -1,4 +1,4 @@
-// ユーザーアイコン
+// リストアイテム
 
 // react取得
 import { Link } from 'react-router-dom';

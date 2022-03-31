@@ -5,7 +5,7 @@
 	width: 100%;
 	border-bottom: $borderWeight solid $borderColor;
 	display: grid;
-	grid-template-columns: 1fr 80px;
+	grid-template-columns: 1fr 72px;
 	align-items: center;
 }
 
@@ -42,5 +42,5 @@
 }
 
 .button {
-	margin: 0 0 0 auto;
+	width: 100%;
 }
