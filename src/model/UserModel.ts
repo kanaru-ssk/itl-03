@@ -11,10 +11,10 @@ export const getUserDataByUid = async (uid: string) => {
 			at_created: docSnap.data().at_created,
 			at_updated: docSnap.data().at_updated,
 
-			count_follows: docSnap.data().count_follow,
-			count_followers: docSnap.data().count_followed,
-			count_list: docSnap.data().count_post,
-			count_list_checked: docSnap.data().count_post_checked,
+			count_follows: docSnap.data().count_follows,
+			count_followers: docSnap.data().count_followers,
+			count_list: docSnap.data().count_list,
+			count_list_checked: docSnap.data().count_list_checked,
 
 			user_uid: docSnap.id,
 			user_id: docSnap.data().user_id,
@@ -45,10 +45,10 @@ export const getUserDataByUserId = async (user_id: string | undefined): Promise<
 			at_created: querySnap.docs[0].data().at_created,
 			at_updated: querySnap.docs[0].data().at_updated,
 
-			count_follows: querySnap.docs[0].data().count_follow,
-			count_followers: querySnap.docs[0].data().count_followed,
-			count_list: querySnap.docs[0].data().count_post,
-			count_list_checked: querySnap.docs[0].data().count_post_checked,
+			count_follows: querySnap.docs[0].data().count_follows,
+			count_followers: querySnap.docs[0].data().count_followers,
+			count_list: querySnap.docs[0].data().count_list,
+			count_list_checked: querySnap.docs[0].data().count_list_checked,
 
 			user_uid: querySnap.docs[0].id,
 			user_id: querySnap.docs[0].data().user_id,
@@ -70,8 +70,23 @@ export const createUserData = async (uid: string, newUserData: dbUser) => {
 	const { getFirestore, setDoc, doc, serverTimestamp } = await import('firebase/firestore');
 	const db = getFirestore();
 
-	newUserData.at_created = serverTimestamp();
-	newUserData.at_updated = serverTimestamp();
+	const user: Omit<dbUser, 'user_uid'> = {
+		at_created: serverTimestamp(),
+		at_updated: serverTimestamp(),
 
-	setDoc(doc(db, 'users', uid), newUserData);
+		count_follows: newUserData.count_follows,
+		count_followers: newUserData.count_followers,
+		count_list: newUserData.count_list,
+		count_list_checked: newUserData.count_list_checked,
+
+		user_id: newUserData.user_id,
+		user_name: newUserData.user_name,
+		user_icon: newUserData.user_icon,
+		user_bio: newUserData.user_bio,
+		user_twitter_disp_id: newUserData.user_twitter_disp_id,
+		user_twitter_sys_id: newUserData.user_twitter_sys_id,
+		user_is_public: newUserData.user_is_public
+	};
+
+	setDoc(doc(db, 'users', uid), user);
 };
