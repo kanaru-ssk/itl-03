@@ -18,7 +18,7 @@ const Review = ({ review }: Props) => {
 		<div>
 			<div className={style.container}>
 				<UserIcon src={review.profile_photo_url} />
-				<UserName>{review.author_name}</UserName>
+				<UserName name={review.author_name} />
 				<Stars rating={review.rating} />
 				{review.relative_time_description}
 			</div>
