@@ -1,12 +1,10 @@
 // place詳細画面
 
-// css取得
-import style from './Details.module.scss';
-
-import pinImg from 'img/pin.svg';
-
 // react取得
 import { useEffect, useState } from 'react';
+
+// img取得
+import pinImg from 'img/pin.svg';
 
 // model取得
 import { getPlaceDetails, convertPlace } from 'model/PlaceModel';
@@ -18,6 +16,9 @@ import PlaceImages from 'components/molecules/PlaceImages';
 import Ratings from 'components/molecules/Ratings';
 import Reviews from 'components/organisms/Reviews';
 import Ogp from 'components/molecules/Ogp';
+
+// css取得
+import style from './Details.module.scss';
 
 type Props = {
 	paramsPlaceId: string;

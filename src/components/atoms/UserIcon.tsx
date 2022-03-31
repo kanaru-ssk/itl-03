@@ -1,10 +1,10 @@
 // ユーザーアイコン
 
-// css取得
-import style from './UserIcon.module.scss';
-
 // img取得
 import userImg from 'img/user.svg';
+
+// css取得
+import style from './UserIcon.module.scss';
 
 type Props = {
 	src: string | undefined;

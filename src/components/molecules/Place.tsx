@@ -1,8 +1,5 @@
 // ユーザーアイコン
 
-// css取得
-import style from './Place.module.scss';
-
 // react取得
 import { Link } from 'react-router-dom';
 
@@ -18,6 +15,9 @@ import { useAuth } from 'hooks/Auth';
 import PlaceIcon from 'components/atoms/PlaceIcon';
 import PlaceName from 'components/atoms/PlaceName';
 import PlaceAddButton from 'components/atoms/PlaceAddButton';
+
+// css取得
+import style from './Place.module.scss';
 
 type Props = {
 	place: place;

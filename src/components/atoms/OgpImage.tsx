@@ -1,10 +1,10 @@
 // ogp画像
 
-// css取得
-import style from './OgpImage.module.scss';
-
 // img取得
 import notFoundImg from 'img/notfound.svg';
+
+// css取得
+import style from './OgpImage.module.scss';
 
 type Props = {
 	src: string | undefined;

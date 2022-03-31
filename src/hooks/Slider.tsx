@@ -1,13 +1,13 @@
 // スライダー
 
-// css取得
-import style from './Slider.module.scss';
-
-// React取得
+// react取得
 import React, { createContext, useContext, useCallback, useState, useRef, useEffect } from 'react';
 
 // コンポーネント取得
 import SliderBar from 'components/atoms/SliderBar';
+
+// css取得
+import style from './Slider.module.scss';
 
 type sliderContextProps = (contents: React.ReactNode | null) => void;
 

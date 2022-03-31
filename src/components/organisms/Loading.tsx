@@ -1,16 +1,16 @@
 // ロード画面
 
-// css取得
-import style from './Loading.module.scss';
+// react取得
+import { useEffect, useRef } from 'react';
 
 // img取得
 import logoImg from 'img/logo.svg';
 
-// react取得
-import { useEffect, useRef } from 'react';
-
 // hooks取得
 import { useAuth } from 'hooks/Auth';
+
+// css取得
+import style from './Loading.module.scss';
 
 const Loading = () => {
 	const user = useAuth();

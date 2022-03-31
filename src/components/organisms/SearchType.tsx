@@ -1,10 +1,10 @@
 // place Type選択
 
-// css取得
-import style from './SearchType.module.scss';
-
 // component取得
 import InputRadio from 'components/atoms/InputRadio';
+
+// css取得
+import style from './SearchType.module.scss';
 
 type Props = {
 	placeType: placeType;

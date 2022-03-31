@@ -1,7 +1,7 @@
 // フッター
 
-// css取得
-import style from './Footer.module.scss';
+// react取得
+import { Link } from 'react-router-dom';
 
 // img取得
 import homeImg from 'img/home.svg';
@@ -9,8 +9,8 @@ import exploreImg from 'img/explore.svg';
 import noticeImg from 'img/notice.svg';
 import messageImg from 'img/message.svg';
 
-// react取得
-import { Link } from 'react-router-dom';
+// css取得
+import style from './Footer.module.scss';
 
 const Footer = () => {
 	return (

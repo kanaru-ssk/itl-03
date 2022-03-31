@@ -1,12 +1,12 @@
 // ユーザー
 
-// css取得
-import style from './User.module.scss';
-
 // component取得
 import UserIcon from 'components/atoms/UserIcon';
 import UserName from 'components/atoms/UserName';
 import UserId from 'components/atoms/UserId';
+
+// css取得
+import style from './User.module.scss';
 
 type Props = {
 	userId: string;

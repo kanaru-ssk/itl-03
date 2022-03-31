@@ -1,10 +1,10 @@
 // プレイス画像
 
-// css取得
-import style from './PlaceImage.module.scss';
-
 // img取得
 import notFoundImg from 'img/notfound.svg';
+
+// css取得
+import style from './PlaceImage.module.scss';
 
 type Props = {
 	src: string | undefined;

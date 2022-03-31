@@ -1,10 +1,10 @@
 // レビューテキスト
 
-// css取得
-import style from './ReviewText.module.scss';
-
 // react取得
 import { useEffect, useState, useRef } from 'react';
+
+// css取得
+import style from './ReviewText.module.scss';
 
 type Props = {
 	text: string;

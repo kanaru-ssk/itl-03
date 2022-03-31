@@ -1,13 +1,13 @@
 // 検索
 
-// css取得
-import style from './SearchResults.module.scss';
-
 // model取得
 import { convertPlace } from 'model/PlaceModel';
 
 // component取得
 import Place from 'components/molecules/Place';
+
+// css取得
+import style from './SearchResults.module.scss';
 
 type Props = {
 	placeResults: google.maps.places.PlaceResult[];

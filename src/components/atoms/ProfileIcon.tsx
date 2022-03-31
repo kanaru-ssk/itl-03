@@ -1,10 +1,10 @@
 // プレイスアイコン
 
-// css取得
-import style from './ProfileIcon.module.scss';
-
 // img取得
 import userImg from 'img/user.svg';
+
+// css取得
+import style from './ProfileIcon.module.scss';
 
 type Props = {
 	src: string | undefined;

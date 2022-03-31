@@ -1,13 +1,10 @@
 // ユーザーアイコン
 
-// css取得
-import style from './Ogp.module.scss';
+// react取得
+import { useEffect, useState } from 'react';
 
 // 画像取得
 import externalImg from 'img/external.svg';
-
-// react取得
-import { useEffect, useState } from 'react';
 
 // model取得
 import { getOgp } from 'model/OgpModel';
@@ -17,6 +14,9 @@ import OgpTitle from 'components/atoms/OgpTitle';
 import OgpDescription from 'components/atoms/OgpDescription';
 import OgpUrl from 'components/atoms/OgpUrl';
 import OgpImage from 'components/atoms/OgpImage';
+
+// css取得
+import style from './Ogp.module.scss';
 
 type Props = {
 	url: string;

@@ -1,10 +1,10 @@
 // ラジオinput (2回クリックで選択解除)
 
-// css取得
-import style from './InputRadio.module.scss';
-
 // react取得
 import { useRef } from 'react';
+
+// css取得
+import style from './InputRadio.module.scss';
 
 type Props = {
 	label: string;

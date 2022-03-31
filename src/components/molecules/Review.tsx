@@ -1,13 +1,13 @@
 // レビューヘッド
 
-// css取得
-import style from './Review.module.scss';
-
 // component取得
 import UserIcon from 'components/atoms/UserIcon';
 import UserName from 'components/atoms/UserName';
 import Stars from 'components/atoms/Stars';
 import ReviewText from 'components/atoms/ReviewText';
+
+// css取得
+import style from './Review.module.scss';
 
 type Props = {
 	review: google.maps.places.PlaceReview;

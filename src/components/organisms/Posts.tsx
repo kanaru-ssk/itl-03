@@ -1,10 +1,10 @@
 // 投稿一覧
 
-// css取得
-import style from './Posts.module.scss';
-
 // component取得
 import Post from 'components/organisms/Post';
+
+// css取得
+import style from './Posts.module.scss';
 
 type Props = {
 	posts: post[];

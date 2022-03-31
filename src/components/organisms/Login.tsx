@@ -1,8 +1,5 @@
 // ログインページ
 
-// css取得
-import style from './Login.module.scss';
-
 // img取得
 import logoImg from 'img/logo.svg';
 
@@ -11,6 +8,9 @@ import { loginWithTwitter } from 'model/AuthModel';
 
 // component取得
 import ButtonLogin from 'components/atoms/ButtonLogin';
+
+// css取得
+import style from './Login.module.scss';
 
 const Login = () => {
 	return (

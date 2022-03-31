@@ -1,9 +1,10 @@
 // レビュー一覧
 
+// component取得
+import Review from 'components/molecules/Review';
+
 // css取得
 import style from './Reviews.module.scss';
-
-import Review from 'components/molecules/Review';
 
 type Props = {
 	reviews: google.maps.places.PlaceReview[] | undefined;

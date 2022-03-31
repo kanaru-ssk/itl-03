@@ -3,9 +3,6 @@
 // img取得
 import menuImg from 'img/menu.svg';
 
-// react取得
-import { useContext } from 'react';
-
 // hooks取得
 import { useSlider } from 'hooks/Slider';
 

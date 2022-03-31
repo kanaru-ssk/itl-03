@@ -1,10 +1,10 @@
 // スライダー
 
+// react取得
+import React, { createContext, useCallback, useState, useRef, useEffect } from 'react';
+
 // css取得
 import style from './Modal.module.scss';
-
-// React取得
-import React, { createContext, useCallback, useState, useRef, useEffect } from 'react';
 
 type modalContextProps = (contents: React.ReactNode) => void;
 

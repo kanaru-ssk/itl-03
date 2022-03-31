@@ -1,8 +1,5 @@
 // ユーザーアイコン
 
-// css取得
-import style from './Item.module.scss';
-
 // react取得
 import { Link } from 'react-router-dom';
 
@@ -13,6 +10,9 @@ import { convertPlaceType } from 'model/PlaceModel';
 import PlaceIcon from 'components/atoms/PlaceIcon';
 import PlaceName from 'components/atoms/PlaceName';
 import Button from 'components/atoms/Button';
+
+// css取得
+import style from './Item.module.scss';
 
 type Props = {
 	item: item;
