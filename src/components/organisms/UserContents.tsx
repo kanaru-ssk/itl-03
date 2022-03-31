@@ -15,9 +15,19 @@ type Props = {
 
 const UserContents = ({ uid, tab }: Props) => {
 	if (tab === 'list') {
-		return <List uid={uid} />;
+		return (
+			<div>
+				<h3>行きたいとこリスト</h3>
+				<List uid={uid} />
+			</div>
+		);
 	} else if (tab === 'checkedList') {
-		return <CheckedList uid={uid} />;
+		return (
+			<div>
+				<h3>達成済みリスト</h3>
+				<CheckedList uid={uid} />
+			</div>
+		);
 	} else {
 		return <div>posts</div>;
 	}
