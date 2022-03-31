@@ -41,7 +41,7 @@ const UserTab = ({ tab, setTab }: Props) => {
 				checked
 			</label>
 
-			<input
+			{/* <input
 				className={style.radio}
 				type="radio"
 				name="user-tab"
@@ -52,7 +52,7 @@ const UserTab = ({ tab, setTab }: Props) => {
 			/>
 			<label htmlFor="posts" className={style.label}>
 				posts
-			</label>
+			</label> */}
 		</nav>
 	);
 };
