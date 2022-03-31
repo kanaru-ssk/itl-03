@@ -4,11 +4,11 @@
 import style from './UserName.module.scss';
 
 type Props = {
-	children: React.ReactNode;
+	name: string | undefined;
 };
 
-const UserIcon = ({ children }: Props) => {
-	return <span className={style.name}>{children}</span>;
+const UserName = ({ name }: Props) => {
+	return <span className={style.name}>{name}</span>;
 };
 
-export default UserIcon;
+export default UserName;
