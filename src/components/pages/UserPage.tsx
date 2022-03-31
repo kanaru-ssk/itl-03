@@ -18,7 +18,8 @@ import { useAuth } from 'hooks/Auth';
 import UserHeader from 'components/organisms/UserHeader';
 import UserContents from 'components/organisms/UserContents';
 import Footer from 'components/organisms/Footer';
-import Profile from 'components/organisms/Profile';
+import UserProfile from 'components/organisms/UserProfile';
+import UserTab from 'components/organisms/UserTab';
 
 const UserPage = () => {
 	const { paramsUserId } = useParams();
@@ -39,7 +40,8 @@ const UserPage = () => {
 				<UserHeader paramsUserId={paramsUserId} />
 				<main>
 					<div>
-						<Profile user={paramsUser} isMaypage={user.dbUser?.user_id === paramsUserId} />
+						<UserProfile user={paramsUser} isMaypage={user.dbUser?.user_id === paramsUserId} />
+						<UserTab tab={tab} setTab={setTab} />
 						<UserContents uid={paramsUser.user_uid} tab={tab} />
 					</div>
 				</main>
