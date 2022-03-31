@@ -22,7 +22,6 @@ export const SliderProvider = ({ children }: node) => {
 	const sliderRef = useRef<HTMLDivElement>(null);
 	const sliderBarRef = useRef<HTMLDivElement>(null);
 
-	const [isSliderOpen, setIsSliderOpen] = useState<boolean>(false);
 	const [sliderContents, setSliderContents] = useState<React.ReactNode>(null);
 
 	const sliderHeight = sliderRef.current ? sliderRef.current.clientHeight : 0;
@@ -37,7 +36,6 @@ export const SliderProvider = ({ children }: node) => {
 	}, []);
 
 	const showSlider = () => {
-		setIsSliderOpen(true);
 		setSlidePos(0);
 		if (overlayRef.current) {
 			overlayRef.current.style.opacity = '1';
@@ -51,14 +49,6 @@ export const SliderProvider = ({ children }: node) => {
 			overlayRef.current.style.opacity = '0';
 			overlayRef.current.style.pointerEvents = 'none';
 		}
-		if (sliderRef.current) {
-			sliderRef.current.style.transition = 'all 0.2s ease';
-		}
-		if (isSliderOpen) {
-			setTimeout(() => {
-				setIsSliderOpen(false);
-			}, 200);
-		}
 	};
 
 	useEffect(() => {
@@ -69,6 +59,9 @@ export const SliderProvider = ({ children }: node) => {
 
 	const clickOnOther = (e: any) => {
 		if (e.target === overlayRef.current && !isPermitSlide) {
+			if (sliderRef.current) {
+				sliderRef.current.style.transition = 'all 0.2s ease';
+			}
 			hideSlider();
 		}
 		setIsPermitSlide(false);
@@ -125,6 +118,9 @@ export const SliderProvider = ({ children }: node) => {
 	};
 
 	const onSlideEnd = () => {
+		if (sliderRef.current) {
+			sliderRef.current.style.transition = 'all 0.2s ease';
+		}
 		if (isPermitSlide) {
 			setIsPermitSlide(false);
 
@@ -140,14 +136,12 @@ export const SliderProvider = ({ children }: node) => {
 		<SliderContext.Provider value={setSlider}>
 			{children}
 			<div className={style.overlay} ref={overlayRef}>
-				{isSliderOpen && (
-					<div className={style.slider} ref={sliderRef}>
-						<div ref={sliderBarRef}>
-							<SliderBar />
-						</div>
-						{sliderContents}
+				<div className={style.slider} ref={sliderRef}>
+					<div ref={sliderBarRef}>
+						<SliderBar />
 					</div>
-				)}
+					{sliderContents}
+				</div>
 			</div>
 		</SliderContext.Provider>
 	);
