@@ -12,8 +12,8 @@ import style from './ModalLogout.module.scss';
 const ModalLogout = () => {
 	const modal = useModal();
 	return (
-		<div className={style.container}>
-			<div>ログアウトしますか？</div>
+		<div>
+			<div className={style.text}>ログアウトしますか？</div>
 
 			<div className={style.logout} onClick={logout}>
 				ログアウト

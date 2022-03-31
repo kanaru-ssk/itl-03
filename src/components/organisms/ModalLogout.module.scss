@@ -1,11 +1,12 @@
 @import 'variables';
 
-.container {
+.text {
+	padding: 8px 0 16px;
 }
 
 .cancel {
 	float: right;
-	padding-right: 16px;
+	padding: 0 8px;
 	cursor: pointer;
 }
 
@@ -13,4 +14,5 @@
 	float: right;
 	font-weight: 700;
 	cursor: pointer;
+	padding: 0 8px;
 }
