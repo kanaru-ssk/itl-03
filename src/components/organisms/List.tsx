@@ -15,13 +15,13 @@ import Item from 'components/molecules/Item';
 import ListMenu from 'components/organisms/ListMenu';
 
 // css取得
-import style from './Posts.module.scss';
+import style from './List.module.scss';
 
 type Props = {
 	uid: string;
 };
 
-const Posts = ({ uid }: Props) => {
+const List = ({ uid }: Props) => {
 	const user = useAuth();
 	const slider = useSlider();
 	const [list, setList] = useState<item[]>([]);
@@ -34,7 +34,7 @@ const Posts = ({ uid }: Props) => {
 	};
 
 	useEffect(() => {
-		getList(uid).then((result) => {
+		getList(uid, false).then((result) => {
 			setList(result);
 		});
 	}, [uid]);
@@ -57,4 +57,4 @@ const Posts = ({ uid }: Props) => {
 	);
 };
 
-export default Posts;
+export default List;
