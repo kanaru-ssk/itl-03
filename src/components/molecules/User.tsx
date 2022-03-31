@@ -21,7 +21,7 @@ const User = ({ userId, userName, userIcon }: Props) => {
 				<UserIcon src={userIcon} />
 			</div>
 			<div className={style.name}>
-				<UserName>{userName}</UserName>
+				<UserName name={userName} />
 			</div>
 			<div className={style.id}>
 				<UserId>{userId}</UserId>
