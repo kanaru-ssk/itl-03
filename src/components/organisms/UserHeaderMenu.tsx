@@ -10,6 +10,7 @@ import { useModal } from 'hooks/Modal';
 // component取得
 import SliderItem from 'components/atoms/SliderItem';
 import ModalLoguout from 'components/organisms/ModalLogout';
+import ModalCopyed from 'components/organisms/ModalCopyed';
 
 type Props = {
 	paramsUserUid: string | undefined;
@@ -20,6 +21,7 @@ const UserHeaderMenu = ({ paramsUserUid }: Props) => {
 	const modal = useModal();
 
 	const shareOnTwitter = () => {
+		slider(null);
 		const linkUrl = 'https://' + process.env.REACT_APP_FB_DOMAIN_WEBAPP + '/' + paramsUserUid;
 		const hashtag = '行きたいとこリスト';
 		const text = '行きたいとこリストを更新しました!';
@@ -28,6 +30,8 @@ const UserHeaderMenu = ({ paramsUserUid }: Props) => {
 	};
 
 	const copyLink = () => {
+		slider(null);
+		modal(<ModalCopyed />);
 		const linkUrl = 'https://' + process.env.REACT_APP_FB_DOMAIN_WEBAPP + '/' + paramsUserUid;
 		navigator.clipboard.writeText(linkUrl);
 	};
