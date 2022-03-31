@@ -38,9 +38,13 @@ const ListMenu = ({ item, list, setList }: Props) => {
 			<li>
 				<SliderTitle text={item.place_name} />
 			</li>
-			<li>
-				<SliderItem text="達成済みにする" onClick={onClickCheck} />
-			</li>
+
+			{!item.is_checked && (
+				<li>
+					<SliderItem text="達成済みにする" onClick={onClickCheck} />
+				</li>
+			)}
+
 			<li className={style.delete}>
 				<SliderItem text="削除" onClick={onClickDelete} />
 			</li>
