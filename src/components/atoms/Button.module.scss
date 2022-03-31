@@ -1,10 +1,15 @@
 @import 'variables';
 
 .button {
-	padding: 4px 16px;
+	width: 100%;
+	padding: 4px;
 	background-color: $baseColor;
 	border: $borderColor solid $borderWeight;
 	border-radius: $inputBorderRadius;
 	color: $fontColor;
 	cursor: pointer;
+
+	&:active {
+		background-color: $activeColor;
+	}
 }
