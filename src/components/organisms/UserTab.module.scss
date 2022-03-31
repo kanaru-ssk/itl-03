@@ -21,6 +21,8 @@ $tabHeight: 48px;
 .label {
 	width: 100%;
 	height: $tabHeight;
-	text-align: center;
-	padding: ($tabHeight - $baseFontSize * $lineHeight) / 2;
+}
+
+.labelIcom {
+	margin: 0 auto;
 }

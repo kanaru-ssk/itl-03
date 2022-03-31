@@ -1,6 +1,9 @@
 // ユーザータブ
 
-// component取得
+// img取得
+import listImg from 'img/list.svg';
+import checkedListImg from 'img/checked.svg';
+
 // css取得
 import style from './UserTab.module.scss';
 
@@ -25,7 +28,7 @@ const UserTab = ({ tab, setTab }: Props) => {
 				onChange={onChange}
 			/>
 			<label htmlFor="list" className={style.label}>
-				list
+				<img className={style.labelIcom} src={listImg} alt="list" />
 			</label>
 
 			<input
@@ -38,7 +41,7 @@ const UserTab = ({ tab, setTab }: Props) => {
 				onChange={onChange}
 			/>
 			<label htmlFor="checkedList" className={style.label}>
-				checked
+				<img className={style.labelIcom} src={checkedListImg} alt="checked-list" />
 			</label>
 
 			{/* <input
