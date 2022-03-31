@@ -2,11 +2,6 @@
 
 .item {
 	padding: 16px;
-	width: 100%;
-	border-top: $borderWeight solid $borderColor;
-	display: grid;
-	grid-template-columns: 1fr 80px;
-	align-items: center;
 	cursor: pointer;
 	background-color: $baseColor;
 	&:active {

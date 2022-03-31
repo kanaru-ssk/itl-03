@@ -5,7 +5,7 @@ import style from './ModalItem.module.scss';
 
 type Props = {
 	text: string;
-	onClick: () => void;
+	onClick?: () => void;
 };
 
 const ModalItem = ({ text, onClick }: Props) => {
