@@ -69,7 +69,6 @@ export const checkItem = async (item: item) => {
 		is_checked: true,
 		at_checked: serverTimestamp()
 	});
-	console.log('check : ' + item.place_name);
 };
 
 export const deleteItem = async (item: item) => {
