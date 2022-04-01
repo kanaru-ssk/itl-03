@@ -20,6 +20,7 @@ import UserProfile from 'components/organisms/UserProfile';
 import UserButtonContainer from 'components/organisms/UserButtonContainer';
 import UserTab from 'components/organisms/UserTab';
 import UserContents from 'components/organisms/UserContents';
+import UserEdit from 'components/organisms/UserEdit';
 import Footer from 'components/organisms/Footer';
 
 import Button from 'components/atoms/Button';
@@ -31,6 +32,7 @@ const UserPage = () => {
 
 	const [paramsUser, setParamsUser] = useState<dbUser | null>(null);
 	const [tab, setTab] = useState<tab>('list');
+	const [isEditOpen, setIsEditOpen] = useState<boolean>(false);
 
 	useEffect(() => {
 		getUserDataByUserId(paramsUserId).then((user) => {
@@ -46,7 +48,7 @@ const UserPage = () => {
 					<div>
 						<UserProfile user={paramsUser} isMaypage={user.dbUser?.user_id === paramsUserId} />
 						<UserButtonContainer>
-							{isMypage && <Button onClick={() => {}}>プロフィール編集</Button>}
+							{isMypage && <Button onClick={() => setIsEditOpen(true)}>プロフィール編集</Button>}
 							{/* {!isMypage && <Button onClick={() => {}}>フォロー</Button>} */}
 						</UserButtonContainer>
 						<UserTab tab={tab} setTab={setTab} />
@@ -54,6 +56,7 @@ const UserPage = () => {
 					</div>
 				</main>
 				<Footer />
+				<UserEdit dbUser={user.dbUser} isEditOpen={isEditOpen} setIsEditOpen={setIsEditOpen} />
 			</>
 		);
 	} else {
