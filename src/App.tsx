@@ -4,7 +4,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 // component取得
-import Loading from 'components/organisms/Loading';
+import LoadPage from 'components/organisms/LoadPage';
 import TopPage from 'components/pages/TopPage';
 import ExplorePage from 'components/pages/ExplorePage';
 import NoticePage from 'components/pages/NoticePage';
@@ -27,7 +27,7 @@ const App = () => {
 				<Route path="/:paramsUserId" element={<UserPage />} />
 			</Routes>
 
-			<Loading />
+			<LoadPage />
 		</BrowserRouter>
 	);
 };

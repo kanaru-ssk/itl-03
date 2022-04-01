@@ -7,9 +7,9 @@ import logoImg from 'img/logo.svg';
 import { useAuth } from 'hooks/Auth';
 
 // css取得
-import style from './Loading.module.scss';
+import style from './LoadPage.module.scss';
 
-const Loading = () => {
+const LoadPage = () => {
 	const user = useAuth();
 
 	return (
@@ -19,4 +19,4 @@ const Loading = () => {
 	);
 };
 
-export default Loading;
+export default LoadPage;
