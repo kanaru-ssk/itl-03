@@ -16,12 +16,8 @@ const Login = () => {
 	return (
 		<div className={style.login}>
 			<div>
-				<img src={logoImg} className={style.logo} alt="" />
-				<div className={style.copy}>
-					一緒に行く人を
-					<br />
-					ゆるく募集
-				</div>
+				<img src={logoImg} className={style.logo} alt="logo" />
+				<div className={style.copy}>行きたいとこリスト</div>
 			</div>
 
 			<div className={style.start}>行きたいとこリストを始めよう</div>
