@@ -1,8 +1,5 @@
 // ラジオinput (2回クリックで選択解除)
 
-// react取得
-import { useRef } from 'react';
-
 // css取得
 import style from './InputRadio.module.scss';
 
@@ -14,11 +11,8 @@ type Props = {
 };
 
 const InputRadio = ({ label, value, setValue, before }: Props) => {
-	const ref = useRef<HTMLInputElement>(null);
-
 	const onClick = (e: any) => {
-		if (e.target.value === before && ref.current) {
-			ref.current.checked = false;
+		if (e.target.value === before) {
 			setValue('');
 		} else {
 			setValue(e.target.value);
@@ -31,9 +25,10 @@ const InputRadio = ({ label, value, setValue, before }: Props) => {
 				type="radio"
 				name="place-type"
 				value={value}
+				checked={value === before}
 				id={value}
 				onClick={onClick}
-				ref={ref}
+				readOnly
 			/>
 			<label htmlFor={value} className={style.label}>
 				{label}
