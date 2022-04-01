@@ -5,9 +5,7 @@ import { Timestamp } from 'firebase/firestore';
 
 // react取得
 import { useState, useEffect } from 'react';
-
-// img取得
-import loadingImg from 'img/loading.svg';
+import InfiniteScroll from 'react-infinite-scroller';
 
 // model取得
 import { getList, getOldestItem } from 'model/ListModel';
@@ -17,6 +15,7 @@ import { useAuth } from 'hooks/Auth';
 import { useSlider } from 'hooks/Slider';
 
 // component取得
+import Loading from 'components/atoms/Loading';
 import CheckedItem from 'components/molecules/CheckedItem';
 import ListMenu from 'components/organisms/ListMenu';
 
@@ -53,14 +52,24 @@ const CheckedList = ({ uid }: Props) => {
 	};
 
 	const onMoreLoad = () => {
-		const last = list[list.length - 1].at_created;
-		getList(uid, true, last).then((results) => {
-			setList([...list, ...results]);
-		});
+		if (list[list.length - 1]) {
+			const last = list[list.length - 1].at_created;
+			getList(uid, true, last).then((results) => {
+				setList([...list, ...results]);
+			});
+		}
 	};
 
 	return (
-		<div>
+		<InfiniteScroll
+			loadMore={onMoreLoad}
+			hasMore={hasMore}
+			loader={
+				<div key={0}>
+					<Loading />
+				</div>
+			}
+		>
 			<ul className={style.container}>
 				{list.map((item, key) => {
 					return (
@@ -75,12 +84,7 @@ const CheckedList = ({ uid }: Props) => {
 					);
 				})}
 			</ul>
-			{hasMore && (
-				<div className={style.load} onClick={onMoreLoad}>
-					<img src={loadingImg} alt="loading" />
-				</div>
-			)}
-		</div>
+		</InfiniteScroll>
 	);
 };
 
