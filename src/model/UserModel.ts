@@ -33,9 +33,9 @@ export const getUserDataByUid = async (uid: string) => {
 
 // ユーザーidからユーザーデータ取得
 export const getUserDataByUserId = async (user_id: string | undefined): Promise<dbUser | null> => {
-	const { getFirestore, collection, query, where, getDocs } = await import('firebase/firestore');
+	const { getFirestore, collection, query, where, getDocs, limit } = await import('firebase/firestore');
 	const db = getFirestore();
-	const queryRef = query(collection(db, 'users'), where('user_id', '==', user_id));
+	const queryRef = query(collection(db, 'users'), where('user_id', '==', user_id), limit(1));
 
 	const querySnap = await getDocs(queryRef);
 	if (querySnap.size === 0) {
