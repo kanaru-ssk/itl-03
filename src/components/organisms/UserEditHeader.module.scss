@@ -1,0 +1,25 @@
+@import 'variables';
+
+.header {
+	z-index: $headerIndex;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	max-width: $bodyMaxWidth;
+	height: $headerHeight;
+	border-bottom: $borderWeight solid $borderColor;
+	background-color: $baseColor;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.prev {
+	cursor: pointer;
+}
+
+.save {
+	padding: 10px 16px;
+	cursor: pointer;
+}
