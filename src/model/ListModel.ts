@@ -1,8 +1,8 @@
 // アイテムデータfetch
 
-// user_idからアイテムデータ取得
-export const getList = async (uid: string | undefined, isChecked: boolean): Promise<item[]> => {
-	if (uid === undefined) return [];
+// 最も古いアイテムデータ取得
+export const getOldestItem = async (uid: string | undefined, isChecked: boolean): Promise<item | null> => {
+	if (uid === undefined) return null;
 
 	const { getFirestore, collection, getDocs, query, where, orderBy, limit } = await import('firebase/firestore');
 
@@ -10,9 +10,51 @@ export const getList = async (uid: string | undefined, isChecked: boolean): Prom
 	const queryRef = query(
 		collection(db, 'users', uid, 'list'),
 		where('is_checked', '==', isChecked),
+		orderBy('at_created', 'asc'),
+		limit(1)
+	);
+	const querySnap = await getDocs(queryRef);
+
+	const item: item = {
+		at_created: querySnap.docs[0].data().at_created,
+		at_checked: querySnap.docs[0].data().at_checked,
+
+		doc_id: querySnap.docs[0].id,
+		is_checked: querySnap.docs[0].data().is_checked,
+
+		user_uid: querySnap.docs[0].data().user_uid,
+		user_twitter_sys_id: querySnap.docs[0].data().user_twitter_sys_id,
+
+		place_id: querySnap.docs[0].data().place_id,
+		place_name: querySnap.docs[0].data().place_name,
+		place_type: querySnap.docs[0].data().place_type,
+		place_photo: querySnap.docs[0].data().place_photo
+	};
+
+	return item;
+};
+
+// user_idからアイテムデータ取得
+export const getList = async (
+	uid: string | undefined,
+	isChecked: boolean,
+	start: Timestamp | FieldValue
+): Promise<item[]> => {
+	if (uid === undefined) return [];
+
+	const { getFirestore, collection, getDocs, query, where, orderBy, startAfter, limit } = await import(
+		'firebase/firestore'
+	);
+
+	const db = getFirestore();
+	const queryRef = query(
+		collection(db, 'users', uid, 'list'),
+		where('is_checked', '==', isChecked),
 		orderBy('at_created', 'desc'),
+		startAfter(start),
 		limit(20)
 	);
+
 	const querySnap = await getDocs(queryRef);
 
 	const items: item[] = querySnap.docs.map((doc) => {
