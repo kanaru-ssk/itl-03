@@ -28,6 +28,7 @@ type dbUser = {
 type authContextProps = {
 	authUser: authUser;
 	dbUser: dbUser;
+	setDBUser: Function;
 };
 
 type placeType =

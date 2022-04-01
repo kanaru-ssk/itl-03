@@ -40,23 +40,26 @@ const UserPage = () => {
 		});
 	}, [paramsUserId]);
 
+	useEffect(() => {
+		setParamsUser(user.dbUser);
+	}, [user]);
+
 	if (paramsUser) {
 		return (
 			<>
 				<UserHeader paramsUserId={paramsUserId} />
 				<main>
-					<div>
-						<UserProfile user={paramsUser} isMaypage={user.dbUser?.user_id === paramsUserId} />
-						<UserButtonContainer>
-							{isMypage && <Button onClick={() => setIsEditOpen(true)}>プロフィール編集</Button>}
-							{/* {!isMypage && <Button onClick={() => {}}>フォロー</Button>} */}
-						</UserButtonContainer>
-						<UserTab tab={tab} setTab={setTab} />
-						<UserContents uid={paramsUser.user_uid} tab={tab} />
-					</div>
+					<UserProfile user={paramsUser} />
+					<UserButtonContainer>
+						{isMypage && <Button onClick={() => setIsEditOpen(true)}>プロフィール編集</Button>}
+						{/* {!isMypage && <Button onClick={() => {}}>フォロー</Button>} */}
+					</UserButtonContainer>
+					<UserTab tab={tab} setTab={setTab} />
+					<UserContents uid={paramsUser.user_uid} tab={tab} />
+
+					<UserEdit dbUser={user.dbUser} isEditOpen={isEditOpen} setIsEditOpen={setIsEditOpen} />
 				</main>
 				<Footer />
-				<UserEdit dbUser={user.dbUser} isEditOpen={isEditOpen} setIsEditOpen={setIsEditOpen} />
 			</>
 		);
 	} else {

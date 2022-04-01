@@ -40,7 +40,7 @@ const UserEdit = ({ dbUser, isEditOpen, setIsEditOpen }: Proos) => {
 					: { opacity: 0, transform: `translate(100%, 0)` }
 			}
 		>
-			<UserEditHeader setIsEditOpen={setIsEditOpen} />
+			<UserEditHeader name={name} bio={bio} dbUser={dbUser} setIsEditOpen={setIsEditOpen} />
 			<div className={style.container}>
 				<div className={style.wrapper}>
 					<div>名前</div>

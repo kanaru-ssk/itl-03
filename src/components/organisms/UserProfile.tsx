@@ -10,10 +10,9 @@ import style from './UserProfile.module.scss';
 
 type Props = {
 	user: dbUser;
-	isMaypage: boolean;
 };
 
-const UserProfile = ({ user, isMaypage }: Props) => {
+const UserProfile = ({ user }: Props) => {
 	const countToString = (num: number | undefined): string => {
 		if (num === undefined) {
 			return '0';
