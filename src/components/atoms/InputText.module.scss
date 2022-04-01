@@ -1,0 +1,9 @@
+@import 'variables';
+
+.input {
+	padding: 8px;
+	width: 100%;
+	height: 40px;
+	border: none $borderWeight $borderColor;
+	border-bottom: solid $borderWeight $borderColor;
+}
