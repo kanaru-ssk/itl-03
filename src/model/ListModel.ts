@@ -38,7 +38,8 @@ export const getOldestItem = async (uid: string | undefined, isChecked: boolean)
 export const getList = async (
 	uid: string | undefined,
 	isChecked: boolean,
-	start: Timestamp | FieldValue
+	start: Timestamp | FieldValue,
+	limitNum: number
 ): Promise<item[]> => {
 	if (uid === undefined) return [];
 
@@ -52,7 +53,7 @@ export const getList = async (
 		where('is_checked', '==', isChecked),
 		orderBy('at_created', 'desc'),
 		startAfter(start),
-		limit(20)
+		limit(limitNum)
 	);
 
 	const querySnap = await getDocs(queryRef);

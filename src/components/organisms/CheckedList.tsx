@@ -33,13 +33,14 @@ const CheckedList = ({ uid }: Props) => {
 	const [oldest, setOldest] = useState<item | null>(null);
 
 	const now = Timestamp.now();
+	const limit = 20;
 	const hasMore = oldest ? !Boolean(list.find((i) => i.doc_id === oldest.doc_id)) : false;
 
 	useEffect(() => {
 		getOldestItem(uid, true).then((result) => {
 			setOldest(result);
 		});
-		getList(uid, true, now).then((results) => {
+		getList(uid, true, now, limit).then((results) => {
 			setList(results);
 		});
 	}, [uid]);
@@ -54,7 +55,7 @@ const CheckedList = ({ uid }: Props) => {
 	const onMoreLoad = () => {
 		if (list[list.length - 1]) {
 			const last = list[list.length - 1].at_created;
-			getList(uid, true, last).then((results) => {
+			getList(uid, true, last, limit).then((results) => {
 				setList([...list, ...results]);
 			});
 		}

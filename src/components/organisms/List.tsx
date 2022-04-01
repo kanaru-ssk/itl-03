@@ -33,13 +33,14 @@ const List = ({ uid }: Props) => {
 	const [oldest, setOldest] = useState<item | null>(null);
 
 	const now = Timestamp.now();
+	const limit = 20;
 	const hasMore = oldest ? !Boolean(list.find((i) => i.doc_id === oldest.doc_id)) : false;
 
 	useEffect(() => {
 		getOldestItem(uid, false).then((results) => {
 			setOldest(results);
 		});
-		getList(uid, false, now).then((results) => {
+		getList(uid, false, now, limit).then((results) => {
 			setList(results);
 		});
 	}, [uid]);
@@ -54,7 +55,7 @@ const List = ({ uid }: Props) => {
 	const onMoreLoad = () => {
 		if (list[list.length - 1]) {
 			const last = list[list.length - 1].at_created;
-			getList(uid, false, last).then((results) => {
+			getList(uid, false, last, limit).then((results) => {
 				setList([...list, ...results]);
 			});
 		}
