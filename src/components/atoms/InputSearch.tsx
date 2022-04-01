@@ -4,19 +4,19 @@
 import style from './InputSearch.module.scss';
 
 type Props = {
-	placeholder: string;
 	onFocus: () => void;
 	onChange: (e: any) => void;
+	placeholder: string;
 };
 
-const InputSearch = ({ placeholder, onFocus, onChange }: Props) => {
+const InputSearch = ({ onFocus, onChange, placeholder }: Props) => {
 	return (
 		<input
 			className={style.input}
 			type="search"
-			placeholder={placeholder}
 			onFocus={onFocus}
 			onChange={(e) => onChange(e.target.value)}
+			placeholder={placeholder}
 		/>
 	);
 };
