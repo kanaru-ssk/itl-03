@@ -1,7 +1,7 @@
 // スライダー
 
 // react取得
-import { createContext, useContext, useCallback, useState, useRef, useEffect } from 'react';
+import { createContext, useContext, useCallback, useState, useEffect } from 'react';
 
 // css取得
 import style from './Modal.module.scss';
@@ -13,37 +13,22 @@ const defaultContext: modalContextProps = () => {};
 const ModalContext = createContext<modalContextProps>(defaultContext);
 
 export const ModalProvider = ({ children }: node) => {
-	const overlayRef = useRef<HTMLDivElement>(null);
-	const modalRef = useRef<HTMLDivElement>(null);
+	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
 	const [modalContents, setModalContents] = useState<React.ReactNode>(null);
 
 	const setModal = useCallback((contents: React.ReactNode): void => {
 		if (contents === null) {
-			hideModal();
+			setIsModalOpen(false);
 		} else {
-			showModal();
+			setIsModalOpen(true);
 		}
 		setModalContents(contents);
 	}, []);
 
-	const showModal = () => {
-		if (overlayRef.current) {
-			overlayRef.current.style.opacity = '1';
-			overlayRef.current.style.pointerEvents = 'unset';
-		}
-	};
-
-	const hideModal = () => {
-		if (overlayRef.current) {
-			overlayRef.current.style.opacity = '0';
-			overlayRef.current.style.pointerEvents = 'none';
-		}
-	};
-
 	const clickOnOther = (e: any) => {
-		if (e.target === overlayRef.current) {
-			hideModal();
+		if (e.target.id === 'overlay') {
+			setIsModalOpen(false);
 		}
 	};
 
@@ -57,10 +42,12 @@ export const ModalProvider = ({ children }: node) => {
 	return (
 		<ModalContext.Provider value={setModal}>
 			{children}
-			<div className={style.overlay} ref={overlayRef}>
-				<div className={style.modal} ref={modalRef}>
-					{modalContents}
-				</div>
+			<div
+				className={style.overlay}
+				id="overlay"
+				style={isModalOpen ? { opacity: 1, pointerEvents: 'unset' } : { opacity: 0, pointerEvents: 'none' }}
+			>
+				<div className={style.modal}>{modalContents}</div>
 			</div>
 		</ModalContext.Provider>
 	);

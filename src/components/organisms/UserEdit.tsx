@@ -1,7 +1,7 @@
 // プロフィール編集ページ
 
 // react取得
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 // component取得
 import InputText from 'components/atoms/InputText';
@@ -20,14 +20,6 @@ type Proos = {
 const UserEdit = ({ dbUser, isEditOpen, setIsEditOpen }: Proos) => {
 	const [name, setName] = useState<string>('');
 	const [bio, setBio] = useState<string>('');
-	const pageRef = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		if (pageRef.current) {
-			pageRef.current.style.transform = isEditOpen ? 'translateX(0)' : 'translateX(100%)';
-			pageRef.current.style.opacity = isEditOpen ? '1' : '0';
-		}
-	}, [isEditOpen]);
 
 	useEffect(() => {
 		if (dbUser) {
@@ -40,21 +32,26 @@ const UserEdit = ({ dbUser, isEditOpen, setIsEditOpen }: Proos) => {
 	}, [isEditOpen]);
 
 	return (
-		<div className={style.page} ref={pageRef}>
+		<div
+			className={style.page}
+			style={
+				isEditOpen
+					? { opacity: 1, transform: `translate(0, 0)` }
+					: { opacity: 0, transform: `translate(100%, 0)` }
+			}
+		>
 			<UserEditHeader setIsEditOpen={setIsEditOpen} />
-			<main>
-				<div className={style.container}>
-					<div className={style.wrapper}>
-						<div>名前</div>
-						<InputText value={name} onInput={setName} placeholder="名前を入力してください" />
-					</div>
-
-					<div className={style.wrapper}>
-						<div>自己紹介</div>
-						<InputTextArea value={bio} onInput={setBio} placeholder="" />
-					</div>
+			<div className={style.container}>
+				<div className={style.wrapper}>
+					<div>名前</div>
+					<InputText value={name} onInput={setName} placeholder="名前を入力してください" />
 				</div>
-			</main>
+
+				<div className={style.wrapper}>
+					<div>自己紹介</div>
+					<InputTextArea value={bio} onChange={setBio} placeholder="" />
+				</div>
+			</div>
 		</div>
 	);
 };
