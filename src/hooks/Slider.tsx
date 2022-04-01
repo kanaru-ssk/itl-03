@@ -16,11 +16,10 @@ const defaultContext: sliderContextProps = () => {};
 const SliderContext = createContext<sliderContextProps>(defaultContext);
 
 export const SliderProvider = ({ children }: node) => {
+	const [isSliderOpen, setIsSliderOpen] = useState<boolean>(false);
 	const [isPermitSlide, setIsPermitSlide] = useState<boolean>(false);
 	const [slidePos, setSlidePos] = useState<number>(100);
-	const overlayRef = useRef<HTMLDivElement>(null);
 	const sliderRef = useRef<HTMLDivElement>(null);
-	const sliderBarRef = useRef<HTMLDivElement>(null);
 
 	const [sliderContents, setSliderContents] = useState<React.ReactNode>(null);
 
@@ -28,28 +27,20 @@ export const SliderProvider = ({ children }: node) => {
 
 	const setSlider = useCallback((contents: React.ReactNode): void => {
 		if (contents === null) {
-			hideSlider();
+			setIsSliderOpen(false);
 		} else {
-			showSlider();
+			setIsSliderOpen(true);
 			setSliderContents(contents);
 		}
 	}, []);
 
-	const showSlider = () => {
-		setSlidePos(0);
-		if (overlayRef.current) {
-			overlayRef.current.style.opacity = '1';
-			overlayRef.current.style.pointerEvents = 'unset';
+	useEffect(() => {
+		if (isSliderOpen) {
+			setSlidePos(0);
+		} else {
+			setSlidePos(100);
 		}
-	};
-
-	const hideSlider = () => {
-		setSlidePos(100);
-		if (overlayRef.current) {
-			overlayRef.current.style.opacity = '0';
-			overlayRef.current.style.pointerEvents = 'none';
-		}
-	};
+	}, [isSliderOpen]);
 
 	useEffect(() => {
 		if (sliderRef.current) {
@@ -58,43 +49,29 @@ export const SliderProvider = ({ children }: node) => {
 	}, [slidePos]);
 
 	const clickOnOther = (e: any) => {
-		if (e.target === overlayRef.current && !isPermitSlide) {
-			if (sliderRef.current) {
-				sliderRef.current.style.transition = 'all 0.2s ease';
-			}
-			hideSlider();
+		if (e.target.id === 'slider-overlay') {
+			setIsSliderOpen(false);
 		}
+
 		setIsPermitSlide(false);
 	};
 
 	useEffect(() => {
 		window.addEventListener('click', clickOnOther, { passive: false });
 
-		sliderBarRef.current?.addEventListener('mousedown', onSlideStart, { passive: false });
 		window.addEventListener('mousemove', onMouseMove, { passive: false });
 		window.addEventListener('mouseup', onSlideEnd, { passive: false });
 
-		sliderBarRef.current?.addEventListener('touchstart', onSlideStart, { passive: false });
-		sliderBarRef.current?.addEventListener('touchmove', onTouchMove, { passive: false });
-		sliderBarRef.current?.addEventListener('touchend', onSlideEnd, { passive: false });
 		return () => {
 			window.removeEventListener('click', clickOnOther);
 
-			sliderBarRef.current?.removeEventListener('mousedown', onSlideStart);
 			window.removeEventListener('mousemove', onMouseMove);
 			window.removeEventListener('mouseup', onSlideEnd);
-
-			sliderBarRef.current?.removeEventListener('touchstart', onSlideStart);
-			sliderBarRef.current?.removeEventListener('touchmove', onTouchMove);
-			sliderBarRef.current?.removeEventListener('touchend', onSlideEnd);
 		};
 	});
 
 	const onSlideStart = () => {
 		setIsPermitSlide(true);
-		if (sliderRef.current) {
-			sliderRef.current.style.transition = 'none';
-		}
 	};
 
 	const onTouchMove = (e: any) => {
@@ -118,16 +95,13 @@ export const SliderProvider = ({ children }: node) => {
 	};
 
 	const onSlideEnd = () => {
-		if (sliderRef.current) {
-			sliderRef.current.style.transition = 'all 0.2s ease';
-		}
 		if (isPermitSlide) {
 			setIsPermitSlide(false);
 
 			if (slidePos < 50) {
 				setSlidePos(0);
 			} else {
-				hideSlider();
+				setIsSliderOpen(false);
 			}
 		}
 	};
@@ -135,9 +109,26 @@ export const SliderProvider = ({ children }: node) => {
 	return (
 		<SliderContext.Provider value={setSlider}>
 			{children}
-			<div className={style.overlay} ref={overlayRef}>
-				<div className={style.slider} ref={sliderRef}>
-					<div ref={sliderBarRef}>
+			<div
+				className={style.overlay}
+				id="slider-overlay"
+				style={isSliderOpen ? { opacity: 1, pointerEvents: 'unset' } : { opacity: 0, pointerEvents: 'none' }}
+			>
+				<div
+					className={style.slider}
+					ref={sliderRef}
+					style={
+						isPermitSlide
+							? { transition: 'none', transform: 'translateY(' + slidePos + '%)' }
+							: { transition: 'all 0.2s ease', transform: 'translateY(' + slidePos + '%)' }
+					}
+				>
+					<div
+						onMouseDown={onSlideStart}
+						onTouchStart={onSlideStart}
+						onTouchMove={onTouchMove}
+						onTouchEnd={onSlideEnd}
+					>
 						<SliderBar />
 					</div>
 					{sliderContents}
