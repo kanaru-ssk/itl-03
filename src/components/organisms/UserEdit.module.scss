@@ -1,0 +1,23 @@
+@import 'variables';
+
+.page {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: $editProfileIndex;
+	background-color: $baseColor;
+
+	transform: translateX(100%);
+	opacity: 0;
+	transition: all 0.2s ease;
+}
+
+.container {
+	padding: 16px;
+}
+
+.wrapper {
+	padding-bottom: 24px;
+}
