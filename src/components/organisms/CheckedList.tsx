@@ -6,6 +6,9 @@ import { Timestamp } from 'firebase/firestore';
 // react取得
 import { useState, useEffect } from 'react';
 
+// img取得
+import loadingImg from 'img/loading.svg';
+
 // model取得
 import { getList, getOldestItem } from 'model/ListModel';
 
@@ -72,7 +75,11 @@ const CheckedList = ({ uid }: Props) => {
 					);
 				})}
 			</ul>
-			{hasMore && <div onClick={onMoreLoad}>more</div>}
+			{hasMore && (
+				<div className={style.load} onClick={onMoreLoad}>
+					<img src={loadingImg} alt="loading" />
+				</div>
+			)}
 		</div>
 	);
 };
