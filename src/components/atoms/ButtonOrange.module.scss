@@ -1,0 +1,16 @@
+@import 'variables';
+
+.button {
+	width: 100%;
+	padding: 4px;
+	background-color: $mainColor;
+	border: none;
+	border-radius: $inputBorderRadius;
+	color: $baseColor;
+	font-weight: 700;
+	cursor: pointer;
+
+	&:active {
+		background-color: $activeColor;
+	}
+}
