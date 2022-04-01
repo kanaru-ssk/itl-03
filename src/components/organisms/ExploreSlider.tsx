@@ -4,7 +4,7 @@
 import style from './ExploreSlider.module.scss';
 
 // React取得
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 // コンポーネント取得
 import SliderBar from 'components/atoms/SliderBar';
@@ -21,14 +21,6 @@ const ExploreSlider = ({ isOpen, setIsOpen, children }: Props) => {
 	const under = height - 179;
 	const [isPermitSlide, setIsPermitSlide] = useState<boolean>(false);
 	const [slidePos, setSlidePos] = useState<number>(under);
-	const slider = useRef<HTMLDivElement>(null);
-	const sliderBar = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		if (slider.current) {
-			slider.current.style.transform = 'translateY(' + slidePos + 'px)';
-		}
-	}, [slidePos]);
 
 	useEffect(() => {
 		if (isOpen) {
@@ -39,50 +31,41 @@ const ExploreSlider = ({ isOpen, setIsOpen, children }: Props) => {
 	}, [isOpen]);
 
 	useEffect(() => {
-		sliderBar.current?.addEventListener('mousedown', onSlideStart, { passive: false });
 		window.addEventListener('mousemove', onMouseMove, { passive: false });
 		window.addEventListener('mouseup', onSlideEnd, { passive: false });
 
-		sliderBar.current?.addEventListener('touchstart', onSlideStart, { passive: false });
-		sliderBar.current?.addEventListener('touchmove', onTouchMove, { passive: false });
-		sliderBar.current?.addEventListener('touchend', onSlideEnd, { passive: false });
 		return () => {
-			sliderBar.current?.removeEventListener('mousedown', onSlideStart);
 			window.removeEventListener('mousemove', onMouseMove);
 			window.removeEventListener('mouseup', onSlideEnd);
-
-			sliderBar.current?.removeEventListener('touchstart', onSlideStart);
-			sliderBar.current?.removeEventListener('touchmove', onTouchMove);
-			sliderBar.current?.removeEventListener('touchend', onSlideEnd);
 		};
 	});
 
 	const onSlideStart = () => {
 		setIsPermitSlide(true);
-		if (slider.current) {
-			slider.current.style.transition = 'none';
-		}
 	};
 
 	const onTouchMove = (e: any) => {
 		e.preventDefault();
 		if (isPermitSlide) {
-			setSlidePos(e.touches[0].pageY - 16);
+			const pos = e.touches[0].pageY - 16;
+			if (48 <= pos) {
+				setSlidePos(pos);
+			}
 		}
 	};
 
 	const onMouseMove = (e: any) => {
 		e.preventDefault();
 		if (isPermitSlide) {
-			setSlidePos(e.pageY - 16);
+			const pos = e.pageY - 16;
+			if (48 <= pos) {
+				setSlidePos(pos);
+			}
 		}
 	};
 
 	const onSlideEnd = () => {
 		setIsPermitSlide(false);
-		if (slider.current) {
-			slider.current.style.transition = 'all 0.2s ease';
-		}
 		if (slidePos < height / 2) {
 			if (isOpen) {
 				setSlidePos(top);
@@ -99,8 +82,20 @@ const ExploreSlider = ({ isOpen, setIsOpen, children }: Props) => {
 	};
 
 	return (
-		<div className={style.slider} ref={slider}>
-			<div ref={sliderBar}>
+		<div
+			className={style.slider}
+			style={
+				isPermitSlide
+					? { transition: 'none', transform: 'translateY(' + slidePos + 'px)' }
+					: { transition: 'all 0.2s ease', transform: 'translateY(' + slidePos + 'px)' }
+			}
+		>
+			<div
+				onMouseDown={onSlideStart}
+				onTouchStart={onSlideStart}
+				onTouchMove={onTouchMove}
+				onTouchEnd={onSlideEnd}
+			>
 				<SliderBar />
 			</div>
 			<div className={style.children}>{children}</div>
