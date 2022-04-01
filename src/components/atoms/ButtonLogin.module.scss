@@ -1,11 +1,14 @@
 @import 'variables';
 
 .button {
-	width: 240px;
-	height: 36px;
+	width: 100%;
+	padding: 4px;
 	border: none;
-	border-radius: 18px;
+	border-radius: $inputBorderRadius;
 	background-color: $twitterColor;
 	color: $baseColor;
 	cursor: pointer;
+	&:active {
+		background-color: $activeColor;
+	}
 }
