@@ -1,7 +1,7 @@
 // スライダー
 
 // react取得
-import React, { createContext, useContext, useCallback, useState, useRef, useEffect } from 'react';
+import { createContext, useContext, useCallback, useState, useRef, useEffect } from 'react';
 
 // コンポーネント取得
 import SliderBar from 'components/atoms/SliderBar';
