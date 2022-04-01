@@ -2,15 +2,14 @@
 
 // component取得
 import BaseHeader from 'components/organisms/BaseHeader';
+import Development from 'components/organisms/Development';
 import Footer from 'components/organisms/Footer';
 
 const MessagePage = () => {
 	return (
 		<>
 			<BaseHeader />
-			<main>
-				<h1>Message</h1>
-			</main>
+			<Development title="DMページ" />
 			<Footer />
 		</>
 	);

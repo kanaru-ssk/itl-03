@@ -2,15 +2,14 @@
 
 // component取得
 import BaseHeader from 'components/organisms/BaseHeader';
+import Development from 'components/organisms/Development';
 import Footer from 'components/organisms/Footer';
 
 const NoticePage = () => {
 	return (
 		<>
 			<BaseHeader />
-			<main>
-				<h1>Notice</h1>
-			</main>
+			<Development title="通知ページ" />
 			<Footer />
 		</>
 	);
