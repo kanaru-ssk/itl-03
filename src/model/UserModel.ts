@@ -90,3 +90,17 @@ export const createUserData = async (uid: string, newUserData: dbUser) => {
 
 	setDoc(doc(db, 'users', uid), user);
 };
+
+// ユーザーデータ更新
+export const updateUserData = async (newUserData: dbUser) => {
+	if (newUserData === null) return;
+
+	const { getFirestore, doc, updateDoc, serverTimestamp } = await import('firebase/firestore');
+
+	const db = getFirestore();
+	updateDoc(doc(db, 'users', newUserData.user_uid), {
+		at_updated: serverTimestamp(),
+		user_name: newUserData.user_name,
+		user_bio: newUserData.user_bio
+	});
+};
