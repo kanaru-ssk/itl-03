@@ -61,6 +61,7 @@ export const createItem = async (user: dbUser | undefined, place: place) => {
 	addDoc(collection(db, 'users', user.user_uid, 'list'), newItem);
 };
 
+// アイテムを達成済みにする
 export const checkItem = async (item: item) => {
 	const { getFirestore, doc, updateDoc, serverTimestamp } = await import('firebase/firestore');
 
@@ -71,6 +72,7 @@ export const checkItem = async (item: item) => {
 	});
 };
 
+// アイテム削除
 export const deleteItem = async (item: item) => {
 	const { getFirestore, doc, deleteDoc } = await import('firebase/firestore');
 
