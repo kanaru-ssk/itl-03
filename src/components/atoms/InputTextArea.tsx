@@ -2,7 +2,7 @@
 
 // react取得
 import { useEffect, useRef } from 'react';
-import { text } from 'stream/consumers';
+
 // css取得
 import style from './InputText.module.scss';
 
@@ -36,7 +36,6 @@ const InputTextArea = ({ placeholder, value, onInput }: Props) => {
 			className={style.input}
 			placeholder={placeholder}
 			onInput={onInputText}
-			defaultValue={value}
 			value={value}
 			ref={textareaRef}
 		></textarea>
