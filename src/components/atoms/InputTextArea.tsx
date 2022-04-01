@@ -1,43 +1,28 @@
 // テキストエリアinput
 
-// react取得
-import { useEffect, useRef } from 'react';
-
 // css取得
-import style from './InputText.module.scss';
+import style from './InputTextArea.module.scss';
 
 type Props = {
 	value: string;
-	onInput: (e: any) => void;
+	onChange: (e: any) => void;
 	placeholder: string;
 };
 
-const InputTextArea = ({ placeholder, value, onInput }: Props) => {
-	const textareaRef = useRef<HTMLTextAreaElement>(null);
-	useEffect(() => {
-		if (textareaRef.current) {
-			if (textareaRef.current.offsetHeight < textareaRef.current.scrollHeight) {
-				textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px';
-			}
-		}
-	}, [value]);
-
-	const onInputText = (e: any) => {
-		onInput(e.target.value);
-		if (textareaRef.current) {
-			if (textareaRef.current.offsetHeight < textareaRef.current.scrollHeight) {
-				textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px';
-			}
-		}
+const InputTextArea = ({ placeholder, value, onChange }: Props) => {
+	const onChangeText = (e: any) => {
+		const height = e.target.scrollHeight;
+		e.target.style.height = height + 'px';
+		onChange(e.target.value);
 	};
 
 	return (
 		<textarea
 			className={style.input}
 			placeholder={placeholder}
-			onInput={onInputText}
+			onChange={onChangeText}
 			value={value}
-			ref={textareaRef}
+			style={{ height: 'auto' }}
 		></textarea>
 	);
 };
