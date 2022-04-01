@@ -31,8 +31,14 @@ label {
 	box-sizing: border-box;
 }
 
+textarea {
+	resize: none;
+}
+
 a,
-button {
+button,
+input,
+textarea {
 	font-family: $fontFamily;
 	font-size: $baseFontSize;
 	color: $fontColor;
