@@ -2,11 +2,14 @@
 
 $tabHeight: 48px;
 .tab {
+	position: sticky;
+	top: 48px;
 	height: $tabHeight;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
 	border-bottom: $borderWeight solid $borderColor;
+	background-color: $baseColor;
 }
 
 .radio {
