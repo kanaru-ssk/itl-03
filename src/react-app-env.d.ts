@@ -6,6 +6,9 @@ type node = {
 
 type authUser = import('firebase/auth').User | null;
 
+type FieldValue = import('firebase/firestore').FieldValue;
+type Timestamp = import('firebase/firestore').Timestamp;
+
 type dbUser = {
 	at_created: import('firebase/firestore').FieldValue;
 	at_updated: import('firebase/firestore').FieldValue;
@@ -51,8 +54,8 @@ type place = {
 };
 
 type post = {
-	at_created: import('firebase/firestore').FieldValue;
-	at_updated: import('firebase/firestore').FieldValue;
+	at_created: Timestamp | FieldValue;
+	at_updated: Timestamp | FieldValue;
 
 	post_images: string[] | null;
 	post_caption: string;
@@ -64,8 +67,8 @@ type post = {
 } & place;
 
 type item = {
-	at_created: import('firebase/firestore').FieldValue;
-	at_checked: import('firebase/firestore').FieldValue | null;
+	at_created: Timestamp | FieldValue;
+	at_checked: Timestamp | FieldValue | null;
 
 	doc_id: string;
 	is_checked: boolean;
