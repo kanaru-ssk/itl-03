@@ -16,14 +16,18 @@ import { useAuth } from 'hooks/Auth';
 
 // component取得
 import UserHeader from 'components/organisms/UserHeader';
+import UserProfile from 'components/organisms/UserProfile';
+import UserButtonContainer from 'components/organisms/UserButtonContainer';
+import UserTab from 'components/organisms/UserTab';
 import UserContents from 'components/organisms/UserContents';
 import Footer from 'components/organisms/Footer';
-import UserProfile from 'components/organisms/UserProfile';
-import UserTab from 'components/organisms/UserTab';
+
+import Button from 'components/atoms/Button';
 
 const UserPage = () => {
 	const { paramsUserId } = useParams();
 	const user = useAuth();
+	const isMypage: boolean = user.dbUser?.user_id === paramsUserId;
 
 	const [paramsUser, setParamsUser] = useState<dbUser | null>(null);
 	const [tab, setTab] = useState<tab>('list');
@@ -41,6 +45,10 @@ const UserPage = () => {
 				<main>
 					<div>
 						<UserProfile user={paramsUser} isMaypage={user.dbUser?.user_id === paramsUserId} />
+						<UserButtonContainer>
+							{isMypage && <Button onClick={() => {}}>プロフィール編集</Button>}
+							{/* {!isMypage && <Button onClick={() => {}}>フォロー</Button>} */}
+						</UserButtonContainer>
 						<UserTab tab={tab} setTab={setTab} />
 						<UserContents uid={paramsUser.user_uid} tab={tab} />
 					</div>

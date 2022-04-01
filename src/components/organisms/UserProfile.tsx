@@ -4,7 +4,6 @@
 import ProfileIcon from 'components/atoms/ProfileIcon';
 import UserName from 'components/atoms/UserName';
 import UserCounter from 'components/atoms/UserCounter';
-import Button from 'components/atoms/Button';
 
 // css取得
 import style from './UserProfile.module.scss';
@@ -38,7 +37,7 @@ const UserProfile = ({ user, isMaypage }: Props) => {
 				<div>
 					<ProfileIcon src={user?.user_icon} />
 				</div>
-				{/* <div className={style.flex}>
+				<div className={style.flex}>
 					<div className={style.counter}>
 						<UserCounter num={checkedPerList()} />
 						<br />
@@ -54,22 +53,13 @@ const UserProfile = ({ user, isMaypage }: Props) => {
 						<br />
 						フォロー中
 					</div>
-				</div> */}
+				</div>
 			</div>
 
 			<div className={style.name}>
 				<UserName name={user?.user_name} />
 			</div>
 			<div>{user?.user_bio}</div>
-
-			<div className={style.buttons}>
-				{isMaypage && <Button onClick={() => {}}>プロフィール編集</Button>}
-				{/* {!isMaypage && (
-					<div>
-						<Button onClick={() => {}}>フォロー</Button>
-					</div>
-				)} */}
-			</div>
 		</div>
 	);
 };
