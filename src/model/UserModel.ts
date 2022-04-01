@@ -103,3 +103,25 @@ export const updateUserData = async (dbUser: dbUser, part: Partial<dbUser>) => {
 		at_updated: serverTimestamp()
 	});
 };
+
+export const generateShareLink = async (uid: string | undefined, user_id: string | undefined) => {
+	if (uid === undefined) return;
+
+	const { Timestamp } = await import('firebase/firestore');
+	const { getList } = await import('model/ListModel');
+	const now = Timestamp.now();
+	const results = await getList(uid, false, now, 3);
+
+	let items: string = '';
+	results.forEach((value) => {
+		items += '・' + value.place_name + '%0A';
+	});
+	items += '・...%0A';
+
+	const linkUrl = 'https://' + process.env.REACT_APP_FB_DOMAIN_WEBAPP + '/' + user_id;
+	const hashtag = '行きたいとこリスト';
+	const text = '行きたいとこリストを更新しました!';
+	const URL =
+		'http://twitter.com/share?url=' + linkUrl + '&text=' + text + '%0A' + items + '%0A%20%23' + hashtag + '%20%0A';
+	return URL;
+};

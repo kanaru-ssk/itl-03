@@ -1,7 +1,7 @@
 // 投稿一覧
 
 // model取得
-import { logout } from 'model/AuthModel';
+import { generateShareLink } from 'model/UserModel';
 
 // hooks取得
 import { useAuth } from 'hooks/Auth';
@@ -22,13 +22,10 @@ const UserHeaderMenu = ({ paramsUserUid }: Props) => {
 	const slider = useSlider();
 	const modal = useModal();
 
-	const shareOnTwitter = () => {
-		slider(null);
-		const linkUrl = 'https://' + process.env.REACT_APP_FB_DOMAIN_WEBAPP + '/' + paramsUserUid;
-		const hashtag = '行きたいとこリスト';
-		const text = '行きたいとこリストを更新しました!';
-		const URL = 'http://twitter.com/share?url=' + linkUrl + '&text=' + text + '%0A%20%23' + hashtag + '%20';
-		location.href = URL;
+	const shareOnTwitter = async () => {
+		const URL = await generateShareLink(user.dbUser?.user_uid, paramsUserUid);
+
+		if (URL) location.href = URL;
 	};
 
 	const copyLink = () => {
