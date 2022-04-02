@@ -10,6 +10,8 @@ import ExplorePage from 'components/pages/ExplorePage';
 import NoticePage from 'components/pages/NoticePage';
 import MessagePage from 'components/pages/MessagePage';
 import UserPage from 'components/pages/UserPage';
+import UserFollowsPage from 'components/pages/UserFollowsPage';
+import NotFoundPage from 'components/pages/NotFoundPage';
 
 // css取得
 import './App.scss';
@@ -25,6 +27,8 @@ const App = () => {
 				<Route path="/notice" element={<NoticePage />} />
 				<Route path="/message" element={<MessagePage />} />
 				<Route path="/:paramsUserId" element={<UserPage />} />
+				<Route path="/:paramsUserId/follows" element={<UserFollowsPage />} />
+				<Route path="*" element={<NotFoundPage />} />
 			</Routes>
 
 			<LoadPage />
