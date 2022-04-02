@@ -1,12 +1,11 @@
 // ユーザーページ
 
-// 匿名認証 => ユーザーページ
-// 表示userとログインuserが異なる => ユーザーページ
-// 表示userとログインuserが同じ => マイページ
+// paramsUserが存在する => ユーザーページ
+// paramsUserが存在しない => NotFound
 
 // react取得
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 
 // model取得
 import { getUserDataByUserId } from 'model/UserModel';
@@ -22,6 +21,7 @@ import UserTab from 'components/organisms/UserTab';
 import UserContents from 'components/organisms/UserContents';
 import UserEdit from 'components/organisms/UserEdit';
 import Footer from 'components/organisms/Footer';
+import NotFoundPage from './NotFoundPage';
 
 const UserPage = () => {
 	const { paramsUserId } = useParams();
@@ -54,7 +54,7 @@ const UserPage = () => {
 			</>
 		);
 	} else {
-		return <div>not found</div>;
+		return <NotFoundPage />;
 	}
 };
 
