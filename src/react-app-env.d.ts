@@ -10,10 +10,10 @@ type FieldValue = import('firebase/firestore').FieldValue;
 type Timestamp = import('firebase/firestore').Timestamp;
 
 type dbUser = {
-	at_created: import('firebase/firestore').FieldValue;
-	at_updated: import('firebase/firestore').FieldValue;
+	at_created: Timestamp | FieldValue;
+	at_updated: Timestamp | FieldValue;
 
-	count_follows: number;
+	count_following: number;
 	count_followers: number;
 	count_list: number;
 	count_list_checked: number;
@@ -27,6 +27,20 @@ type dbUser = {
 	user_twitter_sys_id: string;
 	user_is_public: boolean;
 } | null;
+
+type follow = {
+	at_created: Timestamp | FieldValue;
+	at_updated: Timestamp | FieldValue;
+
+	is_read: boolean;
+
+	user_uid: string;
+	user_id: string;
+	user_name: string;
+	user_icon: string;
+	user_bio: string;
+	user_is_public: boolean;
+};
 
 type authContextProps = {
 	authUser: authUser;
