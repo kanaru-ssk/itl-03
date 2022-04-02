@@ -48,7 +48,7 @@ const UserProfile = ({ paramsUser }: Props) => {
 						フォロワー
 					</div>
 					<div className={style.counter}>
-						<UserCounter num={countToString(paramsUser?.count_follows)} />
+						<UserCounter num={countToString(paramsUser?.count_following)} />
 						<br />
 						フォロー中
 					</div>

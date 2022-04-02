@@ -11,7 +11,7 @@ export const getUserDataByUid = async (uid: string) => {
 			at_created: docSnap.data().at_created,
 			at_updated: docSnap.data().at_updated,
 
-			count_follows: docSnap.data().count_follows,
+			count_following: docSnap.data().count_following,
 			count_followers: docSnap.data().count_followers,
 			count_list: docSnap.data().count_list,
 			count_list_checked: docSnap.data().count_list_checked,
@@ -45,7 +45,7 @@ export const getUserDataByUserId = async (user_id: string | undefined): Promise<
 			at_created: querySnap.docs[0].data().at_created,
 			at_updated: querySnap.docs[0].data().at_updated,
 
-			count_follows: querySnap.docs[0].data().count_follows,
+			count_following: querySnap.docs[0].data().count_following,
 			count_followers: querySnap.docs[0].data().count_followers,
 			count_list: querySnap.docs[0].data().count_list,
 			count_list_checked: querySnap.docs[0].data().count_list_checked,
@@ -74,7 +74,7 @@ export const createUserData = async (uid: string, newUserData: dbUser) => {
 		at_created: serverTimestamp(),
 		at_updated: serverTimestamp(),
 
-		count_follows: newUserData.count_follows,
+		count_following: newUserData.count_following,
 		count_followers: newUserData.count_followers,
 		count_list: newUserData.count_list,
 		count_list_checked: newUserData.count_list_checked,
