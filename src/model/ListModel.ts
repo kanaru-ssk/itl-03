@@ -15,23 +15,27 @@ export const getOldestItem = async (uid: string | undefined, isChecked: boolean)
 	);
 	const querySnap = await getDocs(queryRef);
 
-	const item: item = {
-		at_created: querySnap.docs[0].data().at_created,
-		at_checked: querySnap.docs[0].data().at_checked,
+	if (0 < querySnap.size) {
+		const item: item = {
+			at_created: querySnap.docs[0].data().at_created,
+			at_checked: querySnap.docs[0].data().at_checked,
 
-		doc_id: querySnap.docs[0].id,
-		is_checked: querySnap.docs[0].data().is_checked,
+			doc_id: querySnap.docs[0].id,
+			is_checked: querySnap.docs[0].data().is_checked,
 
-		user_uid: querySnap.docs[0].data().user_uid,
-		user_twitter_sys_id: querySnap.docs[0].data().user_twitter_sys_id,
+			user_uid: querySnap.docs[0].data().user_uid,
+			user_twitter_sys_id: querySnap.docs[0].data().user_twitter_sys_id,
 
-		place_id: querySnap.docs[0].data().place_id,
-		place_name: querySnap.docs[0].data().place_name,
-		place_type: querySnap.docs[0].data().place_type,
-		place_photo: querySnap.docs[0].data().place_photo
-	};
+			place_id: querySnap.docs[0].data().place_id,
+			place_name: querySnap.docs[0].data().place_name,
+			place_type: querySnap.docs[0].data().place_type,
+			place_photo: querySnap.docs[0].data().place_photo
+		};
 
-	return item;
+		return item;
+	} else {
+		return null;
+	}
 };
 
 // user_idからアイテムデータ取得
