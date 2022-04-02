@@ -9,10 +9,10 @@ import UserCounter from 'components/atoms/UserCounter';
 import style from './UserProfile.module.scss';
 
 type Props = {
-	user: dbUser;
+	paramsUser: dbUser;
 };
 
-const UserProfile = ({ user }: Props) => {
+const UserProfile = ({ paramsUser }: Props) => {
 	const countToString = (num: number | undefined): string => {
 		if (num === undefined) {
 			return '0';
@@ -23,8 +23,8 @@ const UserProfile = ({ user }: Props) => {
 	};
 
 	const checkedPerList = (): string => {
-		if (user) {
-			const str = user.count_list_checked.toString() + '/' + user.count_list.toString();
+		if (paramsUser) {
+			const str = paramsUser.count_list_checked.toString() + '/' + paramsUser.count_list.toString();
 			return str;
 		} else {
 			return '0';
@@ -34,7 +34,7 @@ const UserProfile = ({ user }: Props) => {
 		<div className={style.container}>
 			<div className={style.grid}>
 				<div>
-					<ProfileIcon src={user?.user_icon} />
+					<ProfileIcon src={paramsUser?.user_icon} />
 				</div>
 				<div className={style.flex}>
 					<div className={style.counter}>
@@ -43,12 +43,12 @@ const UserProfile = ({ user }: Props) => {
 						達成済み
 					</div>
 					<div className={style.counter}>
-						<UserCounter num={countToString(user?.count_followers)} />
+						<UserCounter num={countToString(paramsUser?.count_followers)} />
 						<br />
 						フォロワー
 					</div>
 					<div className={style.counter}>
-						<UserCounter num={countToString(user?.count_follows)} />
+						<UserCounter num={countToString(paramsUser?.count_follows)} />
 						<br />
 						フォロー中
 					</div>
@@ -56,9 +56,9 @@ const UserProfile = ({ user }: Props) => {
 			</div>
 
 			<div className={style.name}>
-				<UserName name={user?.user_name} />
+				<UserName name={paramsUser?.user_name} />
 			</div>
-			<div>{user?.user_bio}</div>
+			<div>{paramsUser?.user_bio}</div>
 		</div>
 	);
 };

@@ -17,43 +17,34 @@ import { useAuth } from 'hooks/Auth';
 // component取得
 import UserHeader from 'components/organisms/UserHeader';
 import UserProfile from 'components/organisms/UserProfile';
-import UserButtonContainer from 'components/organisms/UserButtonContainer';
+import UserButtons from 'components/organisms/UserButtons';
 import UserTab from 'components/organisms/UserTab';
 import UserContents from 'components/organisms/UserContents';
 import UserEdit from 'components/organisms/UserEdit';
 import Footer from 'components/organisms/Footer';
 
-import Button from 'components/atoms/Button';
-
 const UserPage = () => {
 	const { paramsUserId } = useParams();
 	const user = useAuth();
-	const isMypage: boolean = user.dbUser?.user_id === paramsUserId;
 
 	const [paramsUser, setParamsUser] = useState<dbUser | null>(null);
 	const [tab, setTab] = useState<tab>('list');
 	const [isEditOpen, setIsEditOpen] = useState<boolean>(false);
 
 	useEffect(() => {
-		getUserDataByUserId(paramsUserId).then((user) => {
-			setParamsUser(user);
+		getUserDataByUserId(paramsUserId).then((_user) => {
+			setParamsUser(_user);
 		});
 	}, [paramsUserId]);
-
-	useEffect(() => {
-		setParamsUser(user.dbUser);
-	}, [user]);
 
 	if (paramsUser) {
 		return (
 			<>
 				<UserHeader paramsUserId={paramsUserId} />
 				<main>
-					<UserProfile user={paramsUser} />
-					<UserButtonContainer>
-						{isMypage && <Button onClick={() => setIsEditOpen(true)}>プロフィール編集</Button>}
-						{/* {!isMypage && <Button onClick={() => {}}>フォロー</Button>} */}
-					</UserButtonContainer>
+					<UserProfile paramsUser={paramsUser} />
+					<UserButtons paramsUserId={paramsUserId} paramsUser={paramsUser} setIsEditOpen={setIsEditOpen} />
+
 					<UserTab tab={tab} setTab={setTab} />
 					<UserContents uid={paramsUser.user_uid} tab={tab} />
 
