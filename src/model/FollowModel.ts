@@ -1,5 +1,79 @@
 // フォロー関係の処理
 
+// 最も古いフォローデータ取得
+export const getOldestFollow = async (uid: string | undefined): Promise<follow | null> => {
+	if (uid === undefined) return null;
+
+	const { getFirestore, collection, getDocs, query, orderBy, limit } = await import('firebase/firestore');
+
+	const db = getFirestore();
+	const queryRef = query(collection(db, 'users', uid, 'following'), orderBy('at_created', 'asc'), limit(1));
+	const querySnap = await getDocs(queryRef);
+
+	if (0 < querySnap.size) {
+		const follow: follow = {
+			at_created: querySnap.docs[0].data().at_created,
+			at_updated: querySnap.docs[0].data().at_updated,
+
+			is_read: querySnap.docs[0].data().is_read,
+
+			user_uid: querySnap.docs[0].id,
+			user_id: querySnap.docs[0].data().user_id,
+			user_name: querySnap.docs[0].data().user_name,
+			user_icon: querySnap.docs[0].data().user_icon,
+			user_bio: querySnap.docs[0].data().user_bio,
+			user_is_public: querySnap.docs[0].data().user_is_public
+		};
+
+		return follow;
+	} else {
+		return null;
+	}
+};
+
+// user_uidからフォローリスト取得
+export const getFollows = async (
+	uid: string | undefined,
+	start: Timestamp | FieldValue,
+	limitNum: number
+): Promise<follow[]> => {
+	if (uid === undefined) return [];
+
+	const { getFirestore, collection, getDocs, query, orderBy, startAfter, limit } = await import('firebase/firestore');
+
+	const db = getFirestore();
+	const queryRef = query(
+		collection(db, 'users', uid, 'following'),
+		orderBy('at_updated', 'desc'),
+		startAfter(start),
+		limit(limitNum)
+	);
+
+	const querySnap = await getDocs(queryRef);
+
+	if (0 < querySnap.size) {
+		const follows: follow[] = querySnap.docs.map((doc) => {
+			return {
+				at_created: doc.data().at_created,
+				at_updated: doc.data().at_checked,
+
+				is_read: doc.data().is_read,
+
+				user_uid: doc.id,
+				user_id: doc.data().user_id,
+				user_name: doc.data().user_name,
+				user_icon: doc.data().user_icon,
+				user_bio: doc.data().user_bio,
+				user_is_public: doc.data().user_is_public
+			};
+		});
+
+		return follows;
+	} else {
+		return [];
+	}
+};
+
 // フォロー
 export const follow = async (authUid: string | undefined, paramsUser: dbUser): Promise<void> => {
 	if (!authUid || !paramsUser) return;
@@ -7,7 +81,7 @@ export const follow = async (authUid: string | undefined, paramsUser: dbUser): P
 
 	const db = getFirestore();
 
-	const followUser: Partial<dbUser> & { is_read: boolean } = {
+	const followUser: Omit<follow, 'user_uid'> = {
 		at_created: serverTimestamp(),
 		at_updated: serverTimestamp(),
 
@@ -20,7 +94,7 @@ export const follow = async (authUid: string | undefined, paramsUser: dbUser): P
 		user_is_public: paramsUser.user_is_public
 	};
 
-	setDoc(doc(db, 'users', authUid, 'follows', paramsUser.user_uid), followUser);
+	setDoc(doc(db, 'users', authUid, 'following', paramsUser.user_uid), followUser);
 };
 
 // フォローしてるかチェック
@@ -28,10 +102,14 @@ export const checkFollow = async (authUid: string, paramsUserId: string): Promis
 	if (!authUid || !paramsUserId) return false;
 	const { getFirestore, query, collection, where, limit, getDocs } = await import('firebase/firestore');
 	const db = getFirestore();
-	const queryRef = query(collection(db, 'users', authUid, 'follows'), where('user_id', '==', paramsUserId), limit(1));
+	const queryRef = query(
+		collection(db, 'users', authUid, 'followsing'),
+		where('user_id', '==', paramsUserId),
+		limit(1)
+	);
 
 	const querySnap = await getDocs(queryRef);
-	return 1 <= querySnap.size;
+	return 0 < querySnap.size;
 };
 
 // フォロー解除
@@ -40,7 +118,7 @@ export const deleteFollow = async (authUid: string | undefined, paramsUid: strin
 	const { getFirestore, doc, deleteDoc } = await import('firebase/firestore');
 
 	const db = getFirestore();
-	deleteDoc(doc(db, 'users', authUid, 'follows', paramsUid));
+	deleteDoc(doc(db, 'users', authUid, 'following', paramsUid));
 };
 
 // ドキュメントidからユーザーデータ取得
@@ -54,7 +132,7 @@ export const getUserDataByUid = async (uid: string) => {
 			at_created: docSnap.data().at_created,
 			at_updated: docSnap.data().at_updated,
 
-			count_follows: docSnap.data().count_follows,
+			count_following: docSnap.data().count_following,
 			count_followers: docSnap.data().count_followers,
 			count_list: docSnap.data().count_list,
 			count_list_checked: docSnap.data().count_list_checked,
@@ -81,14 +159,12 @@ export const getUserDataByUserId = async (user_id: string | undefined): Promise<
 	const queryRef = query(collection(db, 'users'), where('user_id', '==', user_id));
 
 	const querySnap = await getDocs(queryRef);
-	if (querySnap.size === 0) {
-		return null;
-	} else {
+	if (0 < querySnap.size) {
 		const result: dbUser = {
 			at_created: querySnap.docs[0].data().at_created,
 			at_updated: querySnap.docs[0].data().at_updated,
 
-			count_follows: querySnap.docs[0].data().count_follows,
+			count_following: querySnap.docs[0].data().count_following,
 			count_followers: querySnap.docs[0].data().count_followers,
 			count_list: querySnap.docs[0].data().count_list,
 			count_list_checked: querySnap.docs[0].data().count_list_checked,
@@ -103,6 +179,8 @@ export const getUserDataByUserId = async (user_id: string | undefined): Promise<
 			user_is_public: querySnap.docs[0].data().user_is_public
 		};
 		return result;
+	} else {
+		return null;
 	}
 };
 
@@ -117,7 +195,7 @@ export const createUserData = async (uid: string, newUserData: dbUser) => {
 		at_created: serverTimestamp(),
 		at_updated: serverTimestamp(),
 
-		count_follows: newUserData.count_follows,
+		count_following: newUserData.count_following,
 		count_followers: newUserData.count_followers,
 		count_list: newUserData.count_list,
 		count_list_checked: newUserData.count_list_checked,
@@ -147,6 +225,7 @@ export const updateUserData = async (dbUser: dbUser, part: Partial<dbUser>) => {
 	});
 };
 
+// Twitter共有リンク作成
 export const generateShareLink = async (uid: string | undefined, user_id: string | undefined) => {
 	if (uid === undefined) return;
 
