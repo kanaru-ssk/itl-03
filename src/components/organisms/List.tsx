@@ -17,7 +17,7 @@ import { useSlider } from 'hooks/Slider';
 // component取得
 import Loading from 'components/atoms/Loading';
 import Item from 'components/molecules/Item';
-import ListMenu from 'components/organisms/ListMenu';
+import ListMenu from 'components/organisms/ListSlider';
 
 // css取得
 import style from './List.module.scss';

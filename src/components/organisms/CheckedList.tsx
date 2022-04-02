@@ -17,7 +17,7 @@ import { useSlider } from 'hooks/Slider';
 // component取得
 import Loading from 'components/atoms/Loading';
 import CheckedItem from 'components/molecules/CheckedItem';
-import ListMenu from 'components/organisms/ListMenu';
+import ListMenu from 'components/organisms/ListSlider';
 
 // css取得
 import style from './CheckedList.module.scss';

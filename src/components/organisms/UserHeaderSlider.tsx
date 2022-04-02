@@ -17,7 +17,7 @@ type Props = {
 	paramsUserUid: string | undefined;
 };
 
-const UserHeaderMenu = ({ paramsUserUid }: Props) => {
+const UserHeaderSlider = ({ paramsUserUid }: Props) => {
 	const user = useAuth();
 	const slider = useSlider();
 	const modal = useModal();
@@ -61,4 +61,4 @@ const UserHeaderMenu = ({ paramsUserUid }: Props) => {
 	);
 };
 
-export default UserHeaderMenu;
+export default UserHeaderSlider;

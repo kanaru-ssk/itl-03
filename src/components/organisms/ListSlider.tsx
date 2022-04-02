@@ -11,7 +11,7 @@ import ModalItemCheck from './ModalItemCheck';
 import ModalItemDelete from './ModalItemDelete';
 
 // css取得
-import style from './ListMenu.module.scss';
+import style from './ListSlider.module.scss';
 
 type Props = {
 	item: item;
@@ -19,7 +19,7 @@ type Props = {
 	setList: React.Dispatch<React.SetStateAction<item[]>>;
 };
 
-const ListMenu = ({ item, list, setList }: Props) => {
+const ListSlider = ({ item, list, setList }: Props) => {
 	const slider = useSlider();
 	const modal = useModal();
 
@@ -52,4 +52,4 @@ const ListMenu = ({ item, list, setList }: Props) => {
 	);
 };
 
-export default ListMenu;
+export default ListSlider;
