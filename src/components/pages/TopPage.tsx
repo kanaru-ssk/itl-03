@@ -1,8 +1,5 @@
 // トップページ
 
-// model取得
-import { logout } from 'model/AuthModel';
-
 // hooks取得
 import { useAuth } from 'hooks/Auth';
 
@@ -10,6 +7,7 @@ import { useAuth } from 'hooks/Auth';
 import BaseHeader from 'components/organisms/BaseHeader';
 import Footer from 'components/organisms/Footer';
 import Login from 'components/organisms/Login';
+import Follows from 'components/organisms/Follows';
 
 const Home = () => {
 	const user = useAuth();
@@ -21,8 +19,8 @@ const Home = () => {
 			<>
 				<BaseHeader />
 				<main>
-					<h1>Home</h1>
-					<button onClick={logout}>ログアウト</button>
+					<h1>行きたいとこリスト</h1>
+					<Follows uid={user.dbUser?.user_uid} />
 				</main>
 				<Footer />
 			</>
