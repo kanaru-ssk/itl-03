@@ -1,11 +1,12 @@
 // ユーザーページ
 
-// paramsUserが存在する => ユーザーページ
+// paramsUserが存在する && ログインユーザーではない => ユーザーページ
+// paramsUserが存在する && ログインユーザー => マイページ
 // paramsUserが存在しない => NotFound
 
 // react取得
 import { useState, useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 // model取得
 import { getUserDataByUserId } from 'model/UserModel';
@@ -30,14 +31,31 @@ const UserPage = () => {
 	const [paramsUser, setParamsUser] = useState<dbUser | null>(null);
 	const [tab, setTab] = useState<tab>('list');
 	const [isEditOpen, setIsEditOpen] = useState<boolean>(false);
+	const [isNotFound, setIsNotFound] = useState<boolean>(false);
+	const [isMypage, setIsMypage] = useState<boolean>(false);
 
 	useEffect(() => {
 		getUserDataByUserId(paramsUserId).then((_user) => {
 			setParamsUser(_user);
+			if (!_user) setIsNotFound(true);
 		});
 	}, [paramsUserId]);
 
-	if (paramsUser) {
+	useEffect(() => {
+		if (paramsUser?.user_uid === user.dbUser?.user_uid) {
+			setIsMypage(true);
+		} else {
+			setIsMypage(false);
+		}
+	}, [paramsUser, user.dbUser]);
+
+	useEffect(() => {
+		if (isMypage) {
+			setParamsUser(user.dbUser);
+		}
+	}, [user.dbUser]);
+
+	if (!isNotFound) {
 		return (
 			<>
 				<UserHeader paramsUserId={paramsUserId} />
@@ -46,7 +64,8 @@ const UserPage = () => {
 					<UserButtons paramsUserId={paramsUserId} paramsUser={paramsUser} setIsEditOpen={setIsEditOpen} />
 
 					<UserTab tab={tab} setTab={setTab} />
-					<UserContents uid={paramsUser.user_uid} tab={tab} />
+
+					{paramsUser && <UserContents paramsUid={paramsUser?.user_uid} tab={tab} />}
 
 					<UserEdit dbUser={user.dbUser} isEditOpen={isEditOpen} setIsEditOpen={setIsEditOpen} />
 				</main>
