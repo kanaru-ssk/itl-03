@@ -28,6 +28,16 @@ type dbUser = {
 	user_is_public: boolean;
 } | null;
 
+type userConts = {
+	user_id: string;
+	count_list: number;
+	count_list_checked: number;
+	count_following: number;
+	count_followers: number;
+};
+
+type followType = 'following' | 'followers';
+
 type follow = {
 	at_created: Timestamp | FieldValue;
 	at_updated: Timestamp | FieldValue;
@@ -61,10 +71,10 @@ type placeType =
 	| 'lodging';
 
 type place = {
-	place_id: string | undefined;
+	place_id: string;
 	place_name: string;
 	place_type: string;
-	place_photo: string | undefined;
+	place_photo: string;
 };
 
 type post = {
