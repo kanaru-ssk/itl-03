@@ -15,7 +15,7 @@ type Props = {
 	setIsFollow: React.Dispatch<React.SetStateAction<boolean | undefined>>;
 };
 
-const UserFollowSlider = ({ authUid, paramsUserUid, setIsFollow }: Props) => {
+const UserUnFollowSlider = ({ authUid, paramsUserUid, setIsFollow }: Props) => {
 	const slider = useSlider();
 	const onDeleteFollow = () => {
 		slider(null);
@@ -31,4 +31,4 @@ const UserFollowSlider = ({ authUid, paramsUserUid, setIsFollow }: Props) => {
 	);
 };
 
-export default UserFollowSlider;
+export default UserUnFollowSlider;

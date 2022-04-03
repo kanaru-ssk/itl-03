@@ -23,7 +23,7 @@ import UserButtonContainer from 'components/atoms/UserButtonContainer';
 import Button from 'components/atoms/Button';
 import ButtonOrange from 'components/atoms/ButtonOrange';
 import ButtonLoading from 'components/atoms/ButtonLoading';
-import UserFollowSlider from 'components/organisms/UserFollowSlider';
+import UserUnFollowSlider from 'components/organisms/UserUnFollowSlider';
 
 type Props = {
 	paramsUserId: string | undefined;
@@ -87,7 +87,7 @@ const UserButtons = ({ paramsUserId, paramsUser, setIsEditOpen }: Props) => {
 				<Button
 					onClick={() =>
 						slider(
-							<UserFollowSlider
+							<UserUnFollowSlider
 								authUid={user.dbUser?.user_uid}
 								paramsUserUid={paramsUser?.user_uid}
 								setIsFollow={setIsFollow}
