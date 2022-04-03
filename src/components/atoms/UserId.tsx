@@ -4,11 +4,11 @@
 import style from './UserId.module.scss';
 
 type Props = {
-	children: React.ReactNode;
+	id: string | undefined;
 };
 
-const UserId = ({ children }: Props) => {
-	return <span className={style.id}>@{children}</span>;
+const UserId = ({ id }: Props) => {
+	return <span className={style.id}>@{id}</span>;
 };
 
 export default UserId;
