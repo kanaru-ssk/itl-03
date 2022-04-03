@@ -23,10 +23,10 @@ import ListMenu from 'components/organisms/ListSlider';
 import style from './CheckedList.module.scss';
 
 type Props = {
-	uid: string;
+	paramsUid: string;
 };
 
-const CheckedList = ({ uid }: Props) => {
+const CheckedList = ({ paramsUid }: Props) => {
 	const user = useAuth();
 	const slider = useSlider();
 	const [list, setList] = useState<item[]>([]);
@@ -37,17 +37,17 @@ const CheckedList = ({ uid }: Props) => {
 	const hasMore = oldest ? !Boolean(list.find((i) => i.doc_id === oldest.doc_id)) : false;
 
 	useEffect(() => {
-		getOldestItem(uid, true).then((result) => {
+		getOldestItem(paramsUid, true).then((result) => {
 			setOldest(result);
 		});
-		getList(uid, true, now, limit).then((results) => {
+		getList(paramsUid, true, now, limit).then((results) => {
 			setList(results);
 		});
-	}, [uid]);
+	}, [paramsUid]);
 
 	const onContextMenu = (e: any, item: item) => {
 		e.preventDefault();
-		if (user.authUser?.isAnonymous) return;
+		if (user.dbUser?.user_uid !== paramsUid) return;
 
 		slider(<ListMenu item={item} list={list} setList={setList} />);
 	};
@@ -55,7 +55,7 @@ const CheckedList = ({ uid }: Props) => {
 	const onMoreLoad = () => {
 		if (list[list.length - 1]) {
 			const last = list[list.length - 1].at_created;
-			getList(uid, true, last, limit).then((results) => {
+			getList(paramsUid, true, last, limit).then((results) => {
 				setList([...list, ...results]);
 			});
 		}
