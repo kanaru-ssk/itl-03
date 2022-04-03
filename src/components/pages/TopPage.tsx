@@ -19,8 +19,8 @@ const Home = () => {
 			<>
 				<BaseHeader />
 				<main>
-					<h1>行きたいとこリスト</h1>
-					<Follows uid={user.dbUser?.user_uid} />
+					<h3>行きたいとこリスト</h3>
+					<Follows uid={user.dbUser?.user_uid} type="following" />
 				</main>
 				<Footer />
 			</>
