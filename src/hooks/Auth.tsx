@@ -15,9 +15,9 @@ export const AuthProvider = ({ children }: node) => {
 	const [authUser, setAuthUser] = useState<authUser>(null);
 	const [dbUser, setDBUser] = useState<dbUser>(null);
 
-	useEffect(() => {
-		const auth = getAuth();
+	const auth = getAuth();
 
+	useEffect(() => {
 		onAuthStateChanged(auth, async (_user: any) => {
 			if (_user) {
 				setAuthUser(_user);
