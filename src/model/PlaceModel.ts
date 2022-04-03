@@ -118,12 +118,12 @@ export const getPlaceDetails = (placeId: string) => {
 };
 
 export const convertPlace = (placeResult: google.maps.places.PlaceResult): place => {
+	const place_id: string = placeResult.place_id ? placeResult.place_id : '';
 	const type: string = placeResult.types ? placeResult.types[0] : '';
-
-	const photo: string | undefined = placeResult.photos?.[0].getUrl({ maxWidth: 400 });
+	const photo: string = placeResult.photos ? placeResult.photos[0].getUrl({ maxWidth: 400 }) : '';
 
 	const place: place = {
-		place_id: placeResult.place_id,
+		place_id: place_id,
 		place_name: placeResult.name,
 		place_type: type,
 		place_photo: photo
