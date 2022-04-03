@@ -8,5 +8,8 @@
 
 .item {
 	padding: 16px 0;
-	border-bottom: $borderWeight solid $borderColor;
+	background-color: $baseColor;
+	&:active {
+		background-color: $activeColor;
+	}
 }
