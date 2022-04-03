@@ -4,6 +4,7 @@ export const getOgp = async (url: string | undefined) => {
 	const { getFunctions, httpsCallable } = await import('firebase/functions');
 
 	const functions = getFunctions();
+	functions.region = 'asia-northeast1';
 	const get = httpsCallable(functions, 'getOgpFromExternalWebsite');
 
 	const result = await get({ url: url });
