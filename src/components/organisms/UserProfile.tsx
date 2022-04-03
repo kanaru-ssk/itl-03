@@ -1,5 +1,8 @@
 // プロフィール
 
+// react取得
+import { Link } from 'react-router-dom';
+
 // component取得
 import ProfileIcon from 'components/atoms/ProfileIcon';
 import UserName from 'components/atoms/UserName';
@@ -43,14 +46,18 @@ const UserProfile = ({ paramsUser }: Props) => {
 						達成済み
 					</div>
 					<div className={style.counter}>
-						<UserCounter num={countToString(paramsUser?.count_followers)} />
-						<br />
-						フォロワー
+						<Link to={`/${paramsUser?.user_id}/followers`} key={1}>
+							<UserCounter num={countToString(paramsUser?.count_followers)} />
+							<br />
+							フォロワー
+						</Link>
 					</div>
 					<div className={style.counter}>
-						<UserCounter num={countToString(paramsUser?.count_following)} />
-						<br />
-						フォロー中
+						<Link to={`/${paramsUser?.user_id}/following`} key={1}>
+							<UserCounter num={countToString(paramsUser?.count_following)} />
+							<br />
+							フォロー中
+						</Link>
 					</div>
 				</div>
 			</div>
