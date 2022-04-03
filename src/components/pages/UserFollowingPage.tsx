@@ -10,33 +10,31 @@ import { useParams } from 'react-router-dom';
 // model取得
 import { getUserDataByUserId } from 'model/UserModel';
 
-// hooks取得
-import { useAuth } from 'hooks/Auth';
-
 // component取得
-import UserHeader from 'components/organisms/UserHeader';
+import UserFollowHeader from 'components/organisms/UserFollowHeader';
 import Follows from 'components/organisms/Follows';
 import Footer from 'components/organisms/Footer';
 import NotFoundPage from 'components/pages/NotFoundPage';
 
-const UserFollowsPage = () => {
+const UserFollowingPage = () => {
 	const { paramsUserId } = useParams();
-	const user = useAuth();
 
 	const [paramsUser, setParamsUser] = useState<dbUser | null>(null);
+	const [isNotFound, setIsNotFound] = useState<boolean>(false);
 
 	useEffect(() => {
 		getUserDataByUserId(paramsUserId).then((_user) => {
 			setParamsUser(_user);
+			if (!_user) setIsNotFound(true);
 		});
 	}, [paramsUserId]);
 
-	if (paramsUser) {
+	if (!isNotFound) {
 		return (
 			<>
-				<UserHeader paramsUserId={paramsUserId} />
+				<UserFollowHeader text="フォロー" />
 				<main>
-					<Follows uid={user.dbUser?.user_uid} />
+					<Follows uid={paramsUser?.user_uid} type="following" />
 				</main>
 				<Footer />
 			</>
@@ -46,4 +44,4 @@ const UserFollowsPage = () => {
 	}
 };
 
-export default UserFollowsPage;
+export default UserFollowingPage;

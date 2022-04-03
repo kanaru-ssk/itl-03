@@ -10,77 +10,73 @@ import InfiniteScroll from 'react-infinite-scroller';
 // model取得
 import { getFollows, getOldestFollow } from 'model/FollowModel';
 
-// hooks取得
-import { useAuth } from 'hooks/Auth';
-import { useSlider } from 'hooks/Slider';
-
 // component取得
 import User from 'components/molecules/User';
+import FollowUser from 'components/molecules/FollowUser';
+import Loading from 'components/atoms/Loading';
 
 // css取得
 import style from './Follows.module.scss';
 
 type Props = {
 	uid: string | undefined;
+	type: followType;
 };
 
-const Follows = ({ uid }: Props) => {
-	const user = useAuth();
-	const slider = useSlider();
+const Follows = ({ uid, type }: Props) => {
 	const [follows, setFollows] = useState<follow[]>([]);
 	const [oldest, setOldest] = useState<follow | null>(null);
 
 	const now = Timestamp.now();
 	const limit = 20;
-	const hasMore = oldest ? !Boolean(follows.find((i) => i.user_uid === oldest.user_uid)) : false;
+	const order = 'at_created';
 
 	useEffect(() => {
 		if (uid) {
-			getOldestFollow(uid).then((result) => {
+			getOldestFollow(uid, type, order).then((result) => {
 				setOldest(result);
 			});
-			getFollows(uid, now, limit).then((results) => {
+			getFollows(uid, now, limit, type, order).then((results) => {
 				setFollows(results);
 			});
 		}
 	}, [uid]);
 
-	const onContextMenu = (e: any, item: item) => {
-		e.preventDefault();
-		if (user.authUser?.isAnonymous) return;
-
-		// slider(<ListMenu item={item} list={list} setList={setList} />);
-	};
+	const hasMore = oldest ? !Boolean(follows.find((i) => i.user_uid === oldest.user_uid)) : false;
 
 	const onMoreLoad = () => {
 		if (follows[follows.length - 1]) {
 			const last = follows[follows.length - 1].at_created;
-			getFollows(uid, last, limit).then((results) => {
+			getFollows(uid, last, limit, type, order).then((results) => {
 				setFollows([...follows, ...results]);
 			});
 		}
 	};
 
 	return (
-		<div>
+		<InfiniteScroll
+			loadMore={onMoreLoad}
+			hasMore={hasMore}
+			loader={
+				<div key={0}>
+					<Loading />
+				</div>
+			}
+		>
 			<ul>
 				{follows.map((follow, key) => {
 					return (
-						<li
-							className={style.li}
-							key={key}
-							// onContextMenu={(e) => {
-							// 	onContextMenu(e, follow);
-							// }}
-						>
-							<User userId={follow.user_id} userIcon={follow.user_icon} userName={follow.user_name} />
-							{/* {follow.user_name} */}
-							{/* <Item item={follow} /> */}
+						<li className={style.li} key={key}>
+							<FollowUser
+								userId={follow.user_id}
+								userIcon={follow.user_icon}
+								userName={follow.user_name}
+							/>
 						</li>
 					);
 				})}
 			</ul>
-		</div>
+		</InfiniteScroll>
 	);
 };
 
