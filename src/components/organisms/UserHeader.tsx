@@ -13,6 +13,7 @@ import UserHeaderMenu from 'components/organisms/UserHeaderSlider';
 
 // css取得
 import style from './UserHeader.module.scss';
+
 type Props = {
 	paramsUserId: string | undefined;
 };
@@ -25,7 +26,7 @@ const UserHeader = ({ paramsUserId }: Props) => {
 	return (
 		<Header>
 			<div className={style.id}>
-				<UserId>{paramsUserId}</UserId>
+				<UserId id={paramsUserId} />
 			</div>
 
 			<img className={style.menu} src={menuImg} alt="menu" onClick={onClick} />
