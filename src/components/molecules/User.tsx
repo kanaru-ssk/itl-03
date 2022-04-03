@@ -19,19 +19,19 @@ type Props = {
 
 const User = ({ userId, userName, userIcon }: Props) => {
 	return (
-		<div className={style.container}>
-			<div className={style.icon}>
-				<Link to={'/' + userId}>
+		<Link to={'/' + userId}>
+			<div className={style.container}>
+				<div className={style.icon}>
 					<UserIcon src={userIcon} />
-				</Link>
+				</div>
+				<div className={style.name}>
+					<UserName name={userName} />
+				</div>
+				<div className={style.id}>
+					<UserId id={userId} />
+				</div>
 			</div>
-			<div className={style.name}>
-				<UserName name={userName} />
-			</div>
-			<div className={style.id}>
-				<UserId>{userId}</UserId>
-			</div>
-		</div>
+		</Link>
 	);
 };
 
