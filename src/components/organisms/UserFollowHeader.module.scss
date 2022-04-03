@@ -1,0 +1,20 @@
+@import 'variables';
+
+.header {
+	z-index: $headerIndex;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	max-width: $bodyMaxWidth;
+	height: $headerHeight;
+	border-bottom: $borderWeight solid $borderColor;
+	background-color: $baseColor;
+
+	display: flex;
+	align-items: center;
+}
+
+.title {
+	font-weight: 700;
+	padding-left: 16px;
+}
