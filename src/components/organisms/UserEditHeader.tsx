@@ -7,7 +7,6 @@ import prevImg from 'img/prev.svg';
 import { updateUserData } from 'model/UserModel';
 
 // hooks取得
-import { useAuth } from 'hooks/Auth';
 import { useModal } from 'hooks/Modal';
 
 // component取得
@@ -24,14 +23,12 @@ type Props = {
 };
 
 const UserEditHeader = ({ name, bio, dbUser, setIsEditOpen }: Props) => {
-	const user = useAuth();
 	const modal = useModal();
 	const onSave = () => {
 		if (name !== dbUser?.user_name || bio !== dbUser?.user_bio) {
 			setIsEditOpen(false);
 
 			updateUserData(dbUser, { user_name: name, user_bio: bio });
-			user.setDBUser({ ...user.dbUser, user_name: name, user_bio: bio });
 		} else {
 			setIsEditOpen(false);
 		}
