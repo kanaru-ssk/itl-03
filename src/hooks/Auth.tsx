@@ -7,7 +7,7 @@ import { getFirestore, onSnapshot, doc } from 'firebase/firestore';
 
 const AuthContext = createContext<authContextProps>({
 	authUser: null,
-	dbUser: null
+	dbUser: null,
 });
 
 // ログイン認証
@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }: node) => {
 	const db = getFirestore();
 
 	useEffect(() => {
-		onAuthStateChanged(auth, async (_user: any) => {
+		const unsubscribe = onAuthStateChanged(auth, async (_user: any) => {
 			if (_user) {
 				setAuthUser(_user);
 
@@ -37,11 +37,12 @@ export const AuthProvider = ({ children }: node) => {
 				signInAnonymously(auth);
 			}
 		});
+		return () => unsubscribe();
 	}, []);
 
 	useEffect(() => {
 		if (auth.currentUser && !auth.currentUser?.isAnonymous) {
-			onSnapshot(doc(db, 'users', auth.currentUser.uid), async (doc) => {
+			const unsubscribe = onSnapshot(doc(db, 'users', auth.currentUser.uid), async (doc) => {
 				if (doc.exists()) {
 					const _dbUser: dbUser = {
 						at_created: doc.data().at_created,
@@ -55,7 +56,7 @@ export const AuthProvider = ({ children }: node) => {
 						user_bio: doc.data().user_bio,
 						user_twitter_disp_id: doc.data().user_twitter_disp_id,
 						user_twitter_sys_id: doc.data().user_twitter_sys_id,
-						user_is_public: doc.data().user_is_public
+						user_is_public: doc.data().user_is_public,
 					};
 					setDBUser(_dbUser);
 				} else {
@@ -66,6 +67,7 @@ export const AuthProvider = ({ children }: node) => {
 					createUserData(auth.currentUser, providerData);
 				}
 			});
+			return () => unsubscribe();
 		}
 	}, [auth.currentUser]);
 
