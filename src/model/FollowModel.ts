@@ -4,7 +4,7 @@
 export const getOldestFollow = async (
 	uid: string | undefined,
 	type: followType,
-	order: string
+	order: string,
 ): Promise<follow | null> => {
 	if (uid === undefined) return null;
 
@@ -26,7 +26,7 @@ export const getOldestFollow = async (
 			user_name: querySnap.docs[0].data().user_name,
 			user_icon: querySnap.docs[0].data().user_icon,
 			user_bio: querySnap.docs[0].data().user_bio,
-			user_is_public: querySnap.docs[0].data().user_is_public
+			user_is_public: querySnap.docs[0].data().user_is_public,
 		};
 
 		return follow;
@@ -41,7 +41,7 @@ export const getFollows = async (
 	start: Timestamp | FieldValue,
 	limitNum: number,
 	type: followType,
-	order: string
+	order: string,
 ): Promise<follow[]> => {
 	if (uid === undefined) return [];
 
@@ -52,7 +52,7 @@ export const getFollows = async (
 		collection(db, 'users', uid, type),
 		orderBy(order, 'desc'),
 		startAfter(start),
-		limit(limitNum)
+		limit(limitNum),
 	);
 
 	const querySnap = await getDocs(queryRef);
@@ -70,7 +70,7 @@ export const getFollows = async (
 				user_name: doc.data().user_name,
 				user_icon: doc.data().user_icon,
 				user_bio: doc.data().user_bio,
-				user_is_public: doc.data().user_is_public
+				user_is_public: doc.data().user_is_public,
 			};
 		});
 
@@ -97,7 +97,7 @@ export const follow = async (authUid: string | undefined, paramsUser: dbUser): P
 		user_name: paramsUser.user_name,
 		user_icon: paramsUser.user_icon,
 		user_bio: paramsUser.user_bio,
-		user_is_public: paramsUser.user_is_public
+		user_is_public: paramsUser.user_is_public,
 	};
 
 	setDoc(doc(db, 'users', authUid, 'following', paramsUser.user_uid), followUser);
@@ -111,7 +111,7 @@ export const checkFollow = async (authUid: string, paramsUserId: string): Promis
 	const queryRef = query(
 		collection(db, 'users', authUid, 'following'),
 		where('user_id', '==', paramsUserId),
-		limit(1)
+		limit(1),
 	);
 
 	const querySnap = await getDocs(queryRef);
