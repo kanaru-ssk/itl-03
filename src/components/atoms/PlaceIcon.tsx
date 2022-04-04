@@ -1,7 +1,7 @@
 // プレイスアイコン
 
 // img取得
-import userImg from 'img/user.svg';
+import notFoundImg from 'img/notfound.svg';
 
 // css取得
 import style from './PlaceIcon.module.scss';
@@ -14,9 +14,9 @@ const PlaceIcon = ({ src }: Props) => {
 	return (
 		<img
 			className={style.icon}
-			src={src ? src : userImg}
+			src={src ? src : notFoundImg}
 			alt="place"
-			onError={(e: any) => (e.target.src = userImg)}
+			onError={(e: any) => (e.target.src = notFoundImg)}
 		/>
 	);
 };
