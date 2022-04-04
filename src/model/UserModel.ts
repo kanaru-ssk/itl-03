@@ -11,6 +11,8 @@ export const getUserDataByUid = async (uid: string) => {
 			at_created: docSnap.data().at_created,
 			at_updated: docSnap.data().at_updated,
 
+			is_public: docSnap.data().is_public,
+
 			user_uid: docSnap.id,
 			user_id: docSnap.data().user_id,
 			user_name: docSnap.data().user_name,
@@ -18,7 +20,6 @@ export const getUserDataByUid = async (uid: string) => {
 			user_bio: docSnap.data().user_bio,
 			user_twitter_disp_id: docSnap.data().user_twitter_disp_id,
 			user_twitter_sys_id: docSnap.data().user_twitter_sys_id,
-			user_is_public: docSnap.data().user_is_public
 		};
 		return result;
 	} else {
@@ -40,6 +41,8 @@ export const getUserDataByUserId = async (user_id: string | undefined): Promise<
 			at_created: querySnap.docs[0].data().at_created,
 			at_updated: querySnap.docs[0].data().at_updated,
 
+			is_public: querySnap.docs[0].data().is_public,
+
 			user_uid: querySnap.docs[0].id,
 			user_id: querySnap.docs[0].data().user_id,
 			user_name: querySnap.docs[0].data().user_name,
@@ -47,7 +50,6 @@ export const getUserDataByUserId = async (user_id: string | undefined): Promise<
 			user_bio: querySnap.docs[0].data().user_bio,
 			user_twitter_disp_id: querySnap.docs[0].data().user_twitter_disp_id,
 			user_twitter_sys_id: querySnap.docs[0].data().user_twitter_sys_id,
-			user_is_public: querySnap.docs[0].data().user_is_public
 		};
 		return result;
 	}
@@ -64,13 +66,14 @@ export const createUserData = async (authUser: authUser, provider: any) => {
 		at_created: serverTimestamp(),
 		at_updated: serverTimestamp(),
 
+		is_public: true,
+
 		user_id: provider.screenName,
 		user_name: authUser.displayName,
 		user_icon: authUser.photoURL,
 		user_bio: '',
 		user_twitter_disp_id: provider.screenName,
 		user_twitter_sys_id: authUser.providerData[0].uid,
-		user_is_public: true
 	};
 
 	setDoc(doc(db, 'users', authUser.uid), newUserData);
@@ -85,7 +88,7 @@ export const updateUserData = async (dbUser: dbUser, part: Partial<dbUser>) => {
 	const db = getFirestore();
 	updateDoc(doc(db, 'users', dbUser.user_uid), {
 		...part,
-		at_updated: serverTimestamp()
+		at_updated: serverTimestamp(),
 	});
 };
 
@@ -128,7 +131,7 @@ export const getCountsByUserId = async (user_id: string | undefined): Promise<us
 			count_list: querySnap.docs[0].data().count_list,
 			count_list_checked: querySnap.docs[0].data().count_list_checked,
 			count_following: querySnap.docs[0].data().count_following,
-			count_followers: querySnap.docs[0].data().count_followers
+			count_followers: querySnap.docs[0].data().count_followers,
 		};
 		return result;
 	}

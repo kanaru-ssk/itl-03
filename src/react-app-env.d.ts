@@ -20,7 +20,7 @@ type dbUser = {
 	user_bio: string;
 	user_twitter_disp_id: string;
 	user_twitter_sys_id: string;
-	user_is_public: boolean;
+	is_public: boolean;
 } | null;
 
 type userCount = {
@@ -39,13 +39,13 @@ type follow = {
 	at_updated: Timestamp | FieldValue;
 
 	is_read: boolean;
+	is_public: boolean;
 
 	user_uid: string;
 	user_id: string;
 	user_name: string;
 	user_icon: string;
 	user_bio: string;
-	user_is_public: boolean;
 };
 
 type authContextProps = {

@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }: node) => {
 						user_bio: doc.data().user_bio,
 						user_twitter_disp_id: doc.data().user_twitter_disp_id,
 						user_twitter_sys_id: doc.data().user_twitter_sys_id,
-						user_is_public: doc.data().user_is_public,
+						is_public: doc.data().is_public,
 					};
 					setDBUser(_dbUser);
 				} else {

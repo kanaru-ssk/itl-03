@@ -26,7 +26,7 @@ export const getOldestFollow = async (
 			user_name: querySnap.docs[0].data().user_name,
 			user_icon: querySnap.docs[0].data().user_icon,
 			user_bio: querySnap.docs[0].data().user_bio,
-			user_is_public: querySnap.docs[0].data().user_is_public,
+			is_public: querySnap.docs[0].data().is_public,
 		};
 
 		return follow;
@@ -64,13 +64,13 @@ export const getFollows = async (
 				at_updated: doc.data().at_checked,
 
 				is_read: doc.data().is_read,
+				is_public: doc.data().is_public,
 
 				user_uid: doc.id,
 				user_id: doc.data().user_id,
 				user_name: doc.data().user_name,
 				user_icon: doc.data().user_icon,
 				user_bio: doc.data().user_bio,
-				user_is_public: doc.data().user_is_public,
 			};
 		});
 
@@ -92,12 +92,12 @@ export const follow = async (authUid: string | undefined, paramsUser: dbUser): P
 		at_updated: serverTimestamp(),
 
 		is_read: false,
+		is_public: paramsUser.is_public,
 
 		user_id: paramsUser.user_id,
 		user_name: paramsUser.user_name,
 		user_icon: paramsUser.user_icon,
 		user_bio: paramsUser.user_bio,
-		user_is_public: paramsUser.user_is_public,
 	};
 
 	setDoc(doc(db, 'users', authUid, 'following', paramsUser.user_uid), followUser);
