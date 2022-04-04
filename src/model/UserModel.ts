@@ -11,11 +11,6 @@ export const getUserDataByUid = async (uid: string) => {
 			at_created: docSnap.data().at_created,
 			at_updated: docSnap.data().at_updated,
 
-			count_following: docSnap.data().count_following,
-			count_followers: docSnap.data().count_followers,
-			count_list: docSnap.data().count_list,
-			count_list_checked: docSnap.data().count_list_checked,
-
 			user_uid: docSnap.id,
 			user_id: docSnap.data().user_id,
 			user_name: docSnap.data().user_name,
@@ -32,7 +27,7 @@ export const getUserDataByUid = async (uid: string) => {
 };
 
 // ユーザーidからユーザーデータ取得
-export const getUserDataByUserId = async (user_id: string | undefined): Promise<dbUser | null> => {
+export const getUserDataByUserId = async (user_id: string | undefined): Promise<dbUser> => {
 	const { getFirestore, collection, query, where, getDocs, limit } = await import('firebase/firestore');
 	const db = getFirestore();
 	const queryRef = query(collection(db, 'users'), where('user_id', '==', user_id), limit(1));
@@ -44,11 +39,6 @@ export const getUserDataByUserId = async (user_id: string | undefined): Promise<
 		const result: dbUser = {
 			at_created: querySnap.docs[0].data().at_created,
 			at_updated: querySnap.docs[0].data().at_updated,
-
-			count_following: querySnap.docs[0].data().count_following,
-			count_followers: querySnap.docs[0].data().count_followers,
-			count_list: querySnap.docs[0].data().count_list,
-			count_list_checked: querySnap.docs[0].data().count_list_checked,
 
 			user_uid: querySnap.docs[0].id,
 			user_id: querySnap.docs[0].data().user_id,
@@ -64,31 +54,26 @@ export const getUserDataByUserId = async (user_id: string | undefined): Promise<
 };
 
 // ユーザーデータ作成
-export const createUserData = async (uid: string, newUserData: dbUser) => {
-	if (newUserData === null) return;
+export const createUserData = async (authUser: authUser, provider: any) => {
+	if (authUser === null) return;
 
 	const { getFirestore, setDoc, doc, serverTimestamp } = await import('firebase/firestore');
 	const db = getFirestore();
 
-	const user: Omit<dbUser, 'user_uid'> = {
+	const newUserData: Omit<dbUser, 'user_uid'> = {
 		at_created: serverTimestamp(),
 		at_updated: serverTimestamp(),
 
-		count_following: newUserData.count_following,
-		count_followers: newUserData.count_followers,
-		count_list: newUserData.count_list,
-		count_list_checked: newUserData.count_list_checked,
-
-		user_id: newUserData.user_id,
-		user_name: newUserData.user_name,
-		user_icon: newUserData.user_icon,
-		user_bio: newUserData.user_bio,
-		user_twitter_disp_id: newUserData.user_twitter_disp_id,
-		user_twitter_sys_id: newUserData.user_twitter_sys_id,
-		user_is_public: newUserData.user_is_public
+		user_id: provider.screenName,
+		user_name: authUser.displayName,
+		user_icon: authUser.photoURL,
+		user_bio: '',
+		user_twitter_disp_id: provider.screenName,
+		user_twitter_sys_id: authUser.providerData[0].uid,
+		user_is_public: true
 	};
 
-	setDoc(doc(db, 'users', uid), user);
+	setDoc(doc(db, 'users', authUser.uid), newUserData);
 };
 
 // ユーザーデータ更新
@@ -104,6 +89,7 @@ export const updateUserData = async (dbUser: dbUser, part: Partial<dbUser>) => {
 	});
 };
 
+// Twitter共有リンク作成
 export const generateShareLink = async (uid: string | undefined, user_id: string | undefined) => {
 	if (uid === undefined) return;
 
@@ -124,4 +110,26 @@ export const generateShareLink = async (uid: string | undefined, user_id: string
 	const URL =
 		'http://twitter.com/share?url=' + linkUrl + '&text=' + text + '%0A' + items + '%0A%20%23' + hashtag + '%20%0A';
 	return URL;
+};
+
+// ユーザーidからカウントデータ取得
+export const getCountsByUserId = async (user_id: string | undefined): Promise<userCount> => {
+	const { getFirestore, collection, query, where, getDocs, limit } = await import('firebase/firestore');
+	const db = getFirestore();
+	const queryRef = query(collection(db, 'userCounts'), where('user_id', '==', user_id), limit(1));
+
+	const querySnap = await getDocs(queryRef);
+	if (querySnap.size === 0) {
+		return null;
+	} else {
+		const result: userCount = {
+			user_uid: querySnap.docs[0].id,
+			user_id: querySnap.docs[0].data().user_id,
+			count_list: querySnap.docs[0].data().count_list,
+			count_list_checked: querySnap.docs[0].data().count_list_checked,
+			count_following: querySnap.docs[0].data().count_following,
+			count_followers: querySnap.docs[0].data().count_followers
+		};
+		return result;
+	}
 };

@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 // model取得
-import { getUserDataByUserId } from 'model/UserModel';
+import { getUserDataByUserId, getCountsByUserId } from 'model/UserModel';
 
 // hooks取得
 import { useAuth } from 'hooks/Auth';
@@ -28,7 +28,8 @@ const UserPage = () => {
 	const { paramsUserId } = useParams();
 	const user = useAuth();
 
-	const [paramsUser, setParamsUser] = useState<dbUser | null>(null);
+	const [paramsUser, setParamsUser] = useState<dbUser>(null);
+	const [paramsuserCounts, setParamsUserCounts] = useState<userCount>(null);
 	const [tab, setTab] = useState<tab>('list');
 	const [isEditOpen, setIsEditOpen] = useState<boolean>(false);
 	const [isNotFound, setIsNotFound] = useState<boolean>(false);
@@ -38,6 +39,9 @@ const UserPage = () => {
 		getUserDataByUserId(paramsUserId).then((_user) => {
 			setParamsUser(_user);
 			if (!_user) setIsNotFound(true);
+		});
+		getCountsByUserId(paramsUserId).then((_counts) => {
+			setParamsUserCounts(_counts);
 		});
 	}, [paramsUserId]);
 
@@ -60,7 +64,7 @@ const UserPage = () => {
 			<>
 				<UserHeader paramsUserId={paramsUserId} />
 				<main>
-					<UserProfile paramsUser={paramsUser} />
+					<UserProfile paramsUser={paramsUser} paramsuserCounts={paramsuserCounts} />
 					<UserButtons paramsUserId={paramsUserId} paramsUser={paramsUser} setIsEditOpen={setIsEditOpen} />
 
 					<UserTab tab={tab} setTab={setTab} />

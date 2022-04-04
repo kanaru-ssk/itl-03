@@ -13,9 +13,10 @@ import style from './UserProfile.module.scss';
 
 type Props = {
 	paramsUser: dbUser;
+	paramsuserCounts: userCount;
 };
 
-const UserProfile = ({ paramsUser }: Props) => {
+const UserProfile = ({ paramsUser, paramsuserCounts }: Props) => {
 	const countToString = (num: number | undefined): string => {
 		if (num === undefined) {
 			return '0';
@@ -26,8 +27,8 @@ const UserProfile = ({ paramsUser }: Props) => {
 	};
 
 	const checkedPerList = (): string => {
-		if (paramsUser) {
-			const str = paramsUser.count_list_checked.toString() + '/' + paramsUser.count_list.toString();
+		if (paramsuserCounts) {
+			const str = paramsuserCounts.count_list_checked.toString() + '/' + paramsuserCounts.count_list.toString();
 			return str;
 		} else {
 			return '0';
@@ -47,14 +48,14 @@ const UserProfile = ({ paramsUser }: Props) => {
 					</div>
 					<div className={style.counter}>
 						<Link to={`/${paramsUser?.user_id}/followers`} key={1}>
-							<UserCounter num={countToString(paramsUser?.count_followers)} />
+							<UserCounter num={countToString(paramsuserCounts?.count_followers)} />
 							<br />
 							フォロワー
 						</Link>
 					</div>
 					<div className={style.counter}>
 						<Link to={`/${paramsUser?.user_id}/following`} key={1}>
-							<UserCounter num={countToString(paramsUser?.count_following)} />
+							<UserCounter num={countToString(paramsuserCounts?.count_following)} />
 							<br />
 							フォロー中
 						</Link>

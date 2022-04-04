@@ -13,11 +13,6 @@ type dbUser = {
 	at_created: Timestamp | FieldValue;
 	at_updated: Timestamp | FieldValue;
 
-	count_following: number;
-	count_followers: number;
-	count_list: number;
-	count_list_checked: number;
-
 	user_uid: string;
 	user_id: string;
 	user_name: string;
@@ -28,13 +23,14 @@ type dbUser = {
 	user_is_public: boolean;
 } | null;
 
-type userConts = {
+type userCount = {
+	user_uid: string;
 	user_id: string;
 	count_list: number;
 	count_list_checked: number;
 	count_following: number;
 	count_followers: number;
-};
+} | null;
 
 type followType = 'following' | 'followers';
 
@@ -55,7 +51,6 @@ type follow = {
 type authContextProps = {
 	authUser: authUser;
 	dbUser: dbUser;
-	setDBUser: Function;
 };
 
 type placeType =
