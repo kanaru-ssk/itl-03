@@ -8,9 +8,9 @@ import { searchMap } from 'model/PlaceModel';
 
 // component取得
 import ExploreSlider from 'components/organisms/ExploreSlider';
-import SearchType from './SearchType';
-import SearchInput from './SearchInput';
-import SearchResults from './SearchResults';
+import SearchType from 'components/organisms/SearchType';
+import SearchInput from 'components/organisms/SearchInput';
+import SearchResults from 'components/organisms/SearchResults';
 
 const Search = () => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
