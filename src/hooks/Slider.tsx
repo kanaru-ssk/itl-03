@@ -9,7 +9,7 @@ import SliderBar from 'components/atoms/SliderBar';
 // css取得
 import style from './Slider.module.scss';
 
-type sliderContextProps = (contents: React.ReactNode) => void;
+type sliderContextProps = (contents: React.ReactNode, _isFull?: boolean) => void;
 
 const defaultContext: sliderContextProps = () => {};
 
@@ -20,15 +20,22 @@ export const SliderProvider = ({ children }: node) => {
 	const [isPermitSlide, setIsPermitSlide] = useState<boolean>(false);
 	const [slidePos, setSlidePos] = useState<number>(100);
 	const sliderRef = useRef<HTMLDivElement>(null);
+	const [isFull, setIsFull] = useState<boolean>(false);
 
 	const [sliderContents, setSliderContents] = useState<React.ReactNode>(null);
 
 	const sliderHeight = sliderRef.current ? sliderRef.current.clientHeight : 0;
 
-	const setSlider = useCallback((contents: React.ReactNode): void => {
+	const setSlider = useCallback((contents: React.ReactNode, _isFull?: boolean): void => {
 		if (contents === null) {
 			setIsSliderOpen(false);
+			setIsFull(false);
 		} else {
+			if (_isFull) {
+				setIsFull(true);
+			} else {
+				setIsFull(false);
+			}
 			setIsSliderOpen(true);
 			setSliderContents(contents);
 		}
@@ -115,12 +122,15 @@ export const SliderProvider = ({ children }: node) => {
 				style={isSliderOpen ? { opacity: 1, pointerEvents: 'unset' } : { opacity: 0, pointerEvents: 'none' }}
 			>
 				<div
-					className={style.slider}
+					className={isFull ? style.full : style.slider}
 					ref={sliderRef}
 					style={
 						isPermitSlide
 							? { transition: 'none', transform: 'translateY(' + slidePos + '%)' }
-							: { transition: 'all 0.2s ease', transform: 'translateY(' + slidePos + '%)' }
+							: {
+									transition: 'all 0.2s ease',
+									transform: 'translateY(' + slidePos + '%)',
+							  }
 					}
 				>
 					<div
