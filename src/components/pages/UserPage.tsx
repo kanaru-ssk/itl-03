@@ -13,6 +13,7 @@ import { getUserDataByUserId, getCountsByUserId } from 'model/UserModel';
 
 // hooks取得
 import { useAuth } from 'hooks/Auth';
+import { useSlider } from 'hooks/Slider';
 
 // component取得
 import UserHeader from 'components/organisms/UserHeader';
@@ -21,12 +22,15 @@ import UserButtons from 'components/organisms/UserButtons';
 import UserTab from 'components/organisms/UserTab';
 import UserContents from 'components/organisms/UserContents';
 import UserEdit from 'components/organisms/UserEdit';
+import ButtonAdd from 'components/atoms/ButtonAdd';
+import ItemAdd from 'components/organisms/ItemAdd';
 import Footer from 'components/organisms/Footer';
 import NotFoundPage from './NotFoundPage';
 
 const UserPage = () => {
 	const { paramsUserId } = useParams();
 	const user = useAuth();
+	const slider = useSlider();
 
 	const [paramsUser, setParamsUser] = useState<dbUser>(null);
 	const [paramsuserCounts, setParamsUserCounts] = useState<userCount>(null);
@@ -72,6 +76,8 @@ const UserPage = () => {
 					{paramsUser && <UserContents paramsUid={paramsUser?.user_uid} tab={tab} />}
 
 					<UserEdit dbUser={user.dbUser} isEditOpen={isEditOpen} setIsEditOpen={setIsEditOpen} />
+
+					<ButtonAdd onClick={() => slider(<ItemAdd />, true)} />
 				</main>
 				<Footer />
 			</>
