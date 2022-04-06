@@ -15,6 +15,7 @@ body {
 	color: $fontColor;
 	line-height: $lineHeight;
 	letter-spacing: $letterSpacing;
+	overscroll-behavior-y: none;
 }
 
 main {
