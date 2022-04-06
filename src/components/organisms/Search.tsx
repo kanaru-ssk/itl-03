@@ -20,6 +20,7 @@ const Search = () => {
 
 	useEffect(() => {
 		if (queryText !== '' || placeType !== '') {
+			setPlaceResult([]);
 			searchMap(queryText, placeType).then((result) => setPlaceResult(result));
 		}
 	}, [placeType, queryText]);
