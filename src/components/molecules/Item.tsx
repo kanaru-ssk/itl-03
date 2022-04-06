@@ -31,13 +31,18 @@ const Item = ({ item }: Props) => {
 		location.href = reactionURL;
 	};
 
+	const isExistPlaceId: boolean = item.place_id !== '';
+
 	return (
 		<div className={style.parent}>
 			<div className={style.container}>
 				<div className={style.icon}>
-					<Link to={'/explore/' + item.place_id}>
-						<PlaceIcon src={item.place_photo} />
-					</Link>
+					{isExistPlaceId && (
+						<Link to={'/explore/' + item.place_id}>
+							<PlaceIcon src={item.place_photo} />
+						</Link>
+					)}
+					{!isExistPlaceId && <PlaceIcon src={item.place_photo} />}
 				</div>
 				<div className={style.name}>
 					<PlaceName name={item.place_name} />
@@ -46,7 +51,7 @@ const Item = ({ item }: Props) => {
 			</div>
 
 			<div className={style.button}>
-				<Button onClick={() => onReaction()}>いいね</Button>
+				<Button onClick={() => onReaction()} text="いいね" />
 			</div>
 		</div>
 	);
