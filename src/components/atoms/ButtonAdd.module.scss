@@ -1,0 +1,23 @@
+@import 'variables';
+
+.button {
+	position: fixed;
+	bottom: 64px;
+	right: 16px;
+	width: 56px;
+	height: 56px;
+	padding: 4px;
+	background-color: $mainColor;
+	border: none;
+	border-radius: 100%;
+	box-shadow: 0 0 8px #aaa;
+	cursor: pointer;
+
+	&:active {
+		background-color: $activeColor;
+	}
+}
+
+.plus {
+	margin: 0 auto;
+}
