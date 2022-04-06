@@ -66,7 +66,7 @@ const UserButtons = ({ paramsUserId, paramsUser, setIsEditOpen }: Props) => {
 	} else if (user.dbUser.user_id === paramsUserId) {
 		return (
 			<UserButtonContainer>
-				<Button onClick={() => setIsEditOpen(true)}>プロフィール編集</Button>
+				<Button onClick={() => setIsEditOpen(true)} text="プロフィール編集" />
 			</UserButtonContainer>
 		);
 	} else if (isFollow === undefined) {
@@ -91,13 +91,12 @@ const UserButtons = ({ paramsUserId, paramsUser, setIsEditOpen }: Props) => {
 								authUid={user.dbUser?.user_uid}
 								paramsUserUid={paramsUser?.user_uid}
 								setIsFollow={setIsFollow}
-							/>
+							/>,
 						)
 					}
-				>
-					フォロー中
-				</Button>
-				<Button onClick={() => navigate('/message')}>メッセージ</Button>
+					text="フォロー中"
+				/>
+				<Button onClick={() => navigate('/message')} text="メッセージ" />
 			</UserButtonContainer>
 		);
 	}
