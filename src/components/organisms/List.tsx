@@ -37,13 +37,16 @@ const List = ({ paramsUid }: Props) => {
 	const hasMore = oldest ? !Boolean(list.find((i) => i.doc_id === oldest.doc_id)) : false;
 
 	useEffect(() => {
-		getOldestItem(paramsUid, false).then((results) => {
-			setOldest(results);
-		});
 		getList(paramsUid, false, now, limit).then((results) => {
 			setList(results);
 		});
 	}, [paramsUid]);
+
+	useEffect(() => {
+		getOldestItem(paramsUid, false).then((results) => {
+			setOldest(results);
+		});
+	}, [list]);
 
 	const onContextMenu = (e: any, item: item) => {
 		e.preventDefault();
