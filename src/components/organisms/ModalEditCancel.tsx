@@ -1,8 +1,5 @@
 // 変更を破棄しますかModal
 
-// model取得
-// import { checkItem } from 'model/ListModel';
-
 // hooks取得
 import { useModal } from 'hooks/Modal';
 

@@ -1,28 +1,19 @@
 // リスト一覧
 
-// firebase取得
-import { Timestamp } from 'firebase/firestore';
-
 // react取得
-import { useState, useEffect } from 'react';
-import InfiniteScroll from 'react-infinite-scroller';
+import { useState } from 'react';
 
 // img取得
 import xmarkImg from 'img/xmark.svg';
 
 // model取得
-import { getList, createItem } from 'model/ListModel';
+import { createItem } from 'model/ListModel';
 
 // hooks取得
 import { useAuth } from 'hooks/Auth';
 import { useSlider } from 'hooks/Slider';
 
 // component取得
-import Loading from 'components/atoms/Loading';
-import Item from 'components/molecules/Item';
-import ListMenu from 'components/organisms/ListSlider';
-import Header from 'components/atoms/Header';
-import InputTextArea from 'components/atoms/InputTextArea';
 import PlaceAddButton from 'components/atoms/PlaceAddButton';
 import SearchType from 'components/organisms/SearchType';
 

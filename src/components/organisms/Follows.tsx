@@ -11,7 +11,6 @@ import InfiniteScroll from 'react-infinite-scroller';
 import { getFollows, getOldestFollow } from 'model/FollowModel';
 
 // component取得
-import User from 'components/molecules/User';
 import FollowUser from 'components/molecules/FollowUser';
 import Loading from 'components/atoms/Loading';
 

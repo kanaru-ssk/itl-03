@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import UserIcon from 'components/atoms/UserIcon';
 import UserName from 'components/atoms/UserName';
 import UserId from 'components/atoms/UserId';
-import Button from 'components/atoms/Button';
+
 // css取得
 import style from './FollowUser.module.scss';
 
