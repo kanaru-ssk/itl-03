@@ -1,7 +1,7 @@
 // 追加ボタン
 
 // css取得
-import style from './InputRadio.module.scss';
+import style from './PlaceAddButton.module.scss';
 
 type Props = {
 	name: string;
