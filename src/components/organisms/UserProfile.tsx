@@ -66,7 +66,7 @@ const UserProfile = ({ paramsUser, paramsuserCounts }: Props) => {
 			<div className={style.name}>
 				<UserName name={paramsUser?.user_name} />
 			</div>
-			<div>{paramsUser?.user_bio}</div>
+			<div className={style.bio}>{paramsUser?.user_bio}</div>
 		</div>
 	);
 };
