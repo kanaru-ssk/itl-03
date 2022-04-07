@@ -18,6 +18,7 @@ export const AuthProvider = ({ children }: node) => {
 	const auth = getAuth();
 	const db = getFirestore();
 
+	// 認証ユーザー更新
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, async (_user: any) => {
 			if (_user) {
@@ -40,6 +41,7 @@ export const AuthProvider = ({ children }: node) => {
 		return () => unsubscribe();
 	}, []);
 
+	// DBユーザーデータ更新
 	useEffect(() => {
 		if (auth.currentUser && !auth.currentUser?.isAnonymous) {
 			const unsubscribe = onSnapshot(doc(db, 'users', auth.currentUser.uid), async (doc) => {
