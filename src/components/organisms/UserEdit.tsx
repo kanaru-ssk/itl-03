@@ -31,6 +31,17 @@ const UserEdit = ({ dbUser, isEditOpen, setIsEditOpen }: Proos) => {
 		}
 	}, [isEditOpen]);
 
+	const onInputName = (e: any) => {
+		if (30 < e.length) return;
+		setName(e);
+	};
+
+	const onInputBio = (e: any) => {
+		const newBio = e;
+		if (200 < newBio.length) return;
+		setBio(newBio);
+	};
+
 	return (
 		<div
 			className={style.page}
@@ -44,12 +55,12 @@ const UserEdit = ({ dbUser, isEditOpen, setIsEditOpen }: Proos) => {
 			<div className={style.container}>
 				<div className={style.wrapper}>
 					<div>名前</div>
-					<InputText value={name} onInput={setName} placeholder="名前を入力してください" />
+					<InputText value={name} onInput={onInputName} placeholder="名前を入力してください" />
 				</div>
 
 				<div className={style.wrapper}>
 					<div>自己紹介</div>
-					<InputTextArea value={bio} onChange={setBio} placeholder="" />
+					<InputTextArea value={bio} onChange={onInputBio} placeholder="" />
 				</div>
 			</div>
 		</div>
