@@ -23,16 +23,6 @@ export const AuthProvider = ({ children }: node) => {
 		const unsubscribe = onAuthStateChanged(auth, async (_user: any) => {
 			if (_user) {
 				setAuthUser(_user);
-
-				if (!_user.isAnonymous) {
-					const { Timestamp } = await import('firebase/firestore');
-					const { getUserDataByUid, createUserData } = await import('model/UserModel');
-					const userData = await getUserDataByUid(_user.uid);
-					if (userData) {
-					} else {
-						// 新規ユーザーデータ作成
-					}
-				}
 			} else {
 				const { signInAnonymously } = await import('firebase/auth');
 				signInAnonymously(auth);
