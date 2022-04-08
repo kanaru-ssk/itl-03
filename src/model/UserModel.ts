@@ -62,6 +62,9 @@ export const createUserData = async (authUser: authUser, provider: any) => {
 	const { getFirestore, setDoc, doc, serverTimestamp } = await import('firebase/firestore');
 	const db = getFirestore();
 
+	const dataURI = authUser.photoURL ? authUser.photoURL : '';
+	const icon: string = await getImageBase64(dataURI);
+
 	const newUserData: Omit<dbUser, 'user_uid'> = {
 		at_created: serverTimestamp(),
 		at_updated: serverTimestamp(),
@@ -70,13 +73,13 @@ export const createUserData = async (authUser: authUser, provider: any) => {
 
 		user_id: provider.screenName,
 		user_name: authUser.displayName,
-		user_icon: authUser.photoURL,
+		user_icon: icon,
 		user_bio: '',
 		user_twitter_disp_id: provider.screenName,
 		user_twitter_sys_id: authUser.providerData[0].uid,
 	};
 
-	setDoc(doc(db, 'users', authUser.uid), newUserData);
+	await setDoc(doc(db, 'users', authUser.uid), newUserData);
 };
 
 // ユーザーデータ更新
@@ -135,4 +138,18 @@ export const getCountsByUserId = async (user_id: string | undefined): Promise<us
 		};
 		return result;
 	}
+};
+
+const getImageBase64 = async (url: RequestInfo) => {
+	const response = await fetch(url);
+	const contentType = response.headers.get('content-type');
+	const arrayBuffer = await response.arrayBuffer();
+	const APPLY_MAX = 1024;
+	let encodedStr = '';
+	// ArrayBufferの中身を1024バイトに区切って少しずつ文字列にしていく
+	for (let i: number = 0; i < arrayBuffer.byteLength; i += APPLY_MAX) {
+		encodedStr += String.fromCharCode.apply(null, [...new Uint8Array(arrayBuffer.slice(i, i + APPLY_MAX))]);
+	}
+	let base64String = btoa(encodedStr);
+	return `data:${contentType};base64,${base64String}`;
 };
