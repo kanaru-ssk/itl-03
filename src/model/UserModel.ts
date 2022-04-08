@@ -140,6 +140,7 @@ export const getCountsByUserId = async (user_id: string | undefined): Promise<us
 	}
 };
 
+// 画像をbase64stringに変換
 const getImageBase64 = async (url: RequestInfo) => {
 	const response = await fetch(url);
 	const contentType = response.headers.get('content-type');
