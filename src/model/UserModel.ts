@@ -150,6 +150,6 @@ const getImageBase64 = async (url: RequestInfo) => {
 	for (let i: number = 0; i < arrayBuffer.byteLength; i += APPLY_MAX) {
 		encodedStr += String.fromCharCode.apply(null, [...new Uint8Array(arrayBuffer.slice(i, i + APPLY_MAX))]);
 	}
-	let base64String = btoa(encodedStr);
+	let base64String = window.btoa(encodedStr);
 	return `data:${contentType};base64,${base64String}`;
 };
