@@ -14,7 +14,7 @@ export const initMap = () => {
 	map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
 		center: sendai,
 		zoom: zoom,
-		disableDefaultUI: true
+		disableDefaultUI: true,
 	});
 
 	service = new google.maps.places.PlacesService(map);
@@ -33,14 +33,14 @@ export const searchMap = async (queryText: string, placeType: placeType) => {
 		const request: google.maps.places.TextSearchRequest = {
 			query: queryText,
 			type: placeType,
-			bounds: rect ? rect : undefined
+			bounds: rect ? rect : undefined,
 		};
 
 		service.textSearch(
 			request,
 			(
 				results: google.maps.places.PlaceResult[] | null,
-				status: google.maps.places.PlacesServiceStatus
+				status: google.maps.places.PlacesServiceStatus,
 			): void => {
 				if (status === google.maps.places.PlacesServiceStatus.OK && results) {
 					const len = results.length;
@@ -50,7 +50,7 @@ export const searchMap = async (queryText: string, placeType: placeType) => {
 					map.setCenter(results[0].geometry!.location!);
 					resolve(results);
 				}
-			}
+			},
 		);
 	});
 };
@@ -62,7 +62,7 @@ const createMarker = (place: google.maps.places.PlaceResult) => {
 	const marker = new google.maps.Marker({
 		map,
 		position: place.geometry.location,
-		title: place.name
+		title: place.name,
 	});
 
 	marker.addListener('click', () => {
@@ -100,8 +100,8 @@ export const getPlaceDetails = (placeId: string) => {
 				'rating',
 				'user_ratings_total',
 				'review',
-				'price_level'
-			]
+				'price_level',
+			],
 		};
 
 		service.getDetails(
@@ -112,7 +112,7 @@ export const getPlaceDetails = (placeId: string) => {
 					createMarker(result);
 					resolve(result);
 				}
-			}
+			},
 		);
 	});
 };
@@ -120,13 +120,13 @@ export const getPlaceDetails = (placeId: string) => {
 export const convertPlace = (placeResult: google.maps.places.PlaceResult): place => {
 	const place_id: string = placeResult.place_id ? placeResult.place_id : '';
 	const type: string = placeResult.types ? placeResult.types[0] : '';
-	const photo: string = placeResult.photos ? placeResult.photos[0].getUrl({ maxWidth: 400 }) : '';
+	const photo: string = placeResult.photos ? placeResult.photos[0].getUrl({ maxWidth: 64 }) : '';
 
 	const place: place = {
 		place_id: place_id,
 		place_name: placeResult.name,
 		place_type: type,
-		place_photo: photo
+		place_photo: photo,
 	};
 
 	return place;
