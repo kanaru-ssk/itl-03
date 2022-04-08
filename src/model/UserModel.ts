@@ -62,8 +62,7 @@ export const createUserData = async (authUser: authUser, provider: any) => {
 	const { getFirestore, setDoc, doc, serverTimestamp } = await import('firebase/firestore');
 	const db = getFirestore();
 
-	const dataURI = authUser.photoURL ? authUser.photoURL : '';
-	const icon: string = await getImageBase64(dataURI);
+	const icon: string = await getImageBase64(authUser.photoURL);
 
 	const newUserData: Omit<dbUser, 'user_uid'> = {
 		at_created: serverTimestamp(),
@@ -79,7 +78,7 @@ export const createUserData = async (authUser: authUser, provider: any) => {
 		user_twitter_sys_id: authUser.providerData[0].uid,
 	};
 
-	await setDoc(doc(db, 'users', authUser.uid), newUserData);
+	setDoc(doc(db, 'users', authUser.uid), newUserData);
 };
 
 // ユーザーデータ更新
@@ -141,7 +140,8 @@ export const getCountsByUserId = async (user_id: string | undefined): Promise<us
 };
 
 // 画像をbase64stringに変換
-const getImageBase64 = async (url: RequestInfo) => {
+const getImageBase64 = async (url: RequestInfo | null) => {
+	if (url === null) return '';
 	const response = await fetch(url);
 	const contentType = response.headers.get('content-type');
 	const arrayBuffer = await response.arrayBuffer();
