@@ -20,14 +20,17 @@ type Proos = {
 const UserEdit = ({ dbUser, isEditOpen, setIsEditOpen }: Proos) => {
 	const [name, setName] = useState<string>('');
 	const [bio, setBio] = useState<string>('');
+	const [title, setTitle] = useState<string>('');
 
 	useEffect(() => {
 		if (dbUser) {
 			setName(dbUser.user_name);
 			setBio(dbUser.user_bio);
+			setTitle(dbUser.list_title);
 		} else {
 			setName('');
 			setBio('');
+			setTitle('');
 		}
 	}, [isEditOpen]);
 
@@ -42,6 +45,11 @@ const UserEdit = ({ dbUser, isEditOpen, setIsEditOpen }: Proos) => {
 		setBio(newBio);
 	};
 
+	const onInputTitle = (e: any) => {
+		if (30 < e.length) return;
+		setTitle(e);
+	};
+
 	return (
 		<div
 			className={style.page}
@@ -51,7 +59,7 @@ const UserEdit = ({ dbUser, isEditOpen, setIsEditOpen }: Proos) => {
 					: { opacity: 0, transform: `translate(100%, 0)` }
 			}
 		>
-			<UserEditHeader name={name} bio={bio} dbUser={dbUser} setIsEditOpen={setIsEditOpen} />
+			<UserEditHeader name={name} bio={bio} title={title} dbUser={dbUser} setIsEditOpen={setIsEditOpen} />
 			<div className={style.container}>
 				<div className={style.wrapper}>
 					<div>名前</div>
@@ -61,6 +69,11 @@ const UserEdit = ({ dbUser, isEditOpen, setIsEditOpen }: Proos) => {
 				<div className={style.wrapper}>
 					<div>自己紹介</div>
 					<InputTextArea value={bio} onChange={onInputBio} placeholder="" />
+				</div>
+
+				<div className={style.wrapper}>
+					<div>リストタイトル</div>
+					<InputText value={title} onInput={onInputTitle} placeholder="リストタイトルを入力してください" />
 				</div>
 			</div>
 		</div>

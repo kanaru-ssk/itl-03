@@ -23,7 +23,7 @@ const UserHeaderSlider = ({ paramsUserUid }: Props) => {
 	const modal = useModal();
 
 	const shareOnTwitter = async () => {
-		const URL = await generateShareLink(user.dbUser?.user_uid, paramsUserUid);
+		const URL = await generateShareLink(user.dbUser);
 
 		if (URL) location.href = URL;
 	};

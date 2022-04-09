@@ -73,7 +73,7 @@ const UserPage = () => {
 
 					<UserTab tab={tab} setTab={setTab} />
 
-					{paramsUser && <UserContents paramsUid={paramsUser?.user_uid} tab={tab} />}
+					{paramsUser && <UserContents paramsUser={paramsUser} tab={tab} />}
 
 					<UserEdit dbUser={user.dbUser} isEditOpen={isEditOpen} setIsEditOpen={setIsEditOpen} />
 

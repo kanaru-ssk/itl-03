@@ -40,15 +40,16 @@ export const AuthProvider = ({ children }: node) => {
 						at_created: doc.data().at_created,
 						at_updated: doc.data().at_updated,
 
+						list_title: doc.data().list_title,
+						is_public: doc.data().is_public,
+
 						user_uid: doc.id,
 						user_id: doc.data().user_id,
 						user_name: doc.data().user_name,
-
 						user_icon: doc.data().user_icon,
 						user_bio: doc.data().user_bio,
 						user_twitter_disp_id: doc.data().user_twitter_disp_id,
 						user_twitter_sys_id: doc.data().user_twitter_sys_id,
-						is_public: doc.data().is_public,
 					};
 					setDBUser(_dbUser);
 				} else {

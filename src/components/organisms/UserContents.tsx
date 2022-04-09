@@ -9,23 +9,23 @@ import CheckedList from 'components/organisms/CheckedList';
 // 表示userとログインuserが同じ => マイページ
 
 type Props = {
-	paramsUid: string;
+	paramsUser: dbUser;
 	tab: tab;
 };
 
-const UserContents = ({ paramsUid, tab }: Props) => {
+const UserContents = ({ paramsUser, tab }: Props) => {
 	if (tab === 'list') {
 		return (
 			<div>
-				<h3>行きたいとこリスト</h3>
-				<List paramsUid={paramsUid} />
+				<h3>{paramsUser?.list_title}</h3>
+				<List paramsUid={paramsUser?.user_uid} />
 			</div>
 		);
 	} else if (tab === 'checkedList') {
 		return (
 			<div>
 				<h3>達成済みリスト</h3>
-				<CheckedList paramsUid={paramsUid} />
+				<CheckedList paramsUid={paramsUser?.user_uid} />
 			</div>
 		);
 	} else {

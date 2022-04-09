@@ -1,7 +1,9 @@
 // ユーザーデータ関係の処理
 
 // ドキュメントidからユーザーデータ取得
-export const getUserDataByUid = async (uid: string) => {
+export const getUserDataByUid = async (uid: string | undefined) => {
+	if (uid === undefined) return null;
+
 	const { getFirestore, getDoc, doc } = await import('firebase/firestore');
 	const db = getFirestore();
 	const docRef = doc(db, 'users', uid);
@@ -11,6 +13,7 @@ export const getUserDataByUid = async (uid: string) => {
 			at_created: docSnap.data().at_created,
 			at_updated: docSnap.data().at_updated,
 
+			list_title: docSnap.data().list_title,
 			is_public: docSnap.data().is_public,
 
 			user_uid: docSnap.id,
@@ -29,6 +32,8 @@ export const getUserDataByUid = async (uid: string) => {
 
 // ユーザーidからユーザーデータ取得
 export const getUserDataByUserId = async (user_id: string | undefined): Promise<dbUser> => {
+	if (user_id === undefined) return null;
+
 	const { getFirestore, collection, query, where, getDocs, limit } = await import('firebase/firestore');
 	const db = getFirestore();
 	const queryRef = query(collection(db, 'users'), where('user_id', '==', user_id), limit(1));
@@ -41,6 +46,7 @@ export const getUserDataByUserId = async (user_id: string | undefined): Promise<
 			at_created: querySnap.docs[0].data().at_created,
 			at_updated: querySnap.docs[0].data().at_updated,
 
+			list_title: querySnap.docs[0].data().list_title,
 			is_public: querySnap.docs[0].data().is_public,
 
 			user_uid: querySnap.docs[0].id,
@@ -68,6 +74,7 @@ export const createUserData = async (authUser: authUser, provider: any) => {
 		at_created: serverTimestamp(),
 		at_updated: serverTimestamp(),
 
+		list_title: '行きたいとこリスト',
 		is_public: true,
 
 		user_id: provider.screenName,
@@ -95,13 +102,13 @@ export const updateUserData = async (dbUser: dbUser, part: Partial<dbUser>) => {
 };
 
 // Twitter共有リンク作成
-export const generateShareLink = async (uid: string | undefined, user_id: string | undefined) => {
-	if (uid === undefined) return;
+export const generateShareLink = async (user: dbUser) => {
+	if (user === null) return;
 
 	const { Timestamp } = await import('firebase/firestore');
 	const { getList } = await import('model/ListModel');
 	const now = Timestamp.now();
-	const results = await getList(uid, false, now, 3);
+	const results = await getList(user?.user_uid, false, now, 3);
 
 	let items: string = '';
 	results.forEach((value) => {
@@ -109,12 +116,35 @@ export const generateShareLink = async (uid: string | undefined, user_id: string
 	});
 	items += '・...%0A';
 
-	const linkUrl = 'https://' + process.env.REACT_APP_FB_DOMAIN_WEBAPP + '/' + user_id;
+	const linkUrl = 'https://' + process.env.REACT_APP_FB_DOMAIN_WEBAPP + '/' + user.user_id;
 	const hashtag = '行きたいとこリスト';
-	const text = '行きたいとこリストを更新しました!';
+	const text = user.list_title + 'を更新しました!';
 	const URL =
 		'http://twitter.com/share?url=' + linkUrl + '&text=' + text + '%0A' + items + '%0A%20%23' + hashtag + '%20%0A';
 	return URL;
+};
+
+//uidからカウントデータ取得
+export const getCountsByUid = async (uid: string | undefined): Promise<userCount> => {
+	if (uid === undefined) return null;
+
+	const { getFirestore, getDoc, doc } = await import('firebase/firestore');
+	const db = getFirestore();
+	const docRef = doc(db, 'userCounts', uid);
+	const docSnap = await getDoc(docRef);
+	if (docSnap.exists()) {
+		const result: userCount = {
+			user_uid: docSnap.id,
+			user_id: docSnap.data().user_id,
+			count_list: docSnap.data().count_list,
+			count_list_checked: docSnap.data().count_list_checked,
+			count_following: docSnap.data().count_following,
+			count_followers: docSnap.data().count_followers,
+		};
+		return result;
+	} else {
+		return null;
+	}
 };
 
 // ユーザーidからカウントデータ取得

@@ -19,14 +19,15 @@ export const getOldestFollow = async (
 			at_created: querySnap.docs[0].data().at_created,
 			at_updated: querySnap.docs[0].data().at_updated,
 
+			list_title: querySnap.docs[0].data().list_title,
 			is_read: querySnap.docs[0].data().is_read,
+			is_public: querySnap.docs[0].data().is_public,
 
 			user_uid: querySnap.docs[0].id,
 			user_id: querySnap.docs[0].data().user_id,
 			user_name: querySnap.docs[0].data().user_name,
 			user_icon: querySnap.docs[0].data().user_icon,
 			user_bio: querySnap.docs[0].data().user_bio,
-			is_public: querySnap.docs[0].data().is_public,
 		};
 
 		return follow;
@@ -63,6 +64,7 @@ export const getFollows = async (
 				at_created: doc.data().at_created,
 				at_updated: doc.data().at_checked,
 
+				list_title: doc.data().list_title,
 				is_read: doc.data().is_read,
 				is_public: doc.data().is_public,
 
@@ -91,6 +93,7 @@ export const follow = async (authUid: string | undefined, paramsUser: dbUser): P
 		at_created: serverTimestamp(),
 		at_updated: serverTimestamp(),
 
+		list_title: paramsUser.list_title,
 		is_read: false,
 		is_public: paramsUser.is_public,
 

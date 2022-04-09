@@ -13,6 +13,10 @@ type dbUser = {
 	at_created: Timestamp | FieldValue;
 	at_updated: Timestamp | FieldValue;
 
+	list_title: string;
+
+	is_public: boolean;
+
 	user_uid: string;
 	user_id: string;
 	user_name: string;
@@ -20,7 +24,6 @@ type dbUser = {
 	user_bio: string;
 	user_twitter_disp_id: string;
 	user_twitter_sys_id: string;
-	is_public: boolean;
 } | null;
 
 type userCount = {
@@ -38,6 +41,7 @@ type follow = {
 	at_created: Timestamp | FieldValue;
 	at_updated: Timestamp | FieldValue;
 
+	list_title: string;
 	is_read: boolean;
 	is_public: boolean;
 

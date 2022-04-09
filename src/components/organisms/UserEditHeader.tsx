@@ -21,16 +21,17 @@ import style from './UserEditHeader.module.scss';
 type Props = {
 	name: string;
 	bio: string;
+	title: string;
 	dbUser: dbUser;
 	setIsEditOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const UserEditHeader = ({ name, bio, dbUser, setIsEditOpen }: Props) => {
+const UserEditHeader = ({ name, bio, title, dbUser, setIsEditOpen }: Props) => {
 	const modal = useModal();
 	const [isReady, setIsReady] = useState<boolean>(false);
 
 	useEffect(() => {
-		if (name === dbUser?.user_name && bio === dbUser?.user_bio) {
+		if (name === dbUser?.user_name && bio === dbUser?.user_bio && title === dbUser?.list_title) {
 			// 差分が無ければfalse
 			setIsReady(false);
 		} else if (name === '' || 30 < name.length) {
@@ -39,20 +40,23 @@ const UserEditHeader = ({ name, bio, dbUser, setIsEditOpen }: Props) => {
 		} else if (200 < bio.length) {
 			// 自己紹介が200文字以上でfalse
 			setIsReady(false);
+		} else if (title === '' || 30 < title.length) {
+			// タイトルが空欄か、30文字以上でfalse
+			setIsReady(false);
 		} else {
 			setIsReady(true);
 		}
-	}, [name, bio]);
+	}, [name, bio, title]);
 
 	const onSave = () => {
 		if (isReady) {
 			setIsEditOpen(false);
-			updateUserData(dbUser, { user_name: name, user_bio: bio });
+			updateUserData(dbUser, { user_name: name, user_bio: bio, list_title: title });
 		}
 	};
 
 	const onClickPrev = () => {
-		if (name !== dbUser?.user_name || bio !== dbUser?.user_bio) {
+		if (name !== dbUser?.user_name || bio !== dbUser?.user_bio || title !== dbUser?.list_title) {
 			modal(<ModalEditCancel setIsEditOpen={setIsEditOpen} />);
 		} else {
 			setIsEditOpen(false);
