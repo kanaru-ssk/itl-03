@@ -34,6 +34,8 @@ const ItemAdd = () => {
 			place_photo: '',
 		};
 		createItem(user.dbUser, place);
+		setPlaceName('');
+		setPlaceType('');
 		slider(null);
 	};
 
@@ -41,7 +43,7 @@ const ItemAdd = () => {
 		<div className={style.container}>
 			<div className={style.header}>
 				<img onClick={() => slider(null)} src={xmarkImg} alt="" />
-				<PlaceAddButton name="original-place" onChange={onAdd} />
+				<PlaceAddButton onClick={onAdd} />
 			</div>
 			<SearchType placeType={placeType} setPlaceType={setPlaceType} />
 			<textarea
