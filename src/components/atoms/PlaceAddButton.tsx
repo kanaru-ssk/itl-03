@@ -4,18 +4,14 @@
 import style from './PlaceAddButton.module.scss';
 
 type Props = {
-	name: string;
-	onChange: (e: any) => void;
+	onClick: (e: any) => void;
 };
 
-const PlaceAddButton = ({ name, onChange }: Props) => {
+const PlaceAddButton = ({ onClick }: Props) => {
 	return (
-		<div>
-			<input className={style.radio} type="radio" name={name} id={name} onChange={onChange} />
-			<label htmlFor={name} className={style.label}>
-				追加
-			</label>
-		</div>
+		<button className={style.button} onClick={onClick}>
+			追加
+		</button>
 	);
 };
 

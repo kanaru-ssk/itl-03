@@ -14,7 +14,7 @@ import { useAuth } from 'hooks/Auth';
 // component取得
 import PlaceIcon from 'components/atoms/PlaceIcon';
 import PlaceName from 'components/atoms/PlaceName';
-import PlaceAddButton from 'components/atoms/PlaceAddButton';
+import PlaceAddRadio from 'components/atoms/PlaceAddRadio';
 
 // css取得
 import style from './Place.module.scss';
@@ -48,7 +48,7 @@ const Place = ({ place }: Props) => {
 				</div>
 			</Link>
 			<div className={style.button}>
-				<PlaceAddButton name={place.place_name} onChange={() => onAddPost(place)} />
+				<PlaceAddRadio name={place.place_name} onChange={() => onAddPost(place)} />
 			</div>
 		</div>
 	);
