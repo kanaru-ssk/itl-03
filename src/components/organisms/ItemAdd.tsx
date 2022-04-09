@@ -26,6 +26,12 @@ const ItemAdd = () => {
 	const [placeName, setPlaceName] = useState<string>('');
 	const [placeType, setPlaceType] = useState<placeType>('');
 
+	const onCancel = () => {
+		setPlaceName('');
+		setPlaceType('');
+		slider(null);
+	};
+
 	const onAdd = () => {
 		const place: place = {
 			place_id: '',
@@ -42,7 +48,7 @@ const ItemAdd = () => {
 	return (
 		<div className={style.container}>
 			<div className={style.header}>
-				<img onClick={() => slider(null)} src={xmarkImg} alt="" />
+				<img onClick={onCancel} src={xmarkImg} alt="" />
 				<PlaceAddButton onClick={onAdd} />
 			</div>
 			<SearchType placeType={placeType} setPlaceType={setPlaceType} />
