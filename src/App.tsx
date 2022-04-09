@@ -10,6 +10,7 @@ import ExplorePage from 'components/pages/ExplorePage';
 import NoticePage from 'components/pages/NoticePage';
 import MessagePage from 'components/pages/MessagePage';
 import UserPage from 'components/pages/UserPage';
+import ShowPage from 'components/pages/ShowPage';
 import UserFollowingPage from 'components/pages/UserFollowingPage';
 import UserFollowersPage from 'components/pages/UserFollowersPage';
 import NotFoundPage from 'components/pages/NotFoundPage';
@@ -27,6 +28,7 @@ const App = () => {
 				<Route path="/explore/:paramsPlaceId" element={<ExplorePage />} />
 				<Route path="/notice" element={<NoticePage />} />
 				<Route path="/message" element={<MessagePage />} />
+				<Route path="/show/:paramsUid" element={<ShowPage />} />
 				<Route path="/:paramsUserId" element={<UserPage />} />
 				<Route path="/:paramsUserId/following" element={<UserFollowingPage />} />
 				<Route path="/:paramsUserId/followers" element={<UserFollowersPage />} />
