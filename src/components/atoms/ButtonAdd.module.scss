@@ -21,3 +21,9 @@
 .plus {
 	margin: 0 auto;
 }
+
+@media screen and (min-width: 800px) {
+	.button {
+		right: calc(50% - 384px);
+	}
+}

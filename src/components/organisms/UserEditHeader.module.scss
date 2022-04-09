@@ -3,7 +3,8 @@
 .header {
 	z-index: $headerIndex;
 	position: fixed;
-	top: 0;
+	inset: 0;
+	margin: 0 auto;
 	width: 100%;
 	max-width: $bodyMaxWidth;
 	height: $headerHeight;

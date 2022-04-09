@@ -16,8 +16,10 @@
 
 .slider {
 	position: fixed;
-	bottom: 0;
+	inset: auto 0 0 0;
+	margin: auto;
 	width: 100%;
+	max-width: $bodyMaxWidth;
 	padding: 0 16px 8px 16px;
 	border-radius: 16px 16px 0 0;
 	box-shadow: 0 0 25px $shadowColor;
@@ -29,8 +31,10 @@
 
 .full {
 	position: fixed;
-	bottom: 0;
+	inset: auto 0 0 0;
+	margin: auto;
 	width: 100%;
+	max-width: $bodyMaxWidth;
 	padding: 0 16px 8px 16px;
 	border-radius: 16px 16px 0 0;
 	box-shadow: 0 0 25px $shadowColor;

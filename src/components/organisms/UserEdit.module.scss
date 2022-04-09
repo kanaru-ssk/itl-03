@@ -16,6 +16,8 @@
 
 .container {
 	padding: 16px + $headerHeight 16px;
+	max-width: $bodyMaxWidth;
+	margin: 0 auto;
 }
 
 .wrapper {
