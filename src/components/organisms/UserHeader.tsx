@@ -9,7 +9,7 @@ import { useSlider } from 'hooks/Slider';
 // component取得
 import Header from 'components/atoms/Header';
 import UserId from 'components/atoms/UserId';
-import UserHeaderMenu from 'components/organisms/UserHeaderSlider';
+import UserHeaderSlider from 'components/organisms/UserHeaderSlider';
 
 // css取得
 import style from './UserHeader.module.scss';
@@ -21,7 +21,7 @@ type Props = {
 const UserHeader = ({ paramsUserId }: Props) => {
 	const slider = useSlider();
 	const onClick = () => {
-		slider(<UserHeaderMenu paramsUserUid={paramsUserId} />);
+		slider(<UserHeaderSlider paramsUserUid={paramsUserId} />);
 	};
 	return (
 		<Header>

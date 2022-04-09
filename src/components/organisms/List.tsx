@@ -23,7 +23,7 @@ import ListMenu from 'components/organisms/ListSlider';
 import style from './List.module.scss';
 
 type Props = {
-	paramsUid: string;
+	paramsUid: string | undefined;
 };
 
 const List = ({ paramsUid }: Props) => {
