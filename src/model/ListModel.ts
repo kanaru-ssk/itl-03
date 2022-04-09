@@ -87,12 +87,6 @@ export const getList = async (
 export const createItem = async (user: dbUser | undefined, place: place) => {
 	if (!user) return;
 
-	// const { getFunctions, httpsCallable } = await import('firebase/functions');
-	// const functions = getFunctions();
-	// functions.region = 'asia-northeast1';
-	// const get = httpsCallable(functions, 'getPhotoUrl');
-	// const result: any = await get({ url: place.place_photo });
-	// const resultURL: RequestInfo = result.data;
 	const photoURL: RequestInfo = await getPhotoURL(place.place_photo);
 	const photo: string = await getImageBase64(photoURL);
 
@@ -137,6 +131,7 @@ export const deleteItem = async (item: item) => {
 };
 
 const getPhotoURL = async (url: string): Promise<RequestInfo> => {
+	if (url === '') return '';
 	const { getFunctions, httpsCallable } = await import('firebase/functions');
 	const functions = getFunctions();
 	functions.region = 'asia-northeast1';
@@ -148,7 +143,7 @@ const getPhotoURL = async (url: string): Promise<RequestInfo> => {
 
 // 画像をbase64stringに変換
 const getImageBase64 = async (url: RequestInfo | null) => {
-	if (url === null) return '';
+	if (url === null || url === '') return '';
 	const response = await fetch(url);
 	const contentType = response.headers.get('content-type');
 	const arrayBuffer = await response.arrayBuffer();
