@@ -23,6 +23,7 @@ const UserHeader = ({ paramsUserId }: Props) => {
 	const onClick = () => {
 		slider(<UserHeaderSlider paramsUserUid={paramsUserId} />);
 	};
+
 	return (
 		<Header>
 			<div className={style.id}>
