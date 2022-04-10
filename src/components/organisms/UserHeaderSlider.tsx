@@ -1,5 +1,8 @@
 // 投稿一覧
 
+// react取得
+import { Link } from 'react-router-dom';
+
 // model取得
 import { generateShareLink } from 'model/UserModel';
 
@@ -42,6 +45,12 @@ const UserHeaderSlider = ({ paramsUserUid }: Props) => {
 
 	return (
 		<ul>
+			<li>
+				<Link to="/help">
+					<SliderItem text="行きたいとこリストとは？" />
+				</Link>
+			</li>
+
 			{user.dbUser?.user_id === paramsUserUid && (
 				<li>
 					<SliderItem text="Twitterで共有" onClick={shareOnTwitter} />
@@ -49,7 +58,7 @@ const UserHeaderSlider = ({ paramsUserUid }: Props) => {
 			)}
 
 			<li>
-				<SliderItem text="URLをコピー" onClick={copyLink} />
+				<SliderItem text="プロフィールURLをコピー" onClick={copyLink} />
 			</li>
 
 			{user.dbUser?.user_id === paramsUserUid && (
