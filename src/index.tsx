@@ -5,11 +5,6 @@ import ReactDOM from 'react-dom';
 // model取得
 import { initFirebase } from 'model/InitModel';
 
-// hooks取得
-import { AuthProvider } from 'hooks/Auth';
-import { SliderProvider } from 'hooks/Slider';
-import { ModalProvider } from 'hooks/Modal';
-
 // component取得
 import App from 'App';
 
@@ -19,13 +14,7 @@ initFirebase();
 // contextを全体に共有
 ReactDOM.render(
 	<React.StrictMode>
-		<AuthProvider>
-			<ModalProvider>
-				<SliderProvider>
-					<App />
-				</SliderProvider>
-			</ModalProvider>
-		</AuthProvider>
+		<App />
 	</React.StrictMode>,
-	document.getElementById('root')
+	document.getElementById('root'),
 );
