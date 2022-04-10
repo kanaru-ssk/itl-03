@@ -9,7 +9,7 @@ import Footer from 'components/organisms/Footer';
 import Login from 'components/organisms/Login';
 import Follows from 'components/organisms/Follows';
 
-const Home = () => {
+const TopPage = () => {
 	const user = useAuth();
 
 	if (user.authUser?.isAnonymous) {
@@ -28,4 +28,4 @@ const Home = () => {
 	}
 };
 
-export default Home;
+export default TopPage;
