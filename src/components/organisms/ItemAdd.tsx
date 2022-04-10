@@ -48,7 +48,7 @@ const ItemAdd = () => {
 	return (
 		<div className={style.container}>
 			<div className={style.header}>
-				<img onClick={onCancel} src={xmarkImg} alt="" />
+				<img className={style.cancel} onClick={onCancel} src={xmarkImg} alt="cancel" />
 				<PlaceAddButton onClick={onAdd} />
 			</div>
 			<SearchType placeType={placeType} setPlaceType={setPlaceType} />
