@@ -77,7 +77,7 @@ const UserPage = () => {
 
 					<UserEdit dbUser={user.dbUser} isEditOpen={isEditOpen} setIsEditOpen={setIsEditOpen} />
 
-					<ButtonAdd onClick={() => slider(<ItemAdd />, true)} />
+					{isMypage && <ButtonAdd onClick={() => slider(<ItemAdd />, true)} />}
 				</main>
 				<Footer />
 			</>
