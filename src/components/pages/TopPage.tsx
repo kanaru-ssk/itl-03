@@ -6,14 +6,14 @@ import { useAuth } from 'hooks/Auth';
 // component取得
 import BaseHeader from 'components/organisms/BaseHeader';
 import Footer from 'components/organisms/Footer';
-import Login from 'components/organisms/Login';
+import LandingPage from 'components/organisms/LandingPage';
 import Follows from 'components/organisms/Follows';
 
 const TopPage = () => {
 	const user = useAuth();
 
 	if (user.authUser?.isAnonymous) {
-		return <Login />;
+		return <LandingPage />;
 	} else {
 		return (
 			<>
