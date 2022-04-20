@@ -15,12 +15,10 @@ type Props = {
 
 const UserFollowHeader = ({ text }: Props) => {
 	const navigate = useNavigate();
-	const onClick = () => {
-		navigate(-1);
-	};
+
 	return (
 		<header className={style.header}>
-			<img onClick={onClick} src={prevImg} alt="prev" />
+			<img onClick={() => navigate(-1)} src={prevImg} alt="prev" />
 			<div className={style.title}>{text}</div>
 		</header>
 	);
