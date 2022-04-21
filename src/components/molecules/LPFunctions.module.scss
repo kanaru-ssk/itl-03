@@ -1,0 +1,21 @@
+@import 'variables';
+
+.functions {
+	background-color: #f6f7f9;
+	padding: 16px;
+	text-align: center;
+	max-width: $bodyMaxWidth;
+	margin: 0 auto;
+}
+
+.functionsImg {
+	width: 100%;
+	padding-bottom: 16px;
+}
+
+.function {
+	display: flex;
+	align-items: center;
+	font-size: 18px;
+	padding: 8px;
+}

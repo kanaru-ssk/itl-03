@@ -1,7 +1,7 @@
 // 投稿一覧
 
 // react取得
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // model取得
 import { generateShareLink } from 'model/UserModel';
@@ -21,9 +21,15 @@ type Props = {
 };
 
 const UserHeaderSlider = ({ paramsUserUid }: Props) => {
+	const navigate = useNavigate();
 	const user = useAuth();
 	const slider = useSlider();
 	const modal = useModal();
+
+	const openHelp = () => {
+		slider(null);
+		navigate('/help');
+	};
 
 	const shareOnTwitter = async () => {
 		const URL = await generateShareLink(user.dbUser);
@@ -46,9 +52,7 @@ const UserHeaderSlider = ({ paramsUserUid }: Props) => {
 	return (
 		<ul>
 			<li>
-				<Link to="/help">
-					<SliderItem text="行きたいとこリストとは？" />
-				</Link>
+				<SliderItem text="行きたいとこリストとは？" onClick={openHelp} />
 			</li>
 
 			{user.dbUser?.user_id === paramsUserUid && (

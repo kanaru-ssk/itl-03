@@ -1,0 +1,14 @@
+@import 'variables';
+
+.cta {
+	height: 160px;
+	padding: 48px 16px 0;
+	background-color: $subColor;
+	text-align: center;
+}
+
+.start {
+	color: $baseColor;
+	font-size: 16px;
+	padding: 8px;
+}
