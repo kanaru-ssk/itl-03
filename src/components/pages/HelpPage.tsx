@@ -7,6 +7,7 @@ import LPTtop from 'components/molecules/LPTop';
 import LPStory from 'components/molecules/LPStory';
 import LPFucntions from 'components/molecules/LPFunctions';
 import LPHowTo from 'components/molecules/LPHowTo';
+import HelpCreaters from 'components/molecules/HelpCreaters';
 import LPCopy from 'components/molecules/LPCopy';
 
 const HelpPage = () => {
@@ -21,6 +22,8 @@ const HelpPage = () => {
 				<LPFucntions />
 
 				<LPHowTo />
+
+				<HelpCreaters />
 
 				<LPCopy />
 			</HeplMain>
