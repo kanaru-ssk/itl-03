@@ -1,4 +1,4 @@
-@import 'variables';
+@use 'variables' as *;
 
 .top {
 	height: calc(100vh - 160px);
